@@ -1,0 +1,146 @@
+/* BUTTON ------------------------------------------------------------------ */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-5);
+  font: var(--type-ui);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-ui);
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+.button--primary {
+  background: var(--color-text);
+  color: var(--color-text-inverse);
+}
+.button--primary:hover { background: var(--color-accent); }
+.button--secondary {
+  background: var(--color-bg-muted);
+  color: var(--color-text);
+}
+.button--secondary:hover { background: var(--color-rule); }
+.button--ghost {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-rule-strong);
+}
+.button--ghost:hover { border-color: var(--color-text); }
+.button--accent {
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
+}
+.button--accent:hover { background: color-mix(in oklab, var(--purple) 85%, var(--midnight)); }
+.button--full { width: 100%; }
+
+/* TAG PILL — informational chip (NOT for filters) ------------------------- */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--s-1) var(--s-3);
+  font: var(--type-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--tr-eyebrow);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-rule-strong);
+  border-radius: var(--radius-pill);
+}
+.tag-pill--filled {
+  background: var(--color-bg-muted);
+  border-color: transparent;
+}
+.tag-pill--accent {
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
+  border-color: transparent;
+}
+
+/* ACCORDION --------------------------------------------------------------- */
+.accordion { display: flex; flex-direction: column; }
+
+.accordion__item + .accordion__item {
+  border-top: 1px solid var(--color-rule);
+}
+
+.accordion__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--s-3) 0;
+  font: var(--type-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--tr-eyebrow);
+  color: var(--color-text);
+  text-align: left;
+}
+.accordion__toggle {
+  font-size: var(--t-ui);
+  line-height: 1;
+  color: var(--color-text-muted);
+  transition: transform var(--dur-base) var(--ease);
+}
+.accordion__header[aria-expanded="true"] .accordion__toggle {
+  transform: rotate(45deg);
+  color: var(--color-text);
+}
+
+.accordion__body {
+  display: none;
+  padding-bottom: var(--s-4);
+}
+.accordion__header[aria-expanded="true"] + .accordion__body {
+  display: block;
+}
+
+.accordion__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: 0;
+}
+.accordion__list a {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-3);
+  margin: 0 calc(var(--s-3) * -1);
+  font: var(--type-ui);
+  color: var(--color-text);
+  cursor: pointer;
+  border-radius: var(--radius-s);
+  transition:
+    color var(--dur-fast) var(--ease),
+    background var(--dur-fast) var(--ease);
+}
+.accordion__list a:hover {
+  background: var(--color-bg-muted);
+}
+.accordion__list a[aria-current="true"] { color: var(--color-accent); }
+.accordion__list .accordion__code {
+  font: var(--type-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--tr-eyebrow);
+  color: var(--color-text-muted);
+  min-width: 2rem;
+}
+.accordion__list .accordion__name { flex: 1 1 auto; }
+.accordion__list .accordion__arc {
+  font: var(--type-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--tr-eyebrow);
+  color: var(--color-text-subtle);
+}
+.accordion__empty {
+  font-size: var(--t-small);
+  color: var(--color-text-subtle);
+  padding: var(--s-2) 0;
+  font-style: italic;
+}

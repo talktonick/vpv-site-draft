@@ -1,0 +1,9 @@
+[
+  { "id": "flagship",     "code": "01", "arc": "Transformation", "name": "Flagship Reimagination",   "x": 220,  "y": 280, "desc": "A full reset of the digital flagship — brand, strategy, storefront, and build. For brands ready to redefine their commerce experience from the ground up." },
+  { "id": "experience",   "code": "02", "arc": "Transformation", "name": "Experience Revitalization","x": 380,  "y": 420, "desc": "A focused refresh of the core user journey without a full rebuild. For brands whose foundation is sound but whose experience is dated." },
+  { "id": "architecture", "code": "03", "arc": "Transformation", "name": "Architecture Migration",   "x": 240,  "y": 560, "desc": "Replatforming and re-architecting commerce stacks. For brands moving to Shopify Plus or restructuring their tech." },
+  { "id": "ltv",          "code": "04", "arc": "Growth",         "name": "LTV Enhancement",          "x": 780,  "y": 240, "desc": "Compounding programs that grow customer value over time — subscription, loyalty, retention, returns, and operational margin." },
+  { "id": "conversion",   "code": "05", "arc": "Growth",         "name": "Conversion Optimization",  "x": 950,  "y": 380, "desc": "A continuous program of testing, learning, and shipping improvements to the commerce experience." },
+  { "id": "channel",      "code": "06", "arc": "Growth",         "name": "Channel Expansion",        "x": 820,  "y": 530, "desc": "Extending the commerce model to new channels — retail, B2B, global markets, multi-brand portfolios." },
+  { "id": "preventative", "code": "07", "arc": "Growth",         "name": "Preventative Care",        "x": 1000, "y": 600, "desc": "The ongoing partnership layer — site care, data, fractional support. The connective tissue under every other program." }
+]

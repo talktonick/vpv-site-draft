@@ -1,0 +1,40 @@
+/* Italic discipline: Neue Haas italic for body emphasis, UI italics, captions.
+   Victor Serif italic for: bylines/attribution, italic emphasis inside Neue Haas
+   headlines, pull quotes, editorial display on long-form, the wordmark "+".
+   Article hero display headline is an explicit exception — Victor Serif at
+   display size is allowed there. */
+
+.t-display      { font: var(--type-display); letter-spacing: var(--tr-display); }
+.t-display em   { font-family: var(--serif); font-style: italic; font-weight: var(--fw-light); }
+.t-h1           { font: var(--type-h1); letter-spacing: var(--tr-display); }
+.t-h1 em        { font-family: var(--serif); font-style: italic; font-weight: var(--fw-light); }
+.t-h2           { font: var(--type-h2); letter-spacing: var(--tr-h); }
+.t-h2 em        { font-family: var(--serif); font-style: italic; font-weight: var(--fw-light); }
+.t-h3           { font: var(--type-h3); letter-spacing: var(--tr-h); }
+.t-h4           { font: var(--type-h4); }
+.t-lead         { font: var(--type-lead); }
+.t-body         { font: var(--type-body); }
+.t-ui           { font: var(--type-ui); letter-spacing: var(--tr-ui); }
+.t-eyebrow {
+  font: var(--type-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--tr-eyebrow);
+  color: var(--color-text-muted);
+}
+.t-small        { font-size: var(--t-small); line-height: var(--lh-body); }
+.t-micro {
+  font-size: var(--t-micro);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  font-weight: var(--fw-medium);
+}
+
+.t-muted        { color: var(--color-text-muted); }
+.t-subtle       { color: var(--color-text-subtle); }
+
+.t-byline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: var(--fw-light);
+  font-size: var(--t-lead);
+}

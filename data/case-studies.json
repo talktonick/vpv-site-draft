@@ -1,0 +1,131 @@
+[
+  {
+    "id": "cs-faherty",
+    "name": "Faherty",
+    "year": "2019 — Present",
+    "industry": "Fashion + Apparel",
+    "summary": "A six-year partnership with a family-founded apparel brand spanning two flagship redesigns and an ongoing growth program.",
+    "hero": "https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/688ab0c35f86430ac087ee23_Frame%20316123673%20(1).jpg",
+    "programs": ["flagship", "experience", "preventative"],
+    "products": ["p-flagship-storefront-system", "p-optimized-storefront-system", "p-site-care-engine", "p-experimentation-engine", "p-growth-features-library"],
+    "metrics": [
+      { "value": "6 yrs", "label": "Partnership" },
+      { "value": "2",     "label": "Flagship redesigns" },
+      { "value": "+180%", "label": "Cumulative CVR lift" }
+    ],
+    "challenge": "When Faherty came to us in 2019, they were a fast-growing DTC brand on a templated theme. The site couldn't keep up with the catalog growth, and the team had no internal commerce engineering capacity.",
+    "approach": "We started with a flagship build, then transitioned into an ongoing partnership covering site care, experimentation, and continuous growth feature development. As the brand evolved, we ran a second flagship redesign in year four to reflect the new positioning.",
+    "outcome": "The partnership now operates as an extension of Faherty's in-house team. Site care and experimentation run continuously; new growth features ship every quarter; the second redesign reset the brand's digital flagship for the next phase.",
+    "gallery": [
+      "https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/688aabf6e01691ad57fa16e7_Frame%202875%20(23)-min.jpg"
+    ],
+    "growthFeatures": [
+      { "name": "Shoppable Lookbook", "desc": "An editorial-meets-commerce experience that drove a step change in collection sell-through." },
+      { "name": "Gift Concierge", "desc": "A guided gifting flow built for Q4 holiday peaks." },
+      { "name": "Fit Finder", "desc": "A product recommendation tool addressing fit confusion across categories." }
+    ],
+    "hasTimeline": true,
+    "timeline": [
+      {
+        "year": "Year 1", "dateLabel": "2019", "type": "major",
+        "title": "Initial Flagship Build",
+        "product": "Flagship Storefront System",
+        "body": "A ground-up rebuild of Faherty.com. New IA, new design system, new Shopify Plus implementation. The foundation everything since has built on.",
+        "image": "https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/688aabf6e01691ad57fa16e7_Frame%202875%20(23)-min.jpg"
+      },
+      {
+        "year": "Year 2", "dateLabel": "2020", "type": "ongoing",
+        "title": "Site Care + Experimentation Begins",
+        "product": "Site Care Engine, Experimentation Engine",
+        "body": "Transitioned into ongoing partnership. Monthly site care covering theme maintenance, performance, and small UX improvements. CRO program running structured tests against the new foundation."
+      },
+      {
+        "year": "Year 2", "dateLabel": "2020", "type": "feature",
+        "title": "Shoppable Lookbook",
+        "product": "Growth Feature",
+        "body": "First major growth feature build — an editorial format that wove product into seasonal storytelling. Drove a measurable lift in collection sell-through."
+      },
+      {
+        "year": "Year 3", "dateLabel": "2021", "type": "feature",
+        "title": "Gift Concierge",
+        "product": "Growth Feature",
+        "body": "Holiday-season gifting flow. Built once, refined every Q4 since."
+      },
+      {
+        "year": "Year 4", "dateLabel": "2022", "type": "major",
+        "title": "Second Flagship Redesign",
+        "product": "Flagship Storefront System",
+        "body": "After three years of growth, the brand had outgrown its original digital identity. A second flagship rebuild — new design language, expanded category architecture, refreshed PDP and PLP — set the stage for the next chapter.",
+        "image": "https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/688ab0c35f86430ac087ee23_Frame%20316123673%20(1).jpg"
+      },
+      {
+        "year": "Year 5", "dateLabel": "2023", "type": "feature",
+        "title": "Fit Finder",
+        "product": "Growth Feature",
+        "body": "Product recommendation tool addressing fit confusion across denim, outerwear, and women's tops. Reduced returns in the launched categories."
+      },
+      {
+        "year": "Year 6", "dateLabel": "2024 — present", "type": "ongoing",
+        "title": "Continuous Optimization",
+        "product": "Site Care + Experimentation + Growth Features",
+        "body": "The current operating mode. Site care and experimentation run as standing programs. New growth features get scoped and shipped each quarter, prioritized by the e-commerce roadmap we co-author."
+      }
+    ]
+  },
+  {
+    "id": "cs-halfdays",
+    "name": "Halfdays",
+    "year": "2024",
+    "industry": "Fashion + Apparel",
+    "summary": "A refined storefront experience for a women's outerwear brand redefining performance and style.",
+    "hero": "https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/681050f7526f2ea9341d028b_32b2783a14952ce0a89d42f415d8057a65cc78ed-min.jpg",
+    "programs": ["experience"],
+    "products": ["p-optimized-storefront-system", "p-landing-page-system"],
+    "metrics": [
+      { "value": "+34%", "label": "Conversion rate" },
+      { "value": "+22%", "label": "Average order value" },
+      { "value": "10 wks","label": "Project duration" }
+    ],
+    "challenge": "Halfdays had outgrown its original Shopify theme. The site looked dated relative to the brand's ambition, the navigation buried key collections, and mobile performance was hurting conversions during peak seasons.",
+    "approach": "A focused storefront refresh — not a full rebuild. We redesigned the core user journey templates, restructured the navigation around how customers actually shop, and built a flexible landing page system the team could use without engineering involvement.",
+    "outcome": "Conversion lift held through two seasonal cycles. The marketing team now ships campaign pages without a developer in the loop, which has changed the cadence of how they go to market.",
+    "gallery": [
+      "https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/681020f27fd34a3e8662f44d_CASE%20STUDY%20-%20%20Halfdays%20-%2003%20(1).png",
+      "https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/681025db6c398d42c1f4b35f_nav%20%2B%20search%20(1).png",
+      "https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/681023794b6ae81ca851d8dc_Frame%201533207986.png"
+    ],
+    "growthFeatures": [
+      { "name": "Search + Navigation Redesign", "desc": "Reworked nav structure and predictive search to reduce taps-to-product on mobile." },
+      { "name": "Editorial Landing Pages", "desc": "A flexible landing page system for seasonal drops and brand storytelling." }
+    ]
+  },
+  {
+    "id": "cs-marion-parke",
+    "name": "Marion Parke",
+    "year": "2025",
+    "industry": "Fashion + Apparel",
+    "summary": "A storefront and brand voice refresh for a luxury footwear label rooted in podiatric design.",
+    "hero": "https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/68364885ce6616ed4b312698_Info.png",
+    "programs": ["experience"],
+    "products": ["p-optimized-storefront-system", "p-verbal-strategy-toolkit"],
+    "metrics": [
+      { "value": "+28%", "label": "Conversion rate" },
+      { "value": "+19%", "label": "Time on PDP" },
+      { "value": "12 wks","label": "Project duration" }
+    ],
+    "challenge": "Marion Parke's product is technical — a luxury shoe designed by a podiatric surgeon — but the storefront was reading as a typical fashion site. The brand voice felt generic and the design didn't communicate what made the product different.",
+    "approach": "We paired storefront optimization with a verbal strategy engagement, rebuilding the brand's voice and tone alongside the visual experience. The redesigned PDP became the proof point — every product page now leads with the design story.",
+    "outcome": "A storefront that finally matches the level of craft in the product. The team has clear voice guidelines for everything from PDP copy to email campaigns.",
+    "gallery": [
+      "https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/6836448ee2fbef52989183cb_CASE%20STUDY%20-%20%20Halfdays%20-%2012.png",
+      "https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/68363f88eb7a602e254f2f45_Screen%20Shot%202025-05-27%20at%206.31.05%20PM.png"
+    ],
+    "growthFeatures": [
+      { "name": "Editorial PDP", "desc": "A product page treatment that surfaces the brand's podiatric design story alongside conversion-critical content." }
+    ]
+  },
+  { "id": "cs-decked",        "name": "DECKED",        "industry": "Outdoor + Sport",   "summary": "Case study in draft.", "programs": ["flagship"], "products": ["p-digital-strategy-toolkit"] },
+  { "id": "cs-patrick-ta",    "name": "Patrick Ta",    "industry": "Beauty",            "summary": "Case study in draft.", "programs": ["flagship"], "products": ["p-digital-strategy-toolkit"] },
+  { "id": "cs-toad-co",       "name": "Toad&Co",       "industry": "Outdoor + Sport",   "summary": "Case study in draft.", "programs": ["flagship"], "products": ["p-flagship-storefront-system"] },
+  { "id": "cs-paul-fredrick", "name": "Paul Fredrick", "industry": "Fashion + Apparel", "summary": "Case study in draft.", "programs": ["flagship"], "products": ["p-flagship-storefront-system"] }
+]

@@ -1,0 +1,132 @@
+[
+  {
+    "id": "gf-shoppable-lookbook",
+    "name": "Shoppable Lookbook",
+    "tier": "Large",
+    "areas": ["Redesign", "Conversion"],
+    "programs": ["flagship", "experience"],
+    "products": ["p-optimized-storefront-system", "p-flagship-storefront-system", "p-growth-features-library"],
+    "cases": ["cs-faherty"],
+    "desc": "Editorial-meets-commerce experience that weaves products into seasonal storytelling. Drives collection sell-through and dwell time."
+  },
+  {
+    "id": "gf-gift-concierge",
+    "name": "Gift Concierge",
+    "tier": "Large",
+    "areas": ["Conversion"],
+    "programs": ["flagship", "experience"],
+    "products": ["p-optimized-storefront-system", "p-flagship-storefront-system", "p-growth-features-library"],
+    "cases": ["cs-faherty"],
+    "desc": "Guided gifting flow built for Q4 holiday peaks. Recipient profiling, gift wrap, and scheduled delivery."
+  },
+  {
+    "id": "gf-fit-finder",
+    "name": "Fit Finder",
+    "tier": "Large",
+    "areas": ["Conversion", "Retention", "Product Data"],
+    "programs": ["experience", "conversion", "ltv"],
+    "products": ["p-optimized-storefront-system", "p-product-discovery-system", "p-returns-reduction-system"],
+    "cases": ["cs-faherty"],
+    "desc": "Product recommendation tool addressing fit and sizing confusion. Reduces return rates in apparel and footwear categories."
+  },
+  {
+    "id": "gf-editorial-pdp",
+    "name": "Editorial PDP",
+    "tier": "Medium",
+    "areas": ["Redesign"],
+    "programs": ["experience"],
+    "products": ["p-optimized-storefront-system"],
+    "cases": ["cs-marion-parke"],
+    "desc": "PDP treatment that surfaces brand and product story alongside conversion-critical content. Used for premium and craft-led brands."
+  },
+  {
+    "id": "gf-search-nav-redesign",
+    "name": "Search + Navigation Redesign",
+    "tier": "Medium",
+    "areas": ["Conversion", "Redesign"],
+    "programs": ["experience", "conversion"],
+    "products": ["p-optimized-storefront-system"],
+    "cases": ["cs-halfdays"],
+    "desc": "Reworked nav structure and predictive search optimized for mobile-first shopping behavior."
+  },
+  {
+    "id": "gf-editorial-landing",
+    "name": "Editorial Landing Pages",
+    "tier": "Medium",
+    "areas": ["Redesign", "Conversion"],
+    "programs": ["experience", "ltv"],
+    "products": ["p-landing-page-system"],
+    "cases": ["cs-halfdays"],
+    "desc": "Flexible landing page system marketers can deploy without engineering. Built for seasonal drops and brand storytelling."
+  },
+  {
+    "id": "gf-product-comparison",
+    "name": "Product Comparison Tool",
+    "tier": "Medium",
+    "areas": ["Conversion", "Product Data"],
+    "programs": ["conversion"],
+    "products": ["p-optimized-storefront-system", "p-product-discovery-system"],
+    "cases": [],
+    "desc": "Side-by-side comparison module for product categories where customers struggle to differentiate. Reduces decision friction on PDP and PLP."
+  },
+  {
+    "id": "gf-quick-add-cart",
+    "name": "Quick Add to Cart",
+    "tier": "Small",
+    "areas": ["Conversion"],
+    "programs": ["conversion"],
+    "products": ["p-optimized-storefront-system"],
+    "cases": [],
+    "desc": "PLP and PDP enhancement that lets shoppers add to cart without navigating away. Lifts AOV through cross-sell prompts."
+  },
+  {
+    "id": "gf-discovery-quiz",
+    "name": "Product Discovery Quiz",
+    "tier": "Large",
+    "areas": ["Conversion", "Product Data"],
+    "programs": ["conversion"],
+    "products": ["p-optimized-storefront-system", "p-product-discovery-system"],
+    "cases": [],
+    "desc": "Guided onboarding flow that recommends products based on customer input. Effective for technical or fit-driven categories."
+  },
+  {
+    "id": "gf-bundle-builder",
+    "name": "Bundle Builder",
+    "tier": "Medium",
+    "areas": ["Conversion", "Subscription"],
+    "programs": ["ltv"],
+    "products": ["p-subscription-revenue-system"],
+    "cases": [],
+    "desc": "Customer-configured product bundles. Drives AOV and is foundational for subscription bundle offerings."
+  },
+  {
+    "id": "gf-loyalty-drawer",
+    "name": "Loyalty Drawer",
+    "tier": "Small",
+    "areas": ["Retention"],
+    "programs": ["ltv"],
+    "products": ["p-loyalty-experience-system"],
+    "cases": [],
+    "desc": "Persistent loyalty status and points UI integrated into the storefront chrome. Reinforces program awareness throughout the journey."
+  },
+  {
+    "id": "gf-subscription-portal",
+    "name": "Subscription Portal",
+    "tier": "Large",
+    "areas": ["Subscription", "Retention"],
+    "programs": ["ltv"],
+    "products": ["p-subscription-revenue-system"],
+    "cases": [],
+    "desc": "Customer-facing portal for managing subscription frequency, swaps, skips, and add-ons. The retention layer of any subscription offering."
+  },
+  {
+    "id": "gf-ai-search",
+    "name": "AI Search",
+    "tier": "Medium",
+    "areas": ["AI Enablement", "Product Data"],
+    "programs": ["channel", "conversion"],
+    "products": ["p-commerce-ai-framework"],
+    "cases": [],
+    "desc": "Natural-language product search powered by LLM-based retrieval. Surfaces products based on intent rather than keyword match."
+  }
+]

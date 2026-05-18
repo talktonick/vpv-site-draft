@@ -1,0 +1,208 @@
+[
+  {
+    "id": "art-pfi",
+    "kind": "thought-leadership",
+    "slug": "predictive-friction-intelligence",
+    "kicker": "Thought Leadership",
+    "title": "Predictive Friction Intelligence",
+    "deck": "How we built a layer on top of analytics to surface what users are actually struggling with — and forecast what's coming next.",
+    "byline": { "name": "David", "role": "CTO, V+V" },
+    "date": "2026-05",
+    "relatedProducts": ["p-site-care-engine", "p-data-insights-engine", "p-experimentation-engine"],
+    "relatedPrograms": ["preventative", "conversion"],
+    "sections": [
+      {
+        "id": "intro",
+        "heading": "What PFI is",
+        "body": [
+          "Predictive Friction Intelligence is the engine behind our proactive maintenance work. It taps into Shopify Analytics, Microsoft Clarity, and Google Analytics 4 — pulling those streams into a model we built on Cloud.",
+          "We didn't build an AI model from scratch. We trained one around our best practices: V+V's own playbook, the full compendium of Baymard Institute user-experience studies, and brand-sentiment cues that apply to LLMs, agentic search, GEO, and AEO.",
+          "The output is a story. PFI maps every signal across ten to fifteen cohorts and tells you what your customers are dealing with on a given day."
+        ],
+        "media": {
+          "kind": "pill",
+          "speaker": { "name": "David", "role": "CTO, V+V" },
+          "items": [
+            { "kind": "read", "title": "The full origin story", "body": "PFI started with a frustration. We could see the drops in Clarity and GA4, but they never told us what users were actually struggling with. A chart shows a bounce; it doesn't show that the cookie banner was covering the add-to-cart. We wanted a layer on top of the data that hydrated the story — that pulled in everything we know about commerce friction and translated raw signals into something you could act on. That's PFI." },
+            { "kind": "hear", "title": "David on the model behind PFI", "src": "assets/audio/pfi-david-model.m4a", "transcript": "We didn't build an AI model from scratch. We trained one around all of our best practices — V+V's own playbook, the full Baymard Institute compendium, and brand-sentiment cues that apply to LLMs and agentic search. That training is the part that matters. The model itself is commodity; the practice it's trained on is not." }
+          ]
+        }
+      },
+      {
+        "id": "gap",
+        "heading": "Where standard analytics stop",
+        "body": [
+          "Open Clarity. Open GA4. You'll see drops. You'll see friction. What you won't see is the story behind it — what is actually bothering that user, what they're encumbered with.",
+          "Standard analytics aggregate. Aggregates don't tell you that a cookie banner is overlapping a PDP image. They don't tell you that the chat bot popped open and covered the price. They tell you the chart moved."
+        ]
+      },
+      {
+        "id": "example",
+        "heading": "A working example",
+        "body": [
+          "One of our clients was watching mobile users drop before reaching their product detail pages. The data showed friction, but the cause wasn't obvious. Why couldn't people just tap the nav?",
+          "PFI surfaced it: the tap targets on the mobile menu weren't fully clickable. The click event wasn't bound to the right element. Users tapped the text or the dropdown tick, nothing happened, and they bounced.",
+          "We rebuilt the nav and shipped the fix. PDP reachability went up 46%. PDP bounce rate dropped 20% basically overnight."
+        ],
+        "media": {
+          "kind": "pill",
+          "speaker": { "name": "David", "role": "CTO, V+V" },
+          "items": [
+            { "kind": "see", "title": "PFI walkthrough", "src": "https://download-video-ak.vimeocdn.com/v3-1/playback/32ab5fd9-8ec7-46a1-9fd7-35085a4189e2/a98f62d0?__token__=st=1778784038~exp=1778787638~acl=%2Fv3-1%2Fplayback%2F32ab5fd9-8ec7-46a1-9fd7-35085a4189e2%2Fa98f62d0%2A~hmac=fcc21fdb7ee936e5c46c68261aaaa6095a5c578ed0dc80d7004521ae7375dc4e&r=dXMtd2VzdDE%3D", "caption": "A short demo of PFI mapping signals across cohorts and surfacing a recommendation." },
+            { "kind": "read", "title": "Other things PFI has surfaced", "body": "A floating chatbot icon covering a sticky add-to-cart on PDP. A promo banner pushing the hero out of the fold on mobile. A search field that opened a modal users couldn't dismiss without two taps. None of these show up as a single event in GA4 — they show up as patterns once you correlate session recordings with KPI movement, which is what PFI does in the background." }
+          ]
+        }
+      },
+      {
+        "id": "predictive",
+        "heading": "The predictive layer",
+        "body": [
+          "What makes PFI unique is forecasting. It looks at what's currently nagging users, predicts how bad it could become, and translates that into revenue impact — what you could lose, what share of access to a page is at risk.",
+          "Beyond diagnosis, PFI proposes experiments. A/B tests, multivariate tests, layout or feature changes that touch on the friction points it's surfaced. For each, it predicts the uplift.",
+          "When a team enters a design phase or an optimization phase, they usually have a vague intent: increase conversion, improve product availability. PFI gives them a sharper target: here are the top three things your users are actually struggling with on this page. Fix these."
+        ]
+      },
+      {
+        "id": "backlog",
+        "heading": "From insight to backlog",
+        "body": [
+          "PFI's output isn't a dashboard. It's a populated backlog. A healthy, robust stable of opportunities — issues to fix, errors to clear, experiences to test, sentiment improvements for LLM search and GEO.",
+          "We don't redesign a page for the sake of the exercise. We redesign based on what people are having an issue with. The results pay back almost tenfold, almost immediately."
+        ]
+      }
+    ]
+  },
+
+  {
+    "id": "tool-product-data-audit",
+    "kind": "tools",
+    "kicker": "Tools",
+    "title": "Product Data Audit",
+    "deck": "A diagnostic that finds the gaps and inconsistencies in your product data before they break discovery, recommendations, and AI-powered search.",
+    "date": "2026-06",
+    "relatedProducts": ["p-product-discovery-system", "p-data-insights-engine"],
+    "relatedPrograms": ["conversion", "preventative"],
+    "sections": [
+      {
+        "id": "overview",
+        "heading": "Overview",
+        "body": [
+          "Tool sheet in draft. The Product Data Audit catalogs every PDP field across your storefront, scores completeness and consistency, and flags the entries most likely to suppress sell-through in search, merchandising, and LLM-driven recommendation contexts.",
+          "Full write-up coming. In the meantime, see the Product Discovery System and Data Insights Engine for the engagements that ship this tool to clients."
+        ]
+      }
+    ]
+  },
+
+  {
+    "id": "tool-bundling-app",
+    "kind": "tools",
+    "kicker": "Tools",
+    "title": "Bundling App",
+    "deck": "Customer-configured product bundles. The retention layer of any subscription offering, packaged as a deployable Shopify app.",
+    "date": "2026-06",
+    "relatedProducts": ["p-subscription-revenue-system", "p-loyalty-experience-system"],
+    "relatedPrograms": ["ltv"],
+    "sections": [
+      {
+        "id": "overview",
+        "heading": "Overview",
+        "body": [
+          "Tool sheet in draft. The Bundling App lets customers build their own kits — pick a size, pick a frequency, pick add-ons. Ships as part of Subscription Revenue System engagements or stands alone as a growth feature.",
+          "Full write-up coming. Available in select engagements today."
+        ]
+      }
+    ]
+  },
+
+  {
+    "id": "news-jenna-promotion",
+    "kind": "news",
+    "kicker": "News",
+    "title": "Jenna V promoted to Associate Director of Program",
+    "deck": "A long-overdue promotion. Jenna now leads program management across V+V engagements.",
+    "date": "2026-05",
+    "relatedPrograms": ["preventative"],
+    "sections": [
+      {
+        "id": "announcement",
+        "heading": "Announcement",
+        "body": [
+          "Jenna V has been promoted to Associate Director of Program. She's been the throughline on most of our recent Faherty, Halfdays, and Marion Parke engagements — the person clients call when something needs to ship and the person inside V+V who makes sure the ship is real.",
+          "In her new role she'll oversee program management across the full V+V client portfolio, with direct reports across delivery and care. Congratulations, Jenna."
+        ]
+      }
+    ]
+  },
+
+  {
+    "id": "work-faherty-relaunch",
+    "kind": "work",
+    "kicker": "Work",
+    "title": "Faherty's second flagship just launched",
+    "deck": "A new design language, an expanded category architecture, and a refreshed PDP — the second flagship in a six-year partnership goes live.",
+    "date": "2026-05",
+    "relatedCase": "cs-faherty",
+    "relatedProducts": ["p-flagship-storefront-system"],
+    "relatedPrograms": ["flagship", "experience"],
+    "sections": [
+      {
+        "id": "launch",
+        "heading": "Launch note",
+        "body": [
+          "Faherty's second flagship redesign shipped this week. It's the result of a multi-quarter engagement covering brand direction, design system, and storefront build — the second time V+V has rebuilt the digital flagship for Faherty in six years.",
+          "Open the full case study for the long view: the original 2019 build, the ongoing experimentation and growth program in years two through five, and the new flagship that sets up the next phase."
+        ]
+      }
+    ]
+  },
+
+  {
+    "id": "work-halfdays-landing",
+    "kind": "work",
+    "kicker": "Work",
+    "title": "Halfdays' new editorial landing page system",
+    "deck": "A flexible landing page builder that lets the Halfdays marketing team ship seasonal campaign pages without a developer in the loop.",
+    "date": "2026-05",
+    "relatedCase": "cs-halfdays",
+    "relatedProducts": ["p-landing-page-system"],
+    "relatedPrograms": ["experience", "ltv"],
+    "growthFeatureName": "Editorial Landing Pages",
+    "sections": [
+      {
+        "id": "ship",
+        "heading": "Shipped",
+        "body": [
+          "Halfdays' Editorial Landing Pages system is live. The marketing team now configures seasonal drop pages, brand storytelling pages, and campaign landing experiences directly — no engineering involvement required.",
+          "This is the Editorial Landing Pages growth feature, built on top of the Landing Page System product. The Halfdays case study has the broader context."
+        ]
+      }
+    ]
+  },
+
+  {
+    "id": "play-sizing-guide",
+    "kind": "play",
+    "kicker": "Play",
+    "title": "Product Sizing Guide Simulator",
+    "deck": "Experiment with the parameters that drive a sizing recommendation — see how the answer changes as inputs shift.",
+    "date": "2026-05",
+    "interactive": "sizing-guide",
+    "relatedProducts": ["p-product-discovery-system", "p-returns-reduction-system"],
+    "relatedPrograms": ["conversion", "ltv"],
+    "sections": []
+  },
+
+  {
+    "id": "play-pdp-playground",
+    "kind": "play",
+    "kicker": "Play",
+    "title": "PDP Playground",
+    "deck": "One product, every layout. Tweak the parameters and watch the same content read as luxury, modern, editorial, or loud — same copy, different brand.",
+    "date": "2026-05",
+    "interactive": "pdp-playground",
+    "relatedProducts": ["p-optimized-storefront-system", "p-flagship-storefront-system"],
+    "relatedPrograms": ["experience", "flagship"],
+    "sections": []
+  }
+]

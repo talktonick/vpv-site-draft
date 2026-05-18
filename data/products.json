@@ -1,0 +1,1866 @@
+[
+  {
+    "id": "p-b2b-activation-kit",
+    "name": "B2B Activation Kit",
+    "category": "Expansion",
+    "subcategory": "Omnichannel",
+    "description": "Increase B2B sales and operational efficiency with a scalable wholesale ecommerce solution.",
+    "duration": "8 weeks",
+    "output": "A fully configured Shopify B2B channel that enables account-based wholesale purchasing through customer-specific pricing, catalogs, and permissions—aligned with existing ecommerce operations and internal workflows.",
+    "outcome": "Increase B2B sales and operational efficiency with a scalable wholesale ecommerce solution.",
+    "programs": [
+      "channel"
+    ],
+    "phases": [
+      {
+        "name": "Strategy + Channel Architecture",
+        "items": [
+          {
+            "title": "B2B Store Model Decisioning",
+            "body": "A structured decision framework defining the optimal blended vs dedicated B2B store architecture based on operational and growth requirements."
+          },
+          {
+            "title": "Channel Architecture",
+            "body": "Definition of how B2B customers, pricing, catalogs, and permissions to operate"
+          },
+          {
+            "title": "Operations Model",
+            "body": "Defined ownership and responsibilities for managing wholesale accounts, pricing, orders, fulfillment, and customer support in Shopify."
+          }
+        ]
+      },
+      {
+        "name": "Infrastructure Configuration",
+        "items": [
+          {
+            "title": "Company, Location + Account Structure",
+            "body": "Setup of B2B companies, locations, user roles, and permissions."
+          },
+          {
+            "title": "Catalogs + Pricing Logic",
+            "body": "Configuration of catalogs, customer-specific pricing, volume rules, and discount structures."
+          },
+          {
+            "title": "B2B Catalog Configuration",
+            "body": "Product and collection setup to support bulk ordering, restricted visibility, and client-specific assortments."
+          },
+          {
+            "title": "Payments, Shipping + Terms Alignment",
+            "body": "Configuration of B2B-appropriate payment methods, shipping rules, and checkout behavior."
+          }
+        ]
+      },
+      {
+        "name": "Launch Readiness + Enablement",
+        "items": [
+          {
+            "title": "Bulk Ordering + Reordering Workflows",
+            "body": "Enablement of efficient purchasing and repeat order flows for wholesale buyers."
+          },
+          {
+            "title": "QA + Validation",
+            "body": "Validation of pricing, access controls, catalogs, workflows, and integrations through end-to-end testing."
+          },
+          {
+            "title": "Enablement Toolkit",
+            "body": "Documentation and guidance enabling internal teams to manage accounts, pricing, orders, and support workflows post-launch."
+          },
+          {
+            "title": "Launch Playbook",
+            "body": "Launch sequencing, go-live validation."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-commerce-ai-framework",
+    "name": "Commerce AI Framework",
+    "category": "Foundation",
+    "subcategory": "Technology",
+    "description": "Enable natural‑language search, ask, and buy with MCP‑enabled agentic assistants running on Shopify.",
+    "duration": "Varies by tier (2–8 weeks)",
+    "output": "Structured data, optimized storefront, and agentic services to enable customer flows for wide AI adoption with a robust boilerplate for natural-language search, merchandising, and purchase.",
+    "outcome": "Improved product discovery, NLP, search, and merch leading to higher conversion, and reduced friction through always-on, brand-safe AI + agentic experiences across your storefront.",
+    "programs": [
+      "channel"
+    ],
+    "phases": [
+      {
+        "name": "Data + Readiness",
+        "items": [
+          {
+            "title": "Commerce Data Audit",
+            "body": "Map products, collections, content, FAQs, and policies into a structured schema suitable for LLM and agentic use cases."
+          },
+          {
+            "title": "AI Integration Scaffold",
+            "body": "Design how and where Shopify data and flow will operate storefront data for AI enabled interfaces/services, and operations."
+          },
+          {
+            "title": "Use Case + Intent Definition",
+            "body": "Prioritize high-impact customer moments, agent assist, and merchandising scenarios (e.g., PDP assistance, guided find-the-right-product flows, upsell) with clear success metrics."
+          }
+        ]
+      },
+      {
+        "name": "Experience Design",
+        "items": [
+          {
+            "title": "Journey + Flow Design",
+            "body": "Design how natural language search, Q&A, and guided purchase journeys surface merchandise, trigger product discovery and cart actions, drive upsell, and hand off seamlessly into existing Shopify flows and services."
+          },
+          {
+            "title": "Persona + Tone Framework",
+            "body": "Define boundaries, tone, and response/presentation frameworks for responses to feel on-brand, accurate, and helpful."
+          },
+          {
+            "title": "Dynamic Personalization",
+            "body": "Design adaptive, context-aware modules that use AI to surface relevant insights, guide shoppers through discovery, and seamlessly connect into core commerce flows."
+          }
+        ]
+      },
+      {
+        "name": "Implementation + Optimization",
+        "items": [
+          {
+            "title": "Agentic Implementation",
+            "body": "Configure Shopify endpoints, tools, and agents to safely read and act on commerce data."
+          },
+          {
+            "title": "Internal Process Integration",
+            "body": "Layer in and execute agentic services to offset internal process burden and flow."
+          },
+          {
+            "title": "Continuous Integration + Insights Reporting",
+            "body": "Refine prompts, tools, and data coverage with a recurring report on performance, learnings, and next optimizations."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-creative-intelligence-studio",
+    "name": "Creative Intelligence Studio",
+    "category": "Foundation",
+    "subcategory": "Brand",
+    "description": "An AI-assisted studio for efficient creative and content production.",
+    "duration": "3 month minimum",
+    "output": "An AI-enabled creative system delivering validated creative directions, scalable asset libraries, and campaign-ready concepts—designed for ongoing content creation without full-scale production.",
+    "outcome": "Enable your team to quickly validate creative directions, explore visual worlds at scale, and accelerate early-stage campaign development without the cost of full production.",
+    "programs": [
+      "flagship"
+    ],
+    "phases": [
+      {
+        "name": "Creative Intelligence Foundation",
+        "items": [
+          {
+            "title": "Asset Audit",
+            "body": "Assessment of existing creative assets, reference imagery, and mood directions to identify what resonates, what scales, and where AI-generated content is most effective."
+          },
+          {
+            "title": "Creative Direction Alignment",
+            "body": "Definition of a focused set of approved creative directions, including visual themes, stylistic guardrails, and decision criteria."
+          },
+          {
+            "title": "Creative Recommendation Summary",
+            "body": "Clear recommendation identifying the strongest creative paths, the most scalable asset types, and guidance for continued iteration or full production."
+          }
+        ]
+      },
+      {
+        "name": "Scalable Asset Generation + Application",
+        "items": [
+          {
+            "title": "AI Still + Motion Asset Library",
+            "body": "Ongoing generation of AI-driven stills and short-form motion clips aligned to approved creative directions and intended use cases."
+          },
+          {
+            "title": "Rough-Cut Motion Concepts",
+            "body": "Assembly of AI-generated clips, stock elements, and placeholder copy into rough cut concepts that demonstrate campaign and ad applications."
+          },
+          {
+            "title": "Prompt + Workflow Templates",
+            "body": "Reusable prompts and workflows enabling continued asset generation without restarting creative direction each month."
+          },
+          {
+            "title": "Directional Refinement Loop",
+            "body": "Light refinement of creative directions based on output quality and usage signals—focused on improving the system, not individually polishing assets."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-customer-insights-toolkit",
+    "name": "Customer Insights Toolkit",
+    "category": "Optimization",
+    "subcategory": "Retention",
+    "description": "Higher engagement and conversion enabled by evidence‑based customer insights.",
+    "duration": "8 weeks",
+    "programs": [
+      "ltv"
+    ],
+    "phases": [
+      {
+        "name": "Research + Segmentation Planning",
+        "items": [
+          {
+            "title": "Participant Screener + Candidate Management",
+            "body": "Diverse, high-value user research participants selected through a structured process."
+          },
+          {
+            "title": "Segmentation Framework + Testing Plan",
+            "body": "User groups analyzed based on behavioral data."
+          },
+          {
+            "title": "Feedback Integration + Testing Optimization",
+            "body": "Research objectives + methodology refined based on feedback."
+          }
+        ]
+      },
+      {
+        "name": "Data Collection + Insights Activation",
+        "items": [
+          {
+            "title": "User + Stakeholder Interview Execution",
+            "body": "Gain insights on customer behaviors, needs, and pain points."
+          },
+          {
+            "title": "Real-Time Behavioral Data Mapping",
+            "body": "Understand engagement trends and usability patterns."
+          },
+          {
+            "title": "Usability + Experience Optimization Guide",
+            "body": "Playbook for refining site experience based on customer insights."
+          }
+        ]
+      },
+      {
+        "name": "Findings + Optimization Opportunities",
+        "items": [
+          {
+            "title": "Audience Segmentation Report",
+            "body": "Data-backed report outlining customer groups, behaviors, and opportunities."
+          },
+          {
+            "title": "Strategic Marketing + Product Action Plan",
+            "body": "Apply insights across business functions."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-data-insights-engine",
+    "name": "Data Insights Engine",
+    "code": "CI-DI",
+    "category": "Optimization",
+    "subcategory": "Support",
+    "description": "Enable faster, smarter decisions with actionable data analysis and insights.",
+    "output": "A continuous analytics system that provides weekly and monthly performance reporting, growth-focused insights, KPI tracking, and on-demand deep-dive analysis across key data sources.",
+    "outcome": "Smarter, faster decision-making that drives higher growth—powered by accurate reporting, clear KPI visibility, and continuous analysis aligned to business priorities.",
+    "programs": [
+      "flagship",
+      "preventative"
+    ],
+    "phases": [
+      {
+        "name": "Strategic Alignment + Comms",
+        "items": [
+          {
+            "title": "KPI Framework + Baselines",
+            "body": "Clear definition of the metrics that matter most, including baseline performance and targets tied to your growth initiatives."
+          },
+          {
+            "title": "Weekly Analytics Reporting",
+            "body": "Concise weekly email updates summarizing key movements, trends, and insights across your primary platforms."
+          },
+          {
+            "title": "Monthly Performance Review",
+            "body": "A deeper monthly meeting to assess results, understand drivers, and align next steps to business goals."
+          }
+        ]
+      },
+      {
+        "name": "Platform Intelligence",
+        "items": [
+          {
+            "title": "Multi Platform Data Analysis",
+            "body": "Ongoing analysis from two key sources each month (e.g., GA, FB Ads), ensuring a holistic view of performance."
+          },
+          {
+            "title": "Priority Ad-Hoc Investigations",
+            "body": "Rapid deep-dives into emerging questions or issues to support fast, informed decision-making."
+          }
+        ]
+      },
+      {
+        "name": "Deep-Dive Insight Work",
+        "items": [
+          {
+            "title": "Monthly Data Projects",
+            "body": "Rotating deep dive analysis, report builds, or technical data support based on current business needs."
+          },
+          {
+            "title": "Insights + Recommendations",
+            "body": "Actionable strategic recommendations tied directly to your growth initiatives—not just reporting, but direction."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-digital-strategy-toolkit",
+    "name": "Digital Strategy Toolkit",
+    "category": "Foundation",
+    "subcategory": "Vision",
+    "description": "Create powerful, resonant customer experiences guided by experiential pillars that serve as your team’s north star.",
+    "duration": "1 month",
+    "output": "A unified digital strategy blueprint that translates brand intent into clear experience principles, audience-informed priorities, and execution-ready guidance.",
+    "outcome": "Create powerful, resonant customer experiences guided by experiential pillars that serve as your team’s north star.",
+    "programs": [
+      "flagship"
+    ],
+    "phases": [
+      {
+        "name": "Brand + Digital Assessment",
+        "items": [
+          {
+            "title": "Stakeholder Interview Analysis",
+            "body": "Synthesize leadership and cross-functional perspectives into a clear set of shared priorities, risks, and decision drivers."
+          },
+          {
+            "title": "Digital Experience Audit",
+            "body": "Evaluation of visual identity, messaging, and customer touch points to identify experience risks and opportunities that impact conversion, clarity, and brand expression."
+          },
+          {
+            "title": "Industry Benchmarking Analysis",
+            "body": "Compare the current experience against relevant industry and category standards to identify competitive gaps, strengths, and priority opportunities."
+          }
+        ]
+      },
+      {
+        "name": "Strategy Blueprint",
+        "items": [
+          {
+            "title": "Experience Principles Framework",
+            "body": "Define a clear set of digital experience principles that power customer-centric brand strategy decisions and govern ongoing site initiatives across teams."
+          },
+          {
+            "title": "Digital Strategy Execution Guide",
+            "body": "Translate brand pillars into digital concepts, priorities, and execution guidance that drive engagement, conversion, and consistent brand expression."
+          }
+        ]
+      }
+    ],
+    "caseStudies": [
+      "DECKED",
+      "Patrick Ta"
+    ]
+  },
+  {
+    "id": "p-ecommerce-roadmap-toolkit",
+    "name": "Ecommerce Roadmap Toolkit",
+    "category": "Foundation",
+    "subcategory": "Vision",
+    "description": "A scalable planning framework and roadmap that drives clarity, alignment, and a path to hitting growth targets.",
+    "duration": "1 month",
+    "output": "Roadmap document prioritizing features, setting milestones, and aligning cross-functional teams.",
+    "outcome": "A scalable planning framework and roadmap that drives clarity, alignment, and a path to hitting growth targets.",
+    "programs": [
+      "experience",
+      "conversion"
+    ],
+    "phases": [
+      {
+        "name": "Strategic Alignment",
+        "items": [
+          {
+            "title": "KPI Alignment",
+            "body": "Intake and analyze performance metrics, identify trends, and set clear objectives for the year ahead."
+          },
+          {
+            "title": "Unified Planning Calendar",
+            "body": "Centralized view of product launches, marketing initiatives, and business milestones to provide a cross-team comprehensive view of priorities."
+          },
+          {
+            "title": "Key Initiative Development Workshop",
+            "body": "Ideation and alignment for digital priorities across marketing, ecomm, technology, and customer experience. Create shared understanding through structured initiative development and scope calibration."
+          }
+        ]
+      },
+      {
+        "name": "Execution Planning",
+        "items": [
+          {
+            "title": "Initiative Prioritization Guide",
+            "body": "Organize agreed upon initiatives into a structured, prioritized list ready for scheduling and execution."
+          },
+          {
+            "title": "Execution Blueprint + Workflow Setup",
+            "body": "Convert the approved roadmap into a multi-sprint plan and structured workflow within Asana, so teams can execute with clarity and consistency."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-experimentation-engine",
+    "name": "Experimentation Engine",
+    "code": "OE-CM",
+    "category": "Optimization",
+    "subcategory": "Conversions",
+    "description": "Accelerate revenue gains with continuous data-backed experimentation and UX optimizations across key pages.",
+    "duration": "3 month minimum",
+    "output": "Data-driven experimentation program to optimize key customer journeys and drive conversion performance through rapid testing and learning.",
+    "outcome": "Accelerate wins with continuous experimentation and UX optimizations that compounds revenue gains over time.",
+    "programs": [
+      "conversion"
+    ],
+    "phases": [
+      {
+        "name": "CRO Audit + Research",
+        "items": [
+          {
+            "title": "User Behavior Analysis",
+            "body": "Site analytics review, UX/UI friction point identification, and user feedback intake to inform optimization opportunities."
+          },
+          {
+            "title": "Competitive Benchmarking",
+            "body": "Competitor site analysis to uncover potential opportunities to align to user expectation or to differentiate."
+          }
+        ]
+      },
+      {
+        "name": "Testing Roadmap + Planning",
+        "items": [
+          {
+            "title": "A/B Testing Roadmap",
+            "body": "Structured testing plan leveraging the PXL framework to objectively prioritize and accelerate KPI-driving experiments."
+          },
+          {
+            "title": "Hypothesis Development",
+            "body": "Data-backed hypotheses for conversion improvement and prioritize tests based on potential impact and effort."
+          },
+          {
+            "title": "Variant Design",
+            "body": "Test variants designed for each planned experiment and associated goal."
+          }
+        ]
+      },
+      {
+        "name": "Test Setup + Implementation",
+        "items": [
+          {
+            "title": "Test Execution",
+            "body": "Implementation and launch of agreed upon test variant(s)."
+          },
+          {
+            "title": "Insights Feedback Loop",
+            "body": "Test result analysis to identify winning variations and key learnings. Recommendations for immediate and future optimizations."
+          },
+          {
+            "title": "Winning Variant Rollout",
+            "body": "Proven test results implemented into production using GitHub for clean version control and faster site performance."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-flagship-storefront-system",
+    "name": "Flagship Storefront System",
+    "category": "Foundation",
+    "subcategory": "Brand",
+    "description": "Reimagine your customer's ecommerce experience with a comprehensive site design.",
+    "duration": "8 weeks",
+    "output": "A complete, mobile-first flagship ecommerce design system that defines experience architecture, interaction patterns, and brand expression across the storefront, ready for scalable implementation.",
+    "outcome": "Enhance business performance with a comprehensive brand-led ecommerce experience design.",
+    "programs": [
+      "flagship"
+    ],
+    "phases": [
+      {
+        "name": "Research + Experience Strategy",
+        "items": [
+          {
+            "title": "Stakeholder Interview Analysis",
+            "body": "Synthesize leadership and cross-functional perspectives into a clear set of shared priorities and challenges."
+          },
+          {
+            "title": "Competitive + Comparative Review",
+            "body": "Analysis of category leaders and adjacent brands to identify differentiation opportunities and experience gaps."
+          },
+          {
+            "title": "Analytics + Behavioral Review",
+            "body": "Evaluation of performance data and user behavior to surface friction points and conversion opportunities."
+          },
+          {
+            "title": "Visual + UX Moodboards",
+            "body": "Defined design direction establishing tone, aesthetic, and interaction principles."
+          }
+        ]
+      },
+      {
+        "name": "UX/UI Design System",
+        "items": [
+          {
+            "title": "Sitemap Optimization + Navigation Redesign",
+            "body": "Reimagined information architecture including main and footer navigation, informed by usability and growth goals."
+          },
+          {
+            "title": "Mobile-First Journey Design",
+            "body": "Clear, intuitive customer flows designed to reduce friction and increase engagement across devices."
+          },
+          {
+            "title": "Flagship Template Design",
+            "body": "A cohesive set of flagship page designs (8) that establish consistent layout, interaction, and conversion patterns across the storefront."
+          },
+          {
+            "title": "Scalable Design System",
+            "body": "A reusable design foundation enabling consistent growth, faster iteration, and long-term scalability."
+          }
+        ]
+      },
+      {
+        "name": "Implementation Blueprint",
+        "items": [
+          {
+            "title": "Annotated Figma Handoff",
+            "body": "Execution ready designs with detailed annotations to support accurate development."
+          },
+          {
+            "title": "Design + Usability QA",
+            "body": "Validation of the built experience against design intent, interaction behavior, and usability standards."
+          }
+        ]
+      }
+    ],
+    "caseStudies": [
+      "Faherty",
+      "Toad&Co",
+      "Paul Fredrick"
+    ]
+  },
+  {
+    "id": "p-foundational-build-system",
+    "name": "Foundational Build System",
+    "category": "Foundation",
+    "subcategory": "Technology",
+    "description": "Elevate performance with a theme based build leveraging the full power of the Shopify platform.",
+    "duration": "8 weeks",
+    "output": "A scalable, theme-based Shopify storefront that brings the flagship design to life and launches with the systems, documentation, and validation required for ongoing growth.",
+    "outcome": "Elevate performance with a theme-based build leveraging the full power of the Shopify platform.",
+    "programs": [
+      "flagship"
+    ],
+    "phases": [
+      {
+        "name": "Architecture + Planning",
+        "items": [
+          {
+            "title": "Requirements + Build Documentation",
+            "body": "Comprehensive technical requirements translating approved designs into execution-ready specifications."
+          },
+          {
+            "title": "Execution Roadmapping",
+            "body": "Planning to align business objectives, feature scope, and platform capabilities that enable modularity, effortless growth, and ongoing optimization without rework."
+          },
+          {
+            "title": "Tech Stack Audit",
+            "body": "Evaluation of Shopify-native tools, third-party apps, and integrations to simplify, consolidate, or extend functionality."
+          }
+        ]
+      },
+      {
+        "name": "Foundational Build",
+        "items": [
+          {
+            "title": "Design Execution",
+            "body": "Approved designs translated into a live storefront with precise visual, interaction, and responsive fidelity."
+          },
+          {
+            "title": "Development + Optimization",
+            "body": "A full-featured theme + platform configured for speed, accessibility, and platform-native performance."
+          },
+          {
+            "title": "Advanced Functionality Build",
+            "body": "Custom features and dynamic content implemented using extensible development patterns and reusable components + primitives."
+          }
+        ]
+      },
+      {
+        "name": "Optimization + Launch System",
+        "items": [
+          {
+            "title": "Performance Optimization",
+            "body": "Speed, responsiveness, and stability improvements to support conversion and scale."
+          },
+          {
+            "title": "QA Testing + Usability Validation",
+            "body": "End to end QA and usability checks to ensure the storefront is stable, functional, and ready for launch."
+          },
+          {
+            "title": "Integration Readiness Validation",
+            "body": "Pre launch verification of APIs, logistics, and automation systems."
+          },
+          {
+            "title": "CMS Guide + Team Enablement",
+            "body": "Clear documentation and training for confident internal management."
+          },
+          {
+            "title": "Go to-Market Launch System",
+            "body": "Controlled deployment with rollback safeguards and post launch monitoring."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-fractional-design-support",
+    "name": "Fractional Design Support",
+    "category": "Optimization",
+    "subcategory": "Support",
+    "description": "Elevate your brand's visual output across digital channels with embedded design support — without the overhead of a full-time hire.",
+    "duration": "3 month minimum",
+    "output": "Fractional design support provided as an embedded resource within your marketing and ecommerce teams.",
+    "outcome": "Consistent, elevated creative output across digital channels during periods of growth, transition, or limited in-house design capacity.",
+    "phases": [
+      {
+        "name": "Core Design Support",
+        "items": [
+          {
+            "title": "Multi-Channel Campaign Design",
+            "body": "Design assets for email, paid media, social, and web that maintain a cohesive visual story across every consumer touchpoint."
+          },
+          {
+            "title": "Content + Asset Creation",
+            "body": "Ongoing production of digital assets aligned with brand direction, marketing calendar, and promotional goals."
+          },
+          {
+            "title": "Brand Consistency + Systems Maintenance",
+            "body": "Maintain and extend existing design systems, templates, and component libraries to ensure visual consistency and production efficiency."
+          },
+          {
+            "title": "Website Content Design",
+            "body": "Design updates for homepage, landing pages, collection pages, and other on-site content to keep the storefront fresh and on-brand."
+          }
+        ]
+      },
+      {
+        "name": "Collaboration + Optimization",
+        "items": [
+          {
+            "title": "Creative Testing Support",
+            "body": "Produce and iterate on asset variations across channels to support performance-driven creative testing."
+          },
+          {
+            "title": "Performance-Informed Iteration",
+            "body": "Apply performance insights and feedback provided by the client's team to refine creative decisions without compromising brand integrity."
+          },
+          {
+            "title": "Cross-Functional Collaboration",
+            "body": "Work alongside copy, marketing, and ecommerce teams to bring campaigns to life and ensure alignment across functions."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-fractional-ecommerce-support",
+    "name": "Fractional Ecommerce Support",
+    "code": "OE-FES",
+    "category": "Optimization",
+    "subcategory": "Support",
+    "description": "Boost your content, merchandising, and ecomm operations support for moments of team transition.",
+    "duration": "3 month minimum",
+    "output": "Fractional ecommerce support provided as an in-house service embedded within your team.",
+    "outcome": "Stabilize your content, merchandising, and ecomm operations  during moments of team transition.",
+    "programs": [
+      "preventative"
+    ],
+    "phases": [
+      {
+        "name": "Content + Merchandising Support",
+        "items": [
+          {
+            "title": "Homepage Updates",
+            "body": "Maintain a fresh homepage aligned with business calendar, brand storytelling, and promotional goals."
+          },
+          {
+            "title": "Collections, Products + Tagging updates",
+            "body": "Ongoing support to organize products, update collections, and manage tagging so shoppers can easily find what they’re looking for."
+          },
+          {
+            "title": "Merchandising Updates",
+            "body": "Re-merchandising including setup across collections, rules setup, pin selections and implemented product placement updates."
+          },
+          {
+            "title": "Landing Page Updates",
+            "body": "Keep time sensitive or evergreen landing pages up to date with content refreshes."
+          }
+        ]
+      },
+      {
+        "name": "Operations Support",
+        "items": [
+          {
+            "title": "Internal Communications",
+            "body": "Internal communications with relevant internal stakeholders of ongoing work."
+          },
+          {
+            "title": "Cross-Functional Coordination",
+            "body": "Support internal team members with intake and tasks prioritization based on urgency and business impact."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-global-activation-kit",
+    "name": "Global Activation Kit",
+    "category": "Expansion",
+    "subcategory": "Omnichannel",
+    "description": "Maximize global revenue potential with end‑to‑end international growth planning and implementation.",
+    "duration": "8 weeks",
+    "output": "A fully configured international commerce channel using Shopify Markets that integrates localized pricing, currency, taxes, payments, and fulfillment into the existing ecommerce storefront for one new market.",
+    "outcome": "Maximize global revenue potential with end-to-end international growth planning and implementation.",
+    "programs": [
+      "channel"
+    ],
+    "phases": [
+      {
+        "name": "International Readiness + Market Definition",
+        "items": [
+          {
+            "title": "Market Activation Model",
+            "body": "A clear framework defining how a new country or region operates within the existing storefront."
+          },
+          {
+            "title": "Pricing, Currency + Compliance Structure",
+            "body": "Localized pricing rules, currency handling, and tax/duty automation configured to preserve margin and meet regional requirements."
+          },
+          {
+            "title": "Market Experience Configuration",
+            "body": "UX design and implementation of market detection, selection, and routing within the existing theme to ensure correct localization."
+          }
+        ]
+      },
+      {
+        "name": "Platform + Experience Configuration",
+        "items": [
+          {
+            "title": "Shopify Markets Setup",
+            "body": "Activation of one international market, including domains, currencies, pricing rules, and regional settings."
+          },
+          {
+            "title": "Localized Payments + Checkout",
+            "body": "Market-appropriate payment methods and checkout behavior enabled for local buyers."
+          },
+          {
+            "title": "Fulfillment + Logistics Alignment",
+            "body": "Cross-border shipping, rates, and customs rules aligned to existing operations."
+          },
+          {
+            "title": "Language + Content Localization",
+            "body": "Localized language and content enablement using Shopify native tools."
+          }
+        ]
+      },
+      {
+        "name": "Launch Readiness + Enablement",
+        "items": [
+          {
+            "title": "International QA & Validation",
+            "body": "Validation of localized pricing, checkout, taxes, fulfillment, and end-to-end purchase flows within the live storefront."
+          },
+          {
+            "title": "Launch Playbook",
+            "body": "Launch sequencing, go-live validation."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-growth-features-library",
+    "name": "Growth Features Library",
+    "category": "Expansion",
+    "subcategory": "Expansion",
+    "description": "Deploy new features with minimal risk to power ongoing innovation and measurable business growth.",
+    "output": "A production-ready Shopify feature deployed from a defined functional pattern, adapted to the brand and implemented using Shopify-first, scalable architecture.",
+    "outcome": "Deploy new features with minimal risk to power ongoing innovation and measurable business growth.",
+    "programs": [
+      "flagship"
+    ],
+    "phases": [
+      {
+        "name": "Feature Selection + Tiering",
+        "items": [
+          {
+            "title": "Functional Pattern Selection",
+            "body": "Feature selected by behavior and capability, mapped to business goals and customer experience needs."
+          },
+          {
+            "title": "Requirements Alignment Brief",
+            "body": "A concise requirements document confirming scope, constraints, dependencies, and success criteria—ensuring alignment before activation."
+          },
+          {
+            "title": "VPV Feature Pattern Library",
+            "body": "Access to a curated set of proven feature patterns with defined behaviors and use cases."
+          },
+          {
+            "title": "Tier Assignment Framework",
+            "body": "Features not already in the library are classified into an existing tier to ensure predictable scope, pricing, and delivery."
+          }
+        ]
+      },
+      {
+        "name": "Feature Activation + Brand Integration",
+        "items": [
+          {
+            "title": "Brand-Aligned UI Adaptation",
+            "body": "UI styling adapted to match the brand while preserving standardized feature behavior."
+          },
+          {
+            "title": "Shopify-First, Ecosystem-Compatible Implementation",
+            "body": "Feature implemented using Shopify-native capabilities and approved ecosystem tools, prioritizing scalability, maintainability, and long-term platform alignment."
+          },
+          {
+            "title": "Launch Validation + Enablement",
+            "body": "End-to-end validation plus clear guidance enabling internal teams to manage and extend the feature post-launch."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-key-foundation-assessment",
+    "name": "Key Foundation Assessment",
+    "category": "Foundation",
+    "subcategory": "Vision",
+    "description": "Unlock KPI gains by pinpointing friction and measuring your emotional, transactional, technical, and AI readiness.",
+    "duration": "1 week",
+    "output": "Evaluate the emotional, transactional, technical, or AI readiness of your digital commerce foundation.",
+    "outcome": "Each assessment culminates in a readiness score (A–F) and a clear action plan aligned to your next phase of growth.",
+    "phases": [
+      {
+        "name": "Front end",
+        "items": [
+          {
+            "title": "Emotional Foundation Assessment (Brand)",
+            "body": "Understand how your brand emotionally connects with your audience and identify where resonance gaps may limit long-term loyalty. Brand Resonance Report includes:"
+          },
+          {
+            "title": "Brand Resonance Grade (A–F)",
+            "body": "Brand Story + Narrative Audit Visual Identity + On-Site Expression Review Emotional Connection Score (based on brand consistency, storytelling, and tone)"
+          },
+          {
+            "title": "Transactional Foundation Assessment (CX)",
+            "body": "Optimize how users engage, navigate, and convert across touchpoints. Experience Flow Report includes:"
+          },
+          {
+            "title": "Transactional Fluency Grade (A–F)",
+            "body": "UX/UI and Path-to-Purchase Analysis Checkout + Mobile Experience Review Accessibility + Friction Audit Recommendations to streamline conversion and boost performance metrics"
+          }
+        ]
+      },
+      {
+        "name": "Back end",
+        "items": [
+          {
+            "title": "Code Review Report",
+            "body": "Prepare your platform to scale with a readiness score across architecture, integrations, performance, and stability. Code Review Report includes:"
+          },
+          {
+            "title": "Technical Readiness Grade (A–F)",
+            "body": "Codebase Architecture + Framework Review Third-Party Integration + API Audit Site Speed + Performance Overview Key Risks + Recommendations + Action Plan"
+          },
+          {
+            "title": "AI-Readiness Assessment (Agentic Commerce)",
+            "body": "Gauge your readiness to adopt Shopify s AI ecosystem and agentic commerce tools. AI Integration Roadmap includes:"
+          },
+          {
+            "title": "AI Readiness Grade (A–F)",
+            "body": "Data Infrastructure + Schema Audit Personalization + Recommendation Engine Review Agentic Workflow + Automation Opportunities Roadmap for integrating Shopify + ChatGPT or partner-based AI systems into your ecosystem"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-landing-page-system",
+    "name": "Landing Page System",
+    "category": "Expansion",
+    "subcategory": "Expansion",
+    "description": "High‑converting, scalable landing page system for ongoing landing page creation.",
+    "duration": "6 weeks",
+    "output": "A Shopify-native landing page system with defined architecture and modular layouts that enables fast, repeatable creation of high-performing pages.",
+    "outcome": "High-converting, scalable landing page system for ongoing landing page creation.",
+    "programs": [
+      "ltv"
+    ],
+    "phases": [
+      {
+        "name": "Landing Page Architecture",
+        "items": [
+          {
+            "title": "Landing Page Architecture Review",
+            "body": "Assessment of existing landing pages, campaign usage, and content patterns to identify gaps, inconsistencies, and scalability constraints across marketing and ecommerce initiatives."
+          },
+          {
+            "title": "Strategic Landing Page Framework",
+            "body": "Definition of a repeatable landing page architecture, including core page types, strategic content hierarchy, and conversion logic designed to support current and future campaign needs."
+          },
+          {
+            "title": "Priority Landing Page Types",
+            "body": "Definition of the core landing page use cases the system is designed to support (e.g. paid media, launches, promotions, evergreen campaigns)."
+          },
+          {
+            "title": "Conversion-Optimized UX Patterns",
+            "body": "Standardized UX patterns for CTAs, product highlights, trust signals, and supporting content grounded in proven ecommerce conversion best practices."
+          }
+        ]
+      },
+      {
+        "name": "Shopify-Native System Enablement",
+        "items": [
+          {
+            "title": "Modular Layout + Section System",
+            "body": "Design of a flexible, brand-ready system of reusable page sections and layouts that can be recombined to support multiple use cases without redesign."
+          },
+          {
+            "title": "Reusable UI Components",
+            "body": "Standardized, implemented UI components optimized for consistency, performance, and repeat use across landing pages."
+          },
+          {
+            "title": "Shopify Theme Compatibility Model",
+            "body": "Clear definition of how landing pages are built, edited, and managed within Shopify’s theme architecture and approved page-building tools."
+          },
+          {
+            "title": "Team Enablement Guide",
+            "body": "Documentation outlining how teams create, configure, and maintain landing pages using the established system—ensuring long-term usability and scalability."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-loyalty-experience-system",
+    "name": "Loyalty Experience System",
+    "category": "Optimization",
+    "subcategory": "Retention",
+    "description": "Strengthen loyalty by surfacing your program to drive more opt‑ins and repeat participation.",
+    "duration": "8 weeks",
+    "programs": [
+      "ltv"
+    ],
+    "phases": [
+      {
+        "name": "Loyalty Experience Assessment",
+        "items": [
+          {
+            "title": "Current Loyalty Experience Audit",
+            "body": "Review how and where the program appears today across key templates."
+          },
+          {
+            "title": "Competitive + Comparative Analysis",
+            "body": "Analyze loyalty placement, messaging, and UX patterns from direct competitors and best-in-class brands to identify gaps and opportunities."
+          },
+          {
+            "title": "Touchpoint Mapping",
+            "body": "Identify priority moments to introduce or reinforce loyalty—such as sign-up prompts, points balance visibility, earn/redeem prompts, and post-purchase placement."
+          }
+        ]
+      },
+      {
+        "name": "Loyalty Experience Enhancements",
+        "items": [
+          {
+            "title": "Messaging Refinement",
+            "body": "Clarify the loyalty value proposition with updated labels, CTAs, and descriptive microcopy that makes the program easy to understand at a glance."
+          },
+          {
+            "title": "On-Site Module and Component Enhancements",
+            "body": "Enhance or configure loyalty banners, badges, pop-ups, in-line modules, and account components within the existing theme to better surface program benefits."
+          },
+          {
+            "title": "Technical Alignment + QA",
+            "body": "Ensure loyalty platform settings, theme components, and analytics tracking remain consistent and functional across updated touchpoints."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-multibrand-activation-kit",
+    "name": "Multi‑Brand Activation Kit",
+    "category": "Expansion",
+    "subcategory": "Omnichannel",
+    "description": "Enable independent brand management while boosting back‑end efficiency and accelerating expansion.",
+    "duration": "6 weeks",
+    "output": "An operational framework and Shopify configuration that enables multiple brand storefronts to launch and scale on a shared theme foundation, with clear governance, repeatable processes, and centralized efficiency.",
+    "outcome": "Enable independent brand management while boosting back-end efficiency and accelerating expansion.",
+    "programs": [
+      "channel"
+    ],
+    "phases": [
+      {
+        "name": "Governance + Operating Model",
+        "items": [
+          {
+            "title": "Masterbrand Architecture Framework",
+            "body": "A clear structure defining brand hierarchy, shared components, and allowable variation across storefronts."
+          },
+          {
+            "title": "Cross-Brand Governance Model",
+            "body": "Defined rules for theme updates, feature rollout, and change control across all brand sites."
+          },
+          {
+            "title": "Shared Theme Operating Model",
+            "body": "A documented approach for maintaining and deploying a single theme across multiple Shopify stores."
+          },
+          {
+            "title": "Multi Site Infrastructure Assessment",
+            "body": "Evaluation of existing stores, integrations, and workflows to identify consolidation and scale opportunities."
+          }
+        ]
+      },
+      {
+        "name": "Platform Enablement",
+        "items": [
+          {
+            "title": "Brand Configuration Standards",
+            "body": "Clear standards for brand specific configuration (content, styling variables, settings) without forking the theme."
+          },
+          {
+            "title": "Multi-Storefront Shopify Configuration",
+            "body": "Shopify instances configured to operate independently while adhering to shared systems and standards."
+          },
+          {
+            "title": "Centralized Tech Stack Alignment",
+            "body": "Analytics, integrations, and automation aligned across brands for consistency and efficiency."
+          },
+          {
+            "title": "Site Expansion Playbook",
+            "body": "A standardized process for launching additional brand sites using the shared theme and governance model."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-operational-efficiency-system",
+    "name": "Operational Efficiency System",
+    "category": "Expansion",
+    "subcategory": "Margin",
+    "description": "Streamline backend workflows for fulfillment, inventory, and product operations.",
+    "duration": "8 weeks",
+    "programs": [
+      "ltv"
+    ],
+    "phases": [
+      {
+        "name": "Operational Workflow Audit",
+        "items": [
+          {
+            "title": "Current State Workflow Mapping",
+            "body": "Assessment of product setup, inventory sync, fulfillment logic, and promotional workflows to identify friction, duplication, and inefficiencies."
+          },
+          {
+            "title": "Gap + Bottleneck Identification",
+            "body": "Identification of manual handoffs, double entry points, siloed data, and process delays slowing execution across teams."
+          },
+          {
+            "title": "Tool + Integration Assessment",
+            "body": "Evaluation of Shopify, PIM, OMS, WMS, and supporting tools to identify misalignment, overlap, or underutilized capabilities."
+          },
+          {
+            "title": "Reporting + Visibility Alignment",
+            "body": "Review of how operational workflows connect to KPIs and dashboards to surface gaps in visibility and accountability."
+          }
+        ]
+      },
+      {
+        "name": "Optimization + Automation",
+        "items": [
+          {
+            "title": "Workflow Redesign + SOPs",
+            "body": "Redefined process flows with clear ownership, swim lanes, and documented SOPs to improve speed, accuracy, and accountability."
+          },
+          {
+            "title": "Platform Enhancements",
+            "body": "Activation of Shopify-native tools and approved integrations (e.g. Shopify Flow, Alloy, Zapier, Airtable, or middleware) to reduce manual work and automate repeatable tasks."
+          },
+          {
+            "title": "Automation Prioritization Framework",
+            "body": "Defined recommendations for which workflows should be automated first based on impact, effort, and scalability."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-optimized-storefront-system",
+    "name": "Optimized Storefront System",
+    "code": "CI-OSS",
+    "category": "Foundation",
+    "subcategory": "Brand",
+    "description": "Refine the core user journey via UX/UI optimizations to boost engagement and CVR.",
+    "duration": "10 weeks",
+    "output": "Conversion-focused UI and design improvements to your existing Shopify theme to strengthen brand expression and drive sales.",
+    "outcome": "Refine the core user journey via UX/UI optimizations to boost engagement and CVR.",
+    "programs": [
+      "experience"
+    ],
+    "phases": [
+      {
+        "name": "Research + Strategy",
+        "items": [
+          {
+            "title": "Stakeholder Interview Analysis",
+            "body": "Synthesize leadership and cross-functional perspectives into a clear set of shared priorities and challenges."
+          },
+          {
+            "title": "Discovery Workshop",
+            "body": "Explore directional creative concepts and aesthetic inspiration. Surface gaps and opportunities based on competitive and comparative analysis."
+          }
+        ]
+      },
+      {
+        "name": "UX/UI Optimization",
+        "items": [
+          {
+            "title": "Sitemap Optimization + Main Nav Redesign",
+            "body": "A refined navigation experience informed by user behavior and usability principles."
+          },
+          {
+            "title": "Redesigned Core Conversion Templates",
+            "body": "Four redesigned page templates (home, collection, PDP, cart/mini-cart) that form a cohesive, on-brand layout system, informed by customer needs and grounded in UX best practices."
+          },
+          {
+            "title": "Global styling extended across additional theme modules.",
+            "body": ""
+          },
+          {
+            "title": "Scalable Design System",
+            "body": "A reusable design foundation enabling consistent growth, faster iteration, and long-term scalability."
+          }
+        ]
+      },
+      {
+        "name": "Storefront Delivery System",
+        "items": [
+          {
+            "title": "Shopify Theme Development",
+            "body": "A production ready storefront experience aligned to approved designs."
+          },
+          {
+            "title": "QA Testing + Usability Audits",
+            "body": "Structured testing including test cases, bug reports, and UX evaluation across key flows."
+          },
+          {
+            "title": "Go to Market Launch System",
+            "body": "A fully executed storefront release with validated deployment and rollback safeguards."
+          }
+        ]
+      }
+    ],
+    "caseStudies": [
+      "Marion Parke",
+      "Halfdays"
+    ]
+  },
+  {
+    "id": "p-product-discovery-system",
+    "name": "Product Discovery System",
+    "category": "Optimization",
+    "subcategory": "Retention",
+    "description": "Drive higher conversion with stronger product data that powers smarter search and discovery experiences.",
+    "duration": "12 weeks",
+    "output": "A diagnostic-led product discovery system that strengthens data integrity, platform logic, and merchandising intelligence to drive sustainable conversion growth.",
+    "outcome": "Enable scalable conversion gains by building a resilient product discovery infrastructure that compounds performance over time.",
+    "programs": [
+      "conversion"
+    ],
+    "phases": [
+      {
+        "name": "Product Data Foundations",
+        "items": [
+          {
+            "title": "Audit Current Product Data Setup",
+            "body": "Uncover gaps and inconsistencies in your product data that limit search, filtering, and merchandising performance."
+          },
+          {
+            "title": "Product Data + Schema Alignment",
+            "body": "Define standards for metafields, metaobjects, and tagging architecture — with implementation prioritized where foundation supports it."
+          }
+        ]
+      },
+      {
+        "name": "Integration + Intelligence",
+        "items": [
+          {
+            "title": "Platform Integration Governance",
+            "body": "Define and steward the integration framework between commerce platform and discovery tools to ensure aligned data, logic, and long-term performance integrity."
+          },
+          {
+            "title": "Discovery Intelligence Layer",
+            "body": "Establish structured data governance and merchandising logic that enables intelligent product surfacing — with enhancements deployed where viable within the engagement."
+          }
+        ]
+      },
+      {
+        "name": "Taxonomy + Benchmarking",
+        "items": [
+          {
+            "title": "Competitor Benchmarking + Best Practices",
+            "body": "Evaluate catalog structure, attribute logic, and discovery depth against industry standards to surface structural opportunities."
+          },
+          {
+            "title": "Relationship + Taxonomy Framework",
+            "body": "Architect product hierarchies, attribute logic, and categorization frameworks to support scalable discovery — with execution scoped based on infrastructure readiness."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-promo-operating-system",
+    "name": "Promo Operating System",
+    "category": "Expansion",
+    "subcategory": "Margin",
+    "description": "Improve promo results + protect margin through strategic alignment, clean execution, and UX‑led optimization.",
+    "duration": "6 weeks",
+    "programs": [
+      "ltv"
+    ],
+    "phases": [
+      {
+        "name": "Promotion Architecture + Alignment",
+        "items": [
+          {
+            "title": "Promotion Architecture Review",
+            "body": "Assessment of existing discount structures, stacking behavior, and offer interactions to identify execution risks and inconsistencies."
+          },
+          {
+            "title": "Priority Promotion Framework",
+            "body": "Definition of up to 10 priority promotion patterns based on existing merchandising and marketing plans."
+          },
+          {
+            "title": "Shopify Discount Capabilities + Constraints",
+            "body": "Clear guidance on Shopify’s native discounting tools, limitations, and best-practice usage."
+          },
+          {
+            "title": "Promotion Governance Model",
+            "body": "Defined rules for how promotions are created, approved, reused, and managed across teams."
+          }
+        ]
+      },
+      {
+        "name": "Promotion Visibility + Shopify Activation",
+        "items": [
+          {
+            "title": "Native Discount Configuration Guide",
+            "body": "Clear guidance for configuring promotions in Shopify, outlining which settings to use for different promotion types and how to avoid conflicts."
+          },
+          {
+            "title": "Promotion UX Patterns",
+            "body": "Standardized, implemented patterns for surfacing promotions across PDPs, PLPs, collections, cart, and checkout within the existing theme."
+          },
+          {
+            "title": "Promotion Execution & Management Guide",
+            "body": "Step-by-step guidance for setting up priority promotions, covering Shopify configuration and required theme-level visibility—plus CMS usage for ongoing execution."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-retail-activation-kit",
+    "name": "Retail Activation Kit",
+    "category": "Expansion",
+    "subcategory": "Omnichannel",
+    "description": "Boost cross‑channel performance through a unified POS syncing inventory, transactions, and promotions.",
+    "duration": "8 weeks",
+    "output": "A fully configured Shopify POS channel that integrates with the existing ecommerce storefront, aligning inventory, payments, promotions, and staff access to operate as a single omnichannel system.",
+    "outcome": "Boost cross-channel performance through a unified POS syncing inventory, transactions, and promotions.",
+    "programs": [
+      "channel"
+    ],
+    "phases": [
+      {
+        "name": "Unified Commerce Foundation",
+        "items": [
+          {
+            "title": "Omnichannel POS Architecture",
+            "body": "Configuration of Shopify POS to align with online inventory, pricing, promotions, and fulfillment logic."
+          },
+          {
+            "title": "Retail Catalog Configuration",
+            "body": "Product data structured to support in-store discovery, variant clarity, and accurate inventory visibility."
+          },
+          {
+            "title": "Payments + Checkout Alignment",
+            "body": "In-store payment configuration aligned with online checkout and gateway logic."
+          },
+          {
+            "title": "Discounts, Loyalty + Promo Sync",
+            "body": "Unified promotion and pricing rules across online and in-store channels."
+          }
+        ]
+      },
+      {
+        "name": "System Integration + Validation",
+        "items": [
+          {
+            "title": "Hardware + Device Guidance",
+            "body": "Recommended POS hardware configurations and setup guidance for reliable in-store operations."
+          },
+          {
+            "title": "Location + Staff Access Configuration",
+            "body": "Role-based permissions and access controls to support secure, efficient in-store workflows."
+          },
+          {
+            "title": "Inventory + Transaction Sync Validation",
+            "body": "Validation of inventory movement, sales attribution, and order flows across channels."
+          }
+        ]
+      },
+      {
+        "name": "Launch Readiness + Enablement",
+        "items": [
+          {
+            "title": "System Testing + Validation",
+            "body": "End-to-end validation of POS workflows, payments, inventory sync, and omnichannel scenarios."
+          },
+          {
+            "title": "Retail Enablement Toolkit",
+            "body": "Clear documentation and guidance enabling store teams to confidently operate Shopify POS."
+          },
+          {
+            "title": "Launch Playbook",
+            "body": "Launch sequencing, go-live validation."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-retention-engine",
+    "name": "Retention Engine",
+    "category": "Optimization",
+    "subcategory": "Retention",
+    "description": "Increase LTV and owned‑channel revenue through data‑backed email and SMS optimization.",
+    "duration": "6 month minimum, annual recommended",
+    "programs": [
+      "ltv"
+    ],
+    "phases": [
+      {
+        "name": "Lifecycle Foundations",
+        "items": [
+          {
+            "title": "Account Audit + Benchmarking",
+            "body": "Establish a performance baseline with a comparative review of flows, campaigns, segmentation, opt-in, and deliverability."
+          },
+          {
+            "title": "Data Hygiene + Infrastructure Setup",
+            "body": "Standardize lists, verify automations, and align tracking and attribution to ensure accurate measurement."
+          },
+          {
+            "title": "Performance Baseline + Roadmap",
+            "body": "Define priority lifecycle opportunities and outline a 90-day improvement plan grounded in data."
+          }
+        ]
+      },
+      {
+        "name": "Email + SMS Strategy Framework",
+        "items": [
+          {
+            "title": "Monthly Email Strategy",
+            "body": "A monthly messaging and cadence framework aligned to lifecycle moments and seasonal needs."
+          },
+          {
+            "title": "Monthly SMS Strategy (Optional)",
+            "body": "A focused SMS engagement plan—including triggers, timing, and message positioning."
+          },
+          {
+            "title": "Quarterly Channel Strategy Refresh",
+            "body": "A quarterly recalibration of themes, frequency, and targeting based on observed behavior trends."
+          }
+        ]
+      },
+      {
+        "name": "Implementation + Optimization",
+        "items": [
+          {
+            "title": "Implementation",
+            "body": "Deploy 1 new or optimized flow or up to 4 monthly campaigns; includes SMS where applicable."
+          },
+          {
+            "title": "Monthly Review + Iteration",
+            "body": "Analyze engagement and revenue metrics; adjust cadence, creative, and targeting based on data."
+          },
+          {
+            "title": "Quarterly Analysis + Readout",
+            "body": "A deeper performance synthesis with an updated 90-day roadmap for continued lifecycle growth."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-returns-reduction-system",
+    "name": "Returns Reduction System",
+    "category": "Expansion",
+    "subcategory": "Margin",
+    "description": "Lower return rates and improved margin through clearer product expectations at the point of purchase.",
+    "duration": "6 weeks",
+    "output": "A return reduction experience system that improves product clarity and expectation setting ahead of conversion—reducing return-driven margin loss by helping customers make more confident, informed purchase decisions.",
+    "outcome": "Lower return rates and improved margin through clearer product expectations at the point of purchase.",
+    "programs": [
+      "ltv"
+    ],
+    "phases": [
+      {
+        "name": "Return Data + Issue Identification",
+        "items": [
+          {
+            "title": "Return Trends & Root Cause Analysis",
+            "body": "Analysis of return reasons using customer feedback, CX data, and transactional insights to identify experience-driven return drivers tied to product misunderstanding or misaligned expectations."
+          },
+          {
+            "title": "Product Clarity Audit",
+            "body": "Assessment of PDP content, imagery, specifications, sizing, materials, and usage context to identify gaps that lead to incorrect purchase assumptions."
+          },
+          {
+            "title": "Expectation-Setting Gaps",
+            "body": "Evaluation of how product fit, function, and usage are communicated prior to purchase—including trust signals, reviews, UGC, and educational content."
+          },
+          {
+            "title": "Post-Purchase Workflow Review",
+            "body": "Review of return policies, packaging, and post purchase communications to identify operational and expectation-setting gaps that increase return likelihood."
+          }
+        ]
+      },
+      {
+        "name": "Experience Optimization + Activation",
+        "items": [
+          {
+            "title": "PDP Clarity Enhancements",
+            "body": "Implementation of targeted PDP improvements layout refinements, copy updates, sizing and fit guidance, and trust signals directly addressing identified return drivers."
+          },
+          {
+            "title": "Expectation Reinforcement Touchpoints",
+            "body": "Optimization of key moments across the pre-purchase journey where expectations should be clarified to support confident buying decisions."
+          },
+          {
+            "title": "Return Reduction Playbook",
+            "body": "Documentation of identified return drivers, implemented experience fixes, and recommended standards to help teams maintain product clarity and reduce returns over time."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-shopify-migration-system",
+    "name": "Shopify Migration System",
+    "category": "Foundation",
+    "subcategory": "Technology",
+    "description": "Migrate to Shopify with better performance, a stronger user experience, and a clear plan for future growth.",
+    "duration": "6 weeks",
+    "output": "A launch-ready Shopify store migrated from an existing platform using a standard Shopify theme, delivered through a phased, validation-first migration system (FAST) that preserves data integrity, protects SEO, and ensures operational readiness.",
+    "outcome": "Migrate to Shopify with better performance, a stronger user experience, and a clear plan for future growth.",
+    "phases": [
+      {
+        "name": "Migration Strategy + Planning",
+        "items": [
+          {
+            "title": "Platform Readiness Assessment",
+            "body": "Evaluation of current platform structure, data integrity, integrations, and migration risks aligned to business goals."
+          },
+          {
+            "title": "Migration Roadmap + Timeline",
+            "body": "A phased plan defining data transfer, SEO preservation, and launch sequencing."
+          },
+          {
+            "title": "Tooling + Theme Selection",
+            "body": "Selection of a Shopify theme and migration tools optimized for stability and speed."
+          }
+        ]
+      },
+      {
+        "name": "Data + SEO Migration Execution",
+        "items": [
+          {
+            "title": "Data Mapping + Validation System",
+            "body": "Structured migration of products, customers, orders, and core content with integrity checks and parallel validation."
+          },
+          {
+            "title": "SEO Preservation System",
+            "body": "Redirect mapping and metadata transfer to protect rankings and prevent traffic loss."
+          },
+          {
+            "title": "Integration Readiness Validation",
+            "body": "Verification of essential Shopify apps and third-party tools required for core operations."
+          }
+        ]
+      },
+      {
+        "name": "Performance Baseline + Launch Support",
+        "items": [
+          {
+            "title": "Performance Baseline Optimization",
+            "body": "Speed, responsiveness, and stability improvements within theme constraints."
+          },
+          {
+            "title": "Launch Readiness Validation",
+            "body": "End-to-end validation of core storefront and operational flows prior to go-live."
+          },
+          {
+            "title": "Go Live Cutover System",
+            "body": "Controlled deployment with rollback safeguards to minimize downtime."
+          },
+          {
+            "title": "Team Enablement Toolkit",
+            "body": "Admin onboarding and operating guide for confident day-to-day Shopify management."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-shopify-migration-toolkit",
+    "name": "Shopify Migration Toolkit",
+    "category": "Foundation",
+    "subcategory": "Technology",
+    "description": "Migrate to Shopify with better performance, a stronger user experience, and a clear plan for future growth.",
+    "duration": "6 weeks",
+    "programs": [
+      "architecture"
+    ],
+    "phases": [
+      {
+        "name": "Migration Readiness Assessment",
+        "items": [
+          {
+            "title": "Platform + Data Audit",
+            "body": "Assessment of current platform architecture, data structures, integrations, and dependencies."
+          },
+          {
+            "title": "Risk & Constraint Identification",
+            "body": "Clear identification of migration risks, limitations, and non-negotiables that must be addressed during execution."
+          },
+          {
+            "title": "Stakeholder Alignment Inputs",
+            "body": "Business goals, success metrics, and ownership clarified through facilitated working sessions to guide downstream execution."
+          }
+        ]
+      },
+      {
+        "name": "Migration Blueprint",
+        "items": [
+          {
+            "title": "Migration Roadmap + Timeline",
+            "body": "A phased execution plan outlining sequencing, validation checkpoints, and recommended cutover approach."
+          },
+          {
+            "title": "Data + Content Mapping Framework",
+            "body": "Guidance for structuring products, customers, orders, and content within Shopify’s schema."
+          },
+          {
+            "title": "SEO Preservation Strategy",
+            "body": "Redirect logic, URL structure guidance, and SEO considerations to protect rankings during migration."
+          }
+        ]
+      },
+      {
+        "name": "Tooling + Execution Guidance",
+        "items": [
+          {
+            "title": "Tooling & App Recommendations",
+            "body": "Shopify-compatible tools, apps, and automation approaches aligned to the business and data complexity."
+          },
+          {
+            "title": "Integration Strategy Guidance",
+            "body": "Recommended approach for connecting essential systems, APIs, and operational tools."
+          },
+          {
+            "title": "Execution Guardrails",
+            "body": "Best practices, validation checkpoints, and quality standards to guide implementation teams."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-site-care-engine",
+    "name": "Site Care Engine",
+    "code": "OE-SCS",
+    "category": "Optimization",
+    "subcategory": "Support",
+    "description": "Maintain reliability with proactive theme fixes, updates, and support powered by V+V Predictive Intelligence.",
+    "duration": "6 month minimum, annual recommended",
+    "output": "Ongoing and proactive bug fixes, QA, routine site updates, performance enhancements, and priority dev support, aligned with evolving business needs.",
+    "outcome": "Maintain reliability with proactive theme fixes, updates, and support powered by V+V Predictive Friction Intelligence.",
+    "programs": [
+      "preventative"
+    ],
+    "phases": [
+      {
+        "name": "Bug Fixes + Technical Support",
+        "items": [
+          {
+            "title": "Issue Resolution",
+            "body": "Theme fixes, address bugs, broken elements, or theme glitches to keep your site running without disruption."
+          },
+          {
+            "title": "Priority Dev Assistance",
+            "body": "Development support when you need it, from code conflicts, P1/P2 (critical/emergency) issues, and third-party integration support. In and outside of regular business hours."
+          }
+        ]
+      },
+      {
+        "name": "Performance + Optimization",
+        "items": [
+          {
+            "title": "Speed + UX Improvements",
+            "body": "Monitor and enhance site speed, load times, and user flows to ensure a smoother customer experience, powered by our Predictive Friction Intelligence."
+          },
+          {
+            "title": "QA + Health Monitoring",
+            "body": "Pulse on site health — from regular QA testing to broken links and theme performance — proactively surface any red flags, and testing of all shippable features."
+          },
+          {
+            "title": "Proactive Platform + App Maintenance",
+            "body": "Shopify updates, app configurations, and dependency checks to avoid technical debt and security risks."
+          },
+          {
+            "title": "Cross-Functional Guidance + Input",
+            "body": "Our full team is available for questions, 3rd party recommendations, and product / promo launch support."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-speed-boost-pack",
+    "name": "Speed Boost Pack",
+    "category": "Optimization",
+    "subcategory": "Conversions",
+    "description": "Enhance technical performance across page speed, SEO, and UX scores through strategic code refinement.",
+    "duration": "4 weeks",
+    "programs": [
+      "conversion"
+    ],
+    "phases": [
+      {
+        "name": "Performance Audit",
+        "items": [
+          {
+            "title": "Code Review Report",
+            "body": "Prepare your platform to scale with a readiness score across architecture, integrations, performance, and stability."
+          },
+          {
+            "title": "Code Review Report Includes:",
+            "body": ""
+          },
+          {
+            "title": "Technical Readiness Grade (A–F)",
+            "body": "Codebase Architecture + Framework Review Third-Party Integration + API Audit Site Speed + Performance Overview Key Risks + Recommendations + Action Plan"
+          }
+        ]
+      },
+      {
+        "name": "Speed + Performance Upgrades",
+        "items": [
+          {
+            "title": "Code Cleanup",
+            "body": "Optimize JavaScript, CSS, and HTML for leaner, faster execution."
+          },
+          {
+            "title": "Media Compression + Next Gen Formats",
+            "body": "Implement automated image and video compression scripts."
+          },
+          {
+            "title": "Lazy Loading + Deferred Scripts",
+            "body": "Prioritize visible content, improve load speeds, and delay non-essential scripts."
+          },
+          {
+            "title": "Technical SEO Enhancements",
+            "body": "Ensure URL structure, schema, and metadata align with speed best practices."
+          },
+          {
+            "title": "Third-Party Removal",
+            "body": "Remove redundant or slowing apps and scripts."
+          }
+        ]
+      },
+      {
+        "name": "Benchmarking + Automation",
+        "items": [
+          {
+            "title": "Performance Benchmarking",
+            "body": "Benchmark performance before and after updates using real time user data to quantify improvements."
+          },
+          {
+            "title": "Automated Speed Optimization Scripts",
+            "body": "Pre-configured tools to maintain long-term efficiency."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-subscription-revenue-system",
+    "name": "Subscription Revenue System",
+    "category": "Expansion",
+    "subcategory": "Expansion",
+    "description": "Launch or enhance a subscription model with UX, operational + retention strategies for recurring revenue.",
+    "duration": "8 weeks",
+    "output": "A subscription experience that clearly surfaces subscription value, reduces friction, and enables scalable recurring revenue.",
+    "outcome": "Launch or enhance a subscription model with UX, operational + retention strategies for recurring revenue.",
+    "programs": [
+      "ltv"
+    ],
+    "phases": [
+      {
+        "name": "Subscription Experience Architecture",
+        "items": [
+          {
+            "title": "Subscription Experience Review",
+            "body": "Audit of how subscriptions are currently surfaced across the ecommerce journey to identify visibility gaps and friction."
+          },
+          {
+            "title": "Subscription Visibility Framework",
+            "body": "Definition of where and how subscriptions should appear across key touchpoints to support opt-in."
+          },
+          {
+            "title": "Account Management Experience",
+            "body": "Optimized UX patterns for managing subscriptions within the customer account to reduce friction and support burden."
+          }
+        ]
+      },
+      {
+        "name": "Shopify-Native Activation + Optimization",
+        "items": [
+          {
+            "title": "Platform Recommendation + Alignment",
+            "body": "Selection of a Shopify-compatible subscription platform aligned to the defined subscription experience architecture and UX requirements."
+          },
+          {
+            "title": "Platform Configuration",
+            "body": "Configuration of the subscription platform to support the approved UX patterns, messaging, and storefront behavior."
+          },
+          {
+            "title": "Subscription Experience Activation",
+            "body": "Activation of the designed subscription UX/UI across PDPs, product cards, cart, checkout, and post-purchase touchpoints."
+          },
+          {
+            "title": "Customer Account Enablement",
+            "body": "Activation and optimization of subscription management UX within the customer account, aligned to the defined experience patterns."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-template-enablement-system",
+    "name": "Template Enablement System",
+    "category": "Foundation",
+    "subcategory": "Technology",
+    "description": "Defines a Shopify native template system that enables consistent, flexible, and maintainable page creation.",
+    "duration": "1 week",
+    "output": "Fully assembled, launch-ready page templates built using existing Shopify theme components, configured for content hierarchy, CMS flexibility, and responsive performance.",
+    "outcome": "A complete, cohesive storefront where all pages are easy to manage, visually consistent, and scalable over time—without introducing custom development or long-term technical debt.",
+    "phases": [
+      {
+        "name": "Page Assembly",
+        "items": [
+          {
+            "title": "Page Assembly",
+            "body": "Assembly of page template(s) using existing Shopify theme sections and approved brand assets. Establish clear layout structure, component usage, and content hierarchy without introducing custom design or development."
+          },
+          {
+            "title": "CMS Configuration",
+            "body": "Content fields, settings, and metafields configured to support ongoing page management, enabling internal teams to update content easily using existing copy, imagery, and assets."
+          },
+          {
+            "title": "Visual System Alignment",
+            "body": "Application of visual standards—including typography, spacing, and imagery treatment—to ensure secondary pages are cohesive with core flagship journeys."
+          }
+        ]
+      },
+      {
+        "name": "Enablement + Quality",
+        "items": [
+          {
+            "title": "Responsive + Cross-Browser QA",
+            "body": "Validation of assembled templates across key breakpoints and supported browsers to ensure consistent behavior, layout integrity, and performance of assembled content."
+          },
+          {
+            "title": "Launch Readiness + Handoff",
+            "body": "Final review and preparation of enabled templates for launch, confirming completeness, alignment to standards, and readiness for internal team ownership."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p-verbal-strategy-toolkit",
+    "name": "Verbal Strategy Toolkit",
+    "category": "Foundation",
+    "subcategory": "Brand",
+    "description": "Faster, consistent copy creation at scale that preserves brand differentiation.",
+    "duration": "6 weeks",
+    "output": "A personalized AI-enabled messaging system with reusable modules, prompts, and clear governance.",
+    "outcome": "Faster, consistent copy creation at scale that preserves brand differentiation.",
+    "programs": [
+      "flagship",
+      "experience"
+    ],
+    "phases": [
+      {
+        "name": "Verbal Strategy & Narrative Foundation",
+        "items": [
+          {
+            "title": "Stakeholder + Customer Research Insights",
+            "body": "Identify key brand messaging gaps and opportunities."
+          },
+          {
+            "title": "Competitive Positioning Benchmark",
+            "body": "Analyze competitor messaging strategies to define differentiation."
+          },
+          {
+            "title": "Content Gap Assessment",
+            "body": "Review existing messaging across key digital touch points and highlight inconsistencies and areas for improvement."
+          }
+        ]
+      },
+      {
+        "name": "AI-Enabled Copy System",
+        "items": [
+          {
+            "title": "Principle-Driven Messaging Modules",
+            "body": "Custom-written content for key site modules that express core brand narrative principles, providing reusable examples teams can reference and extend across the experience."
+          },
+          {
+            "title": "AI Writing Prompt Library",
+            "body": "Tested, brand aligned AI writing prompts designed to generate on voice product page copy at scale."
+          },
+          {
+            "title": "Prompt Usage & Editing Guidelines",
+            "body": "Clear guidance for internal teams on how to apply prompts, evaluate outputs, and lightly refine AI-generated copy without rewriting from scratch."
+          },
+          {
+            "title": "Messaging Architecture Guide",
+            "body": "Align brand voice, messaging hierarchy, and narrative principles with a structured guide."
+          }
+        ]
+      }
+    ]
+  }
+]

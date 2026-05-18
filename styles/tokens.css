@@ -1,0 +1,151 @@
+/* Design tokens — extracted from vv-sandbox.html.
+   --color-text intentionally bound to --midnight (sandbox decision, kept). */
+
+@font-face {
+  font-family: 'Neue Haas Display';
+  font-weight: 300; font-style: normal; font-display: swap;
+  src: url('../assets/fonts/neue-haas-light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Neue Haas Display';
+  font-weight: 400; font-style: normal; font-display: swap;
+  src: url('../assets/fonts/neue-haas-regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Neue Haas Display';
+  font-weight: 400; font-style: italic; font-display: swap;
+  src: url('../assets/fonts/neue-haas-italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Neue Haas Display';
+  font-weight: 500; font-style: normal; font-display: swap;
+  src: url('../assets/fonts/neue-haas-medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Neue Haas Display';
+  font-weight: 700; font-style: normal; font-display: swap;
+  src: url('../assets/fonts/neue-haas-bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Victor Serif';
+  font-weight: 300; font-style: normal; font-display: swap;
+  src: url('../assets/fonts/victor-serif-light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Victor Serif';
+  font-weight: 300; font-style: italic; font-display: swap;
+  src: url('../assets/fonts/victor-serif-light-italic.ttf') format('truetype');
+}
+
+:root {
+  /* Brand palette */
+  --purple: #3012E4;
+  --white: #FFFFFF;
+  --cream: #FDFCFA;
+  --silver: #F4F4F4;
+  --navy: #2D2B3A;
+  --midnight: #1B1828;
+
+  /* Type families */
+  --sans: 'Neue Haas Display', -apple-system, sans-serif;
+  --serif: 'Victor Serif', 'Times New Roman', serif;
+
+  /* Modular type scale */
+  --t-micro: 0.6875rem;
+  --t-small: 0.8125rem;
+  --t-ui: 0.9375rem;
+  --t-body: 1.0625rem;
+  --t-lead: 1.25rem;
+  --t-h4: 1.5rem;
+  --t-h3: 1.875rem;
+  --t-h2: 2.5rem;
+  --t-h1: 3.5rem;
+  --t-display: 5.5rem;
+
+  /* Line heights */
+  --lh-display: 0.95;
+  --lh-tight: 1.1;
+  --lh-snug: 1.25;
+  --lh-body: 1.55;
+
+  /* Letter spacing */
+  --tr-display: -0.025em;
+  --tr-h: -0.015em;
+  --tr-body: 0em;
+  --tr-ui: 0.005em;
+  --tr-eyebrow: 0.08em;
+
+  /* Spacing — 4px base */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+
+  /* Layout widths */
+  --col-narrow: 38rem;
+  --col-medium: 52rem;
+  --col-wide: 72rem;
+
+  /* Motion */
+  --ease: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 400ms;
+
+  /* Semantic color tier */
+  --color-bg: var(--cream);
+  --color-bg-elevated: var(--white);
+  --color-bg-inverse: var(--midnight);
+  --color-bg-muted: var(--silver);
+  --color-text: var(--midnight);
+  --color-text-inverse: var(--cream);
+  --color-text-muted: color-mix(in oklab, var(--midnight) 65%, transparent);
+  --color-text-subtle: color-mix(in oklab, var(--midnight) 40%, transparent);
+  --color-accent: var(--purple);
+  --color-rule: color-mix(in oklab, var(--midnight) 8%, transparent);
+  --color-rule-strong: color-mix(in oklab, var(--midnight) 20%, transparent);
+
+  /* Font weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+
+  /* Composite type roles */
+  --type-display: var(--fw-light) var(--t-display) / var(--lh-display) var(--sans);
+  --type-h1: var(--fw-light) var(--t-h1) / var(--lh-tight) var(--sans);
+  --type-h2: var(--fw-light) var(--t-h2) / var(--lh-tight) var(--sans);
+  --type-h3: var(--fw-regular) var(--t-h3) / var(--lh-snug) var(--sans);
+  --type-h4: var(--fw-regular) var(--t-h4) / var(--lh-snug) var(--sans);
+  --type-lead: var(--fw-regular) var(--t-lead) / var(--lh-body) var(--sans);
+  --type-body: var(--fw-regular) var(--t-body) / var(--lh-body) var(--sans);
+  --type-ui: var(--fw-regular) var(--t-ui) / var(--lh-snug) var(--sans);
+  --type-eyebrow: var(--fw-medium) var(--t-micro) / var(--lh-snug) var(--sans);
+  --type-serif-display: var(--fw-regular) var(--t-display) / var(--lh-display) var(--serif);
+  --type-serif-h2: var(--fw-regular) var(--t-h2) / var(--lh-tight) var(--serif);
+
+  /* Radius */
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-none: none;
+  --shadow-soft:
+    0 1px 2px color-mix(in oklab, var(--midnight) 5%, transparent),
+    0 4px 12px color-mix(in oklab, var(--midnight) 4%, transparent);
+
+  /* Shell — single source for topbar height + panel width.
+     Sandbox had a hardcoded 60px nav offset; route everything through these. */
+  --shell-topbar-h: 56px;
+  --shell-panel-w: 420px;
+}

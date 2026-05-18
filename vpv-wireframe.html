@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V+V — Wireframe</title>
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --ink: #1a1a1a;
+    --ink-mid: #6b6b6b;
+    --ink-faint: #b8b5ae;
+    --accent: #d94a1f;
+    --panel-bg: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    line-height: 1.4;
+    overflow: hidden;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 10;
+    background: var(--bg);
+  }
+
+  .wordmark { font-size: 18px; cursor: pointer; }
+  .wordmark .plus { color: var(--accent); padding: 0 2px; }
+
+  .mode-toggle { display: flex; border: 1px solid var(--ink); }
+  .mode-toggle button {
+    background: transparent;
+    border: none;
+    padding: 6px 14px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink);
+  }
+  .mode-toggle button.active { background: var(--ink); color: var(--bg); }
+
+  .breadcrumb {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+  .breadcrumb .sep { margin: 0 8px; color: var(--ink-faint); }
+  .breadcrumb a { color: var(--ink-mid); text-decoration: none; cursor: pointer; }
+  .breadcrumb a:hover { color: var(--ink); }
+
+  .stage {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 420px;
+    bottom: 0;
+    overflow: hidden;
+  }
+
+  /* VISUAL MODE */
+  svg.graph { width: 100%; height: 100%; display: block; }
+
+  .node-group { cursor: pointer; }
+  .node-circle { fill: var(--bg); stroke: var(--ink); stroke-width: 1.5; transition: all 0.3s ease; }
+  .node-group:hover .node-circle { fill: var(--ink); }
+  .node-group.active .node-circle { fill: var(--accent); stroke: var(--accent); }
+
+  .node-label {
+    font-family: 'Times New Roman', serif;
+    font-size: 14px;
+    fill: var(--ink);
+    text-anchor: middle;
+    pointer-events: none;
+  }
+  .node-sublabel {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    fill: var(--ink-mid);
+    text-anchor: middle;
+    pointer-events: none;
+  }
+
+  .product-node .node-circle { fill: var(--bg); stroke: var(--ink); stroke-width: 1; }
+  .product-node:hover .node-circle { fill: var(--ink); }
+  .product-node.shared .node-circle { stroke-dasharray: 2 2; }
+  .product-label {
+    font-family: 'Times New Roman', serif;
+    font-size: 11px;
+    fill: var(--ink);
+    text-anchor: middle;
+    pointer-events: none;
+  }
+
+  .connector { stroke: var(--ink); stroke-width: 1; fill: none; }
+  .connector.shared { stroke: var(--accent); stroke-dasharray: 2 3; }
+
+  .arc-label {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    fill: var(--ink-faint);
+  }
+
+  /* VERBAL MODE */
+  .verbal-stage {
+    width: 100%;
+    height: 100%;
+    padding: 60px 80px 40px;
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 0;
+    position: relative;
+    overflow-y: auto;
+  }
+
+  .verbal-col { display: flex; flex-direction: column; }
+
+  .verbal-section-label {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 24px;
+  }
+
+  .verbal-col-header {
+    display: grid;
+    grid-template-columns: 50px 1fr 100px 30px;
+    padding: 0 0 8px;
+    border-bottom: 1px solid var(--ink);
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+  .verbal-col-header.right { grid-template-columns: 30px 1fr 100px; }
+  .verbal-col-header.right > span:nth-child(2),
+  .verbal-col-header.right > span:nth-child(3) { text-align: right; }
+
+  .verbal-row {
+    display: grid;
+    grid-template-columns: 50px 1fr 100px 30px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--ink-faint);
+    cursor: pointer;
+    transition: padding 0.2s, opacity 0.2s;
+  }
+  .verbal-row.right { grid-template-columns: 30px 1fr 100px; }
+  .verbal-row:hover { padding-left: 8px; }
+  .verbal-row.right:hover { padding-left: 0; padding-right: 8px; }
+  .verbal-row.dimmed { opacity: 0.2; }
+  .verbal-row.linked { background: rgba(217, 74, 31, 0.04); }
+
+  .verbal-code {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink-mid);
+  }
+  .verbal-name { font-size: 17px; }
+  .verbal-row.right .verbal-name,
+  .verbal-row.right .verbal-meta { text-align: right; }
+
+  .verbal-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+
+  .verbal-anchor {
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    background: var(--bg);
+    justify-self: center;
+  }
+  .verbal-row.linked .verbal-anchor {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .verbal-canvas {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+  }
+
+  /* RIGHT PANEL */
+  .panel {
+    position: fixed;
+    top: 56px; right: 0; bottom: 0;
+    width: 420px;
+    background: var(--panel-bg);
+    border-left: 1px solid var(--ink);
+    overflow-y: auto;
+  }
+  .panel-section { border-bottom: 1px dashed var(--ink-faint); padding: 20px 24px; }
+  .panel-section:last-child { border-bottom: none; }
+  .panel-label {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 8px;
+  }
+  .panel-title { font-size: 24px; line-height: 1.2; margin-bottom: 4px; }
+  .panel-subtitle {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 16px;
+  }
+  .panel-body { font-size: 14px; line-height: 1.55; }
+  .panel-body p { margin-bottom: 10px; }
+
+  .accordion-item { border-bottom: 1px dashed var(--ink-faint); }
+  .accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 24px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .accordion-header:hover { background: rgba(0,0,0,0.02); }
+  .accordion-header .toggle { color: var(--ink-mid); font-size: 14px; transition: transform 0.2s; }
+  .accordion-content { padding: 0 24px 16px; display: none; font-size: 13px; }
+  .accordion-item.open .accordion-content { display: block; }
+  .accordion-item.open .toggle { transform: rotate(45deg); }
+
+  .accordion-list { list-style: none; }
+  .accordion-list li {
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--ink-faint);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .accordion-list li:last-child { border-bottom: none; }
+  .accordion-list li:hover { color: var(--accent); }
+  .accordion-list li .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+
+  .hint {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    pointer-events: none;
+  }
+
+  .hidden { display: none !important; }
+
+  /* ========== BROWSE / FILTER ========== */
+  .filter-bar {
+    border-bottom: 1px solid var(--ink);
+    padding: 12px 24px 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 24px;
+    row-gap: 10px;
+    background: var(--bg);
+  }
+  .filter-bar-title {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-right: 8px;
+  }
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .filter-group-label {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-right: 4px;
+  }
+  .filter-chip {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--ink-faint);
+    background: transparent;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-chip:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .filter-chip.active {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .filter-reset {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    cursor: pointer;
+    margin-left: auto;
+    padding: 4px 8px;
+  }
+  .filter-count {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+
+  .browse-stage {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .browse-content {
+    padding: 32px 24px 60px;
+  }
+
+  /* verbal browse rows */
+  .browse-row {
+    display: grid;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px dashed var(--ink-faint);
+    cursor: pointer;
+    transition: opacity 0.3s, max-height 0.3s, padding 0.3s, transform 0.3s;
+    max-height: 200px;
+    overflow: hidden;
+  }
+  .browse-row.faded {
+    opacity: 0.18;
+    max-height: 32px;
+    padding: 6px 0;
+  }
+  .browse-row:hover { background: rgba(0,0,0,0.02); }
+
+  /* visual browse cards */
+  .browse-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .browse-card {
+    border: 1px solid var(--ink-faint);
+    background: var(--panel-bg);
+    cursor: pointer;
+    transition: opacity 0.4s, transform 0.4s, border-color 0.2s;
+    transform-origin: center;
+  }
+  .browse-card:hover { border-color: var(--ink); }
+  .browse-card.faded {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  .browse-card-image {
+    aspect-ratio: 4/3;
+    background: #e8e3d7;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .browse-card-typographic {
+    aspect-ratio: 4/3;
+    background: var(--bg);
+    border-bottom: 1px solid var(--ink-faint);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px 18px;
+  }
+  .browse-card-typographic .bc-tier,
+  .browse-card-typographic .bc-engagement {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+  .browse-card-typographic .bc-num {
+    font-size: 48px;
+    line-height: 1;
+    font-family: 'Times New Roman', serif;
+    color: var(--ink-faint);
+  }
+  .browse-card-meta {
+    padding: 12px 16px 16px;
+  }
+  .browse-card-name {
+    font-size: 16px;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .browse-card-sub {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wordmark" id="wordmark">Verbal<span class="plus">+</span>Visual</div>
+  <div class="breadcrumb" id="breadcrumb"><a id="home-link">Commerce+</a></div>
+  <div class="mode-toggle">
+    <button id="mode-verbal" class="active">Verbal</button>
+    <button id="mode-visual">Visual</button>
+  </div>
+</div>
+
+<div class="stage hidden" id="visual-stage">
+  <svg class="graph" id="graph" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet">
+    <text class="arc-label" x="220" y="120">— Transformation</text>
+    <text class="arc-label" x="780" y="120">Growth —</text>
+    <line x1="600" y1="100" x2="600" y2="700" stroke="#b8b5ae" stroke-width="0.5" stroke-dasharray="3 4"/>
+    <g id="connectors"></g>
+    <g id="nodes"></g>
+  </svg>
+</div>
+
+<div class="stage" id="verbal-stage-wrap">
+  <div class="verbal-stage" id="verbal-stage"></div>
+</div>
+
+<aside class="panel" id="panel"></aside>
+
+<div class="hint" id="hint">Hover a program to see its products</div>
+
+<script>
+  const PROGRAMS = [
+    { id: 'flagship', name: 'Flagship Reimagination', arc: 'Transformation', code: '01', x: 220, y: 280 },
+    { id: 'experience', name: 'Experience Revitalization', arc: 'Transformation', code: '02', x: 380, y: 420 },
+    { id: 'architecture', name: 'Architecture Migration', arc: 'Transformation', code: '03', x: 240, y: 560 },
+    { id: 'ltv', name: 'LTV Enhancement', arc: 'Growth', code: '04', x: 780, y: 240 },
+    { id: 'conversion', name: 'Conversion Optimization', arc: 'Growth', code: '05', x: 950, y: 380 },
+    { id: 'channel', name: 'Channel Expansion', arc: 'Growth', code: '06', x: 820, y: 530 },
+    { id: 'preventative', name: 'Preventative Care', arc: 'Growth', code: '07', x: 1000, y: 600 }
+  ];
+
+  const PRODUCTS = [
+    { name: 'Digital Strategy Toolkit', programs: ['flagship'] },
+    { name: 'Ecommerce Roadmap Toolkit', programs: ['experience', 'conversion'] },
+    { name: 'Flagship Storefront System', programs: ['flagship'] },
+    { name: 'Optimized Storefront System', programs: ['experience'] },
+    { name: 'Verbal Strategy Toolkit', programs: ['flagship', 'experience'] },
+    { name: 'Creative Intelligence Studio', programs: ['flagship'] },
+    { name: 'Foundational Build System', programs: ['flagship'] },
+    { name: 'Shopify Migration Toolkit', programs: ['architecture'] },
+    { name: 'Retail Activation Kit', programs: ['channel'] },
+    { name: 'B2B Activation Kit', programs: ['channel'] },
+    { name: 'Global Activation Kit', programs: ['channel'] },
+    { name: 'Multi-Brand Activation Kit', programs: ['channel'] },
+    { name: 'Growth Features Library', programs: ['flagship'] },
+    { name: 'Subscription Revenue System', programs: ['ltv'] },
+    { name: 'Landing Page System', programs: ['ltv'] },
+    { name: 'Commerce AI Framework', programs: ['channel'] },
+    { name: 'Promo Operating System', programs: ['ltv'] },
+    { name: 'Returns Reduction System', programs: ['ltv'] },
+    { name: 'Operational Efficiency System', programs: ['ltv'] },
+    { name: 'Customer Insights Toolkit', programs: ['ltv'] },
+    { name: 'Loyalty Experience System', programs: ['ltv'] },
+    { name: 'Retention Engine', programs: ['ltv'] },
+    { name: 'Experimentation Engine', programs: ['conversion'] },
+    { name: 'Product Discovery System', programs: ['conversion'] },
+    { name: 'Speed Boost Pack', programs: ['conversion'] },
+    { name: 'Site Care Engine', programs: ['preventative'] },
+    { name: 'Data Insights Engine', programs: ['flagship', 'preventative'] },
+    { name: 'Fractional Ecommerce Support', programs: ['preventative'] }
+  ];
+  PRODUCTS.forEach((p, i) => p.id = 'prod-' + i);
+
+  const PROGRAM_DESC = {
+    flagship: 'A full reset of the digital flagship — brand, strategy, storefront, and build. For brands ready to redefine their commerce experience from the ground up.',
+    experience: 'A focused refresh of the core user journey without a full rebuild. For brands whose foundation is sound but whose experience is dated.',
+    architecture: 'Replatforming and re-architecting commerce stacks. For brands moving to Shopify Plus or restructuring their tech.',
+    ltv: 'Compounding programs that grow customer value over time — subscription, loyalty, retention, returns, and operational margin.',
+    conversion: 'A continuous program of testing, learning, and shipping improvements to the commerce experience.',
+    channel: 'Extending the commerce model to new channels — retail, B2B, global markets, multi-brand portfolios.',
+    preventative: 'The ongoing partnership layer — site care, data, fractional support. The connective tissue under every other program.'
+  };
+
+  const MOCK_CASES = {
+    flagship: ['Faherty', 'Toad&Co', 'Paul Fredrick', 'DECKED', 'Patrick Ta'],
+    experience: ['Marion Parke', 'Halfdays'],
+    architecture: [],
+    ltv: [],
+    conversion: [],
+    channel: [],
+    preventative: []
+  };
+
+  // Real product detail (for now just OSS — others stub from CSV later)
+  const PRODUCT_DETAIL = {
+    'Optimized Storefront System': {
+      code: 'CI-OSS',
+      category: 'Foundation',
+      engagementType: 'One-time setup',
+      cost: '$80,000',
+      duration: '10 weeks',
+      tagline: 'Refine the core user journey via UX/UI optimizations to boost engagement and CVR.',
+      output: 'Conversion-focused UI and design improvements to your existing Shopify theme to strengthen brand expression and drive sales.',
+      phases: [
+        {
+          name: 'Research + Strategy',
+          items: [
+            { title: 'Stakeholder Interview Analysis', body: 'Synthesize leadership and cross-functional perspectives into a clear set of shared priorities and challenges.' },
+            { title: 'Discovery Workshop', body: 'Explore directional creative concepts and aesthetic inspiration. Surface gaps and opportunities based on competitive and comparative analysis.' }
+          ]
+        },
+        {
+          name: 'UX/UI Optimization',
+          items: [
+            { title: 'Sitemap + Main Nav Redesign', body: 'A refined navigation experience informed by user behavior and usability principles.' },
+            { title: 'Redesigned Core Conversion Templates', body: 'Four redesigned page templates (home, collection, PDP, cart/mini-cart) that form a cohesive, on-brand layout system, informed by customer needs and grounded in UX best practices.' },
+            { title: 'Scalable Design System', body: 'A reusable design foundation enabling consistent growth.' }
+          ]
+        },
+        {
+          name: 'Storefront Delivery',
+          items: [
+            { title: 'Shopify Theme Development', body: 'A production-ready storefront experience aligned to approved designs.' },
+            { title: 'QA Testing + Usability Audits', body: 'Structured testing including test cases, bug reports, and UX evaluation across key flows.' },
+            { title: 'Go-to-Market Launch', body: 'A fully executed storefront release with validated deployment and rollback safeguards.' }
+          ]
+        }
+      ],
+      cases: ['Marion Parke', 'Halfdays', 'Faherty'],
+      growthFeatures: ['Shoppable Lookbook', 'Product Comparison Tool', 'Quick Add to Cart', 'Product Discovery Quiz']
+    }
+  };
+
+  const CASE_HEROES = {
+    'Halfdays': 'https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/681050f7526f2ea9341d028b_32b2783a14952ce0a89d42f415d8057a65cc78ed-min.jpg',
+    'Faherty': 'https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/688ab0c35f86430ac087ee23_Frame%20316123673%20(1).jpg',
+    'Marion Parke': 'https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/68364885ce6616ed4b312698_Info.png'
+  };
+
+  const CASE_STUDIES = {
+    'Halfdays': {
+      hero: CASE_HEROES['Halfdays'],
+      summary: 'A refined storefront experience for a women\'s outerwear brand redefining performance and style.',
+      year: '2024',
+      industry: 'Fashion + Apparel',
+      programs: ['experience'],
+      products: ['Optimized Storefront System', 'Landing Page System'],
+      growthFeatures: [
+        { name: 'Search + Navigation Redesign', desc: 'Reworked nav structure and predictive search to reduce taps-to-product on mobile.' },
+        { name: 'Editorial Landing Pages', desc: 'A flexible landing page system for seasonal drops and brand storytelling.' }
+      ],
+      metrics: [
+        { value: '+34%', label: 'Conversion rate' },
+        { value: '+22%', label: 'Average order value' },
+        { value: '10 wks', label: 'Project duration' }
+      ],
+      challenge: 'Halfdays had outgrown its original Shopify theme. The site looked dated relative to the brand\'s ambition, the navigation buried key collections, and mobile performance was hurting conversions during peak seasons.',
+      approach: 'A focused storefront refresh — not a full rebuild. We redesigned the core user journey templates, restructured the navigation around how customers actually shop, and built a flexible landing page system the team could use without engineering involvement.',
+      outcome: 'Conversion lift held through two seasonal cycles. The marketing team now ships campaign pages without a developer in the loop, which has changed the cadence of how they go to market.',
+      gallery: [
+        'https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/681020f27fd34a3e8662f44d_CASE%20STUDY%20-%20%20Halfdays%20-%2003%20(1).png',
+        'https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/681025db6c398d42c1f4b35f_nav%20%2B%20search%20(1).png',
+        'https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/681023794b6ae81ca851d8dc_Frame%201533207986.png'
+      ]
+    },
+    'Marion Parke': {
+      hero: CASE_HEROES['Marion Parke'],
+      summary: 'A storefront and brand voice refresh for a luxury footwear label rooted in podiatric design.',
+      year: '2025',
+      industry: 'Fashion + Apparel',
+      programs: ['experience'],
+      products: ['Optimized Storefront System', 'Verbal Strategy Toolkit'],
+      growthFeatures: [
+        { name: 'Editorial PDP', desc: 'A product page treatment that surfaces the brand\'s podiatric design story alongside conversion-critical content.' }
+      ],
+      metrics: [
+        { value: '+28%', label: 'Conversion rate' },
+        { value: '+19%', label: 'Time on PDP' },
+        { value: '12 wks', label: 'Project duration' }
+      ],
+      challenge: 'Marion Parke\'s product is technical — a luxury shoe designed by a podiatric surgeon — but the storefront was reading as a typical fashion site. The brand voice felt generic and the design didn\'t communicate what made the product different.',
+      approach: 'We paired storefront optimization with a verbal strategy engagement, rebuilding the brand\'s voice and tone alongside the visual experience. The redesigned PDP became the proof point — every product page now leads with the design story.',
+      outcome: 'A storefront that finally matches the level of craft in the product. The team has clear voice guidelines for everything from PDP copy to email campaigns.',
+      gallery: [
+        'https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/6836448ee2fbef52989183cb_CASE%20STUDY%20-%20%20Halfdays%20-%2012.png',
+        'https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/68363f88eb7a602e254f2f45_Screen%20Shot%202025-05-27%20at%206.31.05%20PM.png'
+      ]
+    },
+    'Faherty': {
+      hero: CASE_HEROES['Faherty'],
+      summary: 'A six-year partnership with a family-founded apparel brand spanning two flagship redesigns and an ongoing growth program.',
+      year: '2019 — Present',
+      industry: 'Fashion + Apparel',
+      programs: ['flagship', 'experience', 'preventative'],
+      products: ['Flagship Storefront System', 'Optimized Storefront System', 'Site Care Engine', 'Experimentation Engine', 'Growth Features Library'],
+      growthFeatures: [
+        { name: 'Shoppable Lookbook', desc: 'An editorial-meets-commerce experience that drove a step change in collection sell-through.' },
+        { name: 'Gift Concierge', desc: 'A guided gifting flow built for Q4 holiday peaks.' },
+        { name: 'Fit Finder', desc: 'A product recommendation tool addressing fit confusion across categories.' }
+      ],
+      metrics: [
+        { value: '6 yrs', label: 'Partnership' },
+        { value: '2', label: 'Flagship redesigns' },
+        { value: '+180%', label: 'Cumulative CVR lift' }
+      ],
+      challenge: 'When Faherty came to us in 2019, they were a fast-growing DTC brand on a templated theme. The site couldn\'t keep up with the catalog growth, and the team had no internal commerce engineering capacity.',
+      approach: 'We started with a flagship build, then transitioned into an ongoing partnership covering site care, experimentation, and continuous growth feature development. As the brand evolved, we ran a second flagship redesign in year four to reflect the new positioning.',
+      outcome: 'The partnership now operates as an extension of Faherty\'s in-house team. Site care and experimentation run continuously; new growth features ship every quarter; the second redesign reset the brand\'s digital flagship for the next phase.',
+      gallery: [
+        'https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/688aabf6e01691ad57fa16e7_Frame%202875%20(23)-min.jpg'
+      ],
+      // timeline-specific data
+      hasTimeline: true,
+      timeline: [
+        {
+          year: 'Year 1',
+          dateLabel: '2019',
+          type: 'major',
+          title: 'Initial Flagship Build',
+          product: 'Flagship Storefront System',
+          body: 'A ground-up rebuild of Faherty.com. New IA, new design system, new Shopify Plus implementation. The foundation everything since has built on.',
+          image: 'https://cdn.prod.website-files.com/661eb57ba88bc5753587989c/688aabf6e01691ad57fa16e7_Frame%202875%20(23)-min.jpg'
+        },
+        {
+          year: 'Year 2',
+          dateLabel: '2020',
+          type: 'ongoing',
+          title: 'Site Care + Experimentation Begins',
+          product: 'Site Care Engine, Experimentation Engine',
+          body: 'Transitioned into ongoing partnership. Monthly site care covering theme maintenance, performance, and small UX improvements. CRO program running structured tests against the new foundation.'
+        },
+        {
+          year: 'Year 2',
+          dateLabel: '2020',
+          type: 'feature',
+          title: 'Shoppable Lookbook',
+          product: 'Growth Feature',
+          body: 'First major growth feature build — an editorial format that wove product into seasonal storytelling. Drove a measurable lift in collection sell-through.'
+        },
+        {
+          year: 'Year 3',
+          dateLabel: '2021',
+          type: 'feature',
+          title: 'Gift Concierge',
+          product: 'Growth Feature',
+          body: 'Holiday-season gifting flow. Built once, refined every Q4 since.'
+        },
+        {
+          year: 'Year 4',
+          dateLabel: '2022',
+          type: 'major',
+          title: 'Second Flagship Redesign',
+          product: 'Flagship Storefront System',
+          body: 'After three years of growth, the brand had outgrown its original digital identity. A second flagship rebuild — new design language, expanded category architecture, refreshed PDP and PLP — set the stage for the next chapter.',
+          image: CASE_HEROES['Faherty']
+        },
+        {
+          year: 'Year 5',
+          dateLabel: '2023',
+          type: 'feature',
+          title: 'Fit Finder',
+          product: 'Growth Feature',
+          body: 'Product recommendation tool addressing fit confusion across denim, outerwear, and women\'s tops. Reduced returns in the launched categories.'
+        },
+        {
+          year: 'Year 6',
+          dateLabel: '2024 — present',
+          type: 'ongoing',
+          title: 'Continuous Optimization',
+          product: 'Site Care + Experimentation + Growth Features',
+          body: 'The current operating mode. Site care and experimentation run as standing programs. New growth features get scoped and shipped each quarter, prioritized by the e-commerce roadmap we co-author.'
+        }
+      ]
+    }
+  };
+
+  // ============== FILTER TAXONOMIES ==============
+  const ENGAGEMENT_TYPES = ['Always-on', 'One-time setup', 'Strategic guidance'];
+  const AREAS_OF_INTEREST = ['Redesign', 'Migration', 'Subscription', 'AI Enablement', 'Product Data', 'Retention', 'Conversion'];
+  const INDUSTRIES = ['Fashion + Apparel', 'Home Furnishing', 'Health + Wellness', 'Beauty', 'Food + Beverage', 'Outdoor + Sport'];
+  const GROWTH_TIERS = ['Small', 'Medium', 'Large'];
+
+  const PRODUCT_TAGS = {
+    'Digital Strategy Toolkit': { engagement: 'Strategic guidance', areas: ['Redesign'] },
+    'Ecommerce Roadmap Toolkit': { engagement: 'Strategic guidance', areas: ['Redesign', 'Conversion'] },
+    'Flagship Storefront System': { engagement: 'One-time setup', areas: ['Redesign'] },
+    'Optimized Storefront System': { engagement: 'One-time setup', areas: ['Redesign', 'Conversion'] },
+    'Verbal Strategy Toolkit': { engagement: 'Strategic guidance', areas: ['Redesign'] },
+    'Creative Intelligence Studio': { engagement: 'One-time setup', areas: ['Redesign', 'AI Enablement'] },
+    'Foundational Build System': { engagement: 'One-time setup', areas: ['Redesign'] },
+    'Shopify Migration Toolkit': { engagement: 'One-time setup', areas: ['Migration'] },
+    'Retail Activation Kit': { engagement: 'One-time setup', areas: ['Redesign'] },
+    'B2B Activation Kit': { engagement: 'One-time setup', areas: ['Redesign'] },
+    'Global Activation Kit': { engagement: 'One-time setup', areas: ['Redesign'] },
+    'Multi-Brand Activation Kit': { engagement: 'One-time setup', areas: ['Redesign'] },
+    'Growth Features Library': { engagement: 'One-time setup', areas: ['Conversion'] },
+    'Subscription Revenue System': { engagement: 'One-time setup', areas: ['Subscription', 'Retention'] },
+    'Landing Page System': { engagement: 'One-time setup', areas: ['Conversion'] },
+    'Commerce AI Framework': { engagement: 'One-time setup', areas: ['AI Enablement', 'Product Data'] },
+    'Promo Operating System': { engagement: 'One-time setup', areas: ['Conversion'] },
+    'Returns Reduction System': { engagement: 'One-time setup', areas: ['Retention'] },
+    'Operational Efficiency System': { engagement: 'Strategic guidance', areas: [] },
+    'Customer Insights Toolkit': { engagement: 'Strategic guidance', areas: ['Retention', 'Product Data'] },
+    'Loyalty Experience System': { engagement: 'One-time setup', areas: ['Retention'] },
+    'Retention Engine': { engagement: 'Always-on', areas: ['Retention'] },
+    'Experimentation Engine': { engagement: 'Always-on', areas: ['Conversion'] },
+    'Product Discovery System': { engagement: 'One-time setup', areas: ['Conversion', 'Product Data'] },
+    'Speed Boost Pack': { engagement: 'One-time setup', areas: ['Conversion'] },
+    'Site Care Engine': { engagement: 'Always-on', areas: [] },
+    'Data Insights Engine': { engagement: 'Always-on', areas: ['Product Data'] },
+    'Fractional Ecommerce Support': { engagement: 'Always-on', areas: [] }
+  };
+
+  const CASE_TAGS = {
+    'Halfdays': { industry: 'Fashion + Apparel', areas: ['Redesign', 'Conversion'] },
+    'Marion Parke': { industry: 'Home Furnishing', areas: ['Redesign'] },
+    'Faherty': { industry: 'Health + Wellness', areas: ['Redesign', 'Conversion', 'Retention'] }
+  };
+
+  // ============== GROWTH FEATURES CATALOG ==============
+  const GROWTH_FEATURES = [
+    { name: 'Shoppable Lookbook', tier: 'Large', areas: ['Redesign', 'Conversion'], products: ['Optimized Storefront System', 'Flagship Storefront System'], desc: 'Editorial-meets-commerce experience that weaves products into seasonal storytelling. Drives collection sell-through and dwell time.' },
+    { name: 'Product Comparison Tool', tier: 'Medium', areas: ['Conversion', 'Product Data'], products: ['Optimized Storefront System'], desc: 'Side-by-side comparison module for product categories where customers struggle to differentiate. Reduces decision friction on PDP and PLP.' },
+    { name: 'Quick Add to Cart', tier: 'Small', areas: ['Conversion'], products: ['Optimized Storefront System'], desc: 'PLP and PDP enhancement that lets shoppers add to cart without navigating away. Lifts AOV through cross-sell prompts.' },
+    { name: 'Product Discovery Quiz', tier: 'Large', areas: ['Conversion', 'Product Data'], products: ['Optimized Storefront System', 'Product Discovery System'], desc: 'Guided onboarding flow that recommends products based on customer input. Effective for technical or fit-driven categories.' },
+    { name: 'Editorial Landing Pages', tier: 'Medium', areas: ['Redesign', 'Conversion'], products: ['Landing Page System'], desc: 'Flexible landing page system marketers can deploy without engineering. Built for seasonal drops and brand storytelling.' },
+    { name: 'Search + Navigation Redesign', tier: 'Medium', areas: ['Conversion', 'Redesign'], products: ['Optimized Storefront System'], desc: 'Reworked nav structure and predictive search optimized for mobile-first shopping behavior.' },
+    { name: 'Editorial PDP', tier: 'Medium', areas: ['Redesign'], products: ['Optimized Storefront System'], desc: 'PDP treatment that surfaces brand and product story alongside conversion-critical content. Used for premium and craft-led brands.' },
+    { name: 'Gift Concierge', tier: 'Large', areas: ['Conversion'], products: ['Optimized Storefront System', 'Flagship Storefront System'], desc: 'Guided gifting flow built for Q4 holiday peaks. Includes recipient profiling, gift wrap, and scheduled delivery.' },
+    { name: 'Fit Finder', tier: 'Large', areas: ['Conversion', 'Retention', 'Product Data'], products: ['Optimized Storefront System', 'Product Discovery System'], desc: 'Product recommendation tool addressing fit and sizing confusion. Reduces return rates in apparel and footwear categories.' },
+    { name: 'Bundle Builder', tier: 'Medium', areas: ['Conversion', 'Subscription'], products: ['Subscription Revenue System'], desc: 'Customer-configured product bundles. Drives AOV and is foundational for subscription bundle offerings.' },
+    { name: 'Loyalty Drawer', tier: 'Small', areas: ['Retention'], products: ['Loyalty Experience System'], desc: 'Persistent loyalty status and points UI integrated into the storefront chrome. Reinforces program awareness throughout the journey.' },
+    { name: 'Subscription Portal', tier: 'Large', areas: ['Subscription', 'Retention'], products: ['Subscription Revenue System'], desc: 'Customer-facing portal for managing subscription frequency, swaps, skips, and add-ons. The retention layer of any subscription offering.' },
+    { name: 'AI Search', tier: 'Medium', areas: ['AI Enablement', 'Product Data'], products: ['Commerce AI Framework'], desc: 'Natural-language product search powered by LLM-based retrieval. Surfaces products based on intent rather than keyword match.' },
+    { name: 'PDP Personalization', tier: 'Medium', areas: ['AI Enablement', 'Conversion'], products: ['Commerce AI Framework'], desc: 'Dynamically reorders PDP content modules based on visitor segment and behavior signals.' },
+    { name: 'Returns Self-Service', tier: 'Medium', areas: ['Retention'], products: ['Returns Reduction System'], desc: 'Customer-initiated returns flow with reason capture, exchange-first prompts, and instant store credit. Reduces support load and lifts retention.' }
+  ];
+  GROWTH_FEATURES.forEach((g, i) => g.id = 'gf-' + i);
+
+  let mode = 'verbal';
+  let activeProgram = null;
+  let activeProduct = null;
+  let activeCase = null;
+  let activeBrowse = null; // 'products' | 'cases' | 'features'
+  let browseFilters = {}; // active filter selections
+  let caseView = 'standard';
+  let hoverProgram = null;
+
+  const visualStage = document.getElementById('visual-stage');
+  const verbalStageWrap = document.getElementById('verbal-stage-wrap');
+  const verbalStageEl = document.getElementById('verbal-stage');
+  const nodesG = document.getElementById('nodes');
+  const connectorsG = document.getElementById('connectors');
+  const panel = document.getElementById('panel');
+  const breadcrumb = document.getElementById('breadcrumb');
+  const hint = document.getElementById('hint');
+  const modeVerbalBtn = document.getElementById('mode-verbal');
+  const modeVisualBtn = document.getElementById('mode-visual');
+  const wordmark = document.getElementById('wordmark');
+
+  function setMode(newMode) {
+    mode = newMode;
+    modeVerbalBtn.classList.toggle('active', mode === 'verbal');
+    modeVisualBtn.classList.toggle('active', mode === 'visual');
+    visualStage.classList.toggle('hidden', mode !== 'visual');
+    verbalStageWrap.classList.toggle('hidden', mode !== 'verbal');
+    if (activeBrowse) openBrowse(activeBrowse);
+    else if (activeCase) focusCase(activeCase);
+    else if (activeProduct) focusProduct(activeProduct);
+    else if (activeProgram) focusProgram(activeProgram);
+    else renderLanding();
+  }
+  modeVerbalBtn.addEventListener('click', () => setMode('verbal'));
+  modeVisualBtn.addEventListener('click', () => setMode('visual'));
+  wordmark.addEventListener('click', () => { activeProgram = null; activeProduct = null; activeCase = null; activeBrowse = null; renderLanding(); });
+
+  function bindHomeLink() {
+    const el = document.getElementById('home-link');
+    if (el) el.addEventListener('click', () => { activeProgram = null; activeProduct = null; activeCase = null; activeBrowse = null; renderLanding(); });
+  }
+
+  function renderLanding() {
+    activeProgram = null;
+    activeProduct = null;
+    activeCase = null;
+    activeBrowse = null;
+    breadcrumb.innerHTML = `<a id="home-link">Commerce+</a>`;
+    bindHomeLink();
+    hint.textContent = mode === 'verbal' ? 'Hover a program to see its products' : 'Click a program to expand';
+
+    if (mode === 'visual') renderVisualLanding();
+    else renderVerbalLanding();
+    renderPanelLanding();
+  }
+
+  function renderVisualLanding() {
+    nodesG.innerHTML = '';
+    connectorsG.innerHTML = '';
+    // restore landing labels + divider in case they were hidden by product focus
+    document.querySelectorAll('#visual-stage svg > text.arc-label').forEach(el => el.style.display = '');
+    document.querySelectorAll('#visual-stage svg > line').forEach(el => el.style.display = '');
+    PROGRAMS.forEach(p => {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'node-group');
+      g.setAttribute('transform', `translate(${p.x}, ${p.y})`);
+      const productCount = PRODUCTS.filter(pr => pr.programs.includes(p.id)).length;
+      const r = 12 + Math.min(productCount, 8) * 1.5;
+      g.innerHTML = `
+        <circle class="node-circle" r="${r}"></circle>
+        <text class="node-sublabel" y="${-r - 18}">${p.code} · ${p.arc}</text>
+        <text class="node-label" y="${r + 22}">${p.name}</text>
+        <text class="node-sublabel" y="${r + 38}">${productCount} products</text>
+      `;
+      g.addEventListener('click', () => focusProgram(p.id));
+      nodesG.appendChild(g);
+    });
+  }
+
+  function renderVerbalLanding() {
+    const sortedProducts = [...PRODUCTS].sort((a, b) => a.name.localeCompare(b.name));
+
+    verbalStageEl.innerHTML = `
+      <div class="verbal-col">
+        <div class="verbal-section-label">Programs · 7</div>
+        <div class="verbal-col-header">
+          <span>Code</span><span>Name</span><span>Arc</span><span></span>
+        </div>
+        <div id="verbal-program-rows">
+          ${PROGRAMS.map(p => `
+            <div class="verbal-row" data-program="${p.id}">
+              <span class="verbal-code">${p.code}</span>
+              <span class="verbal-name">${p.name}</span>
+              <span class="verbal-meta">${p.arc}</span>
+              <span class="verbal-anchor"></span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div></div>
+      <div class="verbal-col">
+        <div class="verbal-section-label" style="text-align:right;">Products · ${PRODUCTS.length}</div>
+        <div class="verbal-col-header right">
+          <span></span><span>Name</span><span>In Programs</span>
+        </div>
+        <div id="verbal-product-rows">
+          ${sortedProducts.map(p => `
+            <div class="verbal-row right" data-product="${p.id}">
+              <span class="verbal-anchor"></span>
+              <span class="verbal-name">${p.name}</span>
+              <span class="verbal-meta">${p.programs.length}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <svg class="verbal-canvas" id="verbal-canvas"></svg>
+    `;
+
+    document.querySelectorAll('[data-program]').forEach(row => {
+      row.addEventListener('mouseenter', () => highlightProgramConnections(row.dataset.program));
+      row.addEventListener('mouseleave', clearVerbalHighlight);
+      row.addEventListener('click', () => focusProgram(row.dataset.program));
+    });
+    document.querySelectorAll('[data-product]').forEach(row => {
+      row.addEventListener('click', () => {
+        const prod = PRODUCTS.find(p => p.id === row.dataset.product);
+        if (prod) focusProduct(prod.name);
+      });
+    });
+  }
+
+  function highlightProgramConnections(programId) {
+    hoverProgram = programId;
+    const linkedIds = PRODUCTS.filter(p => p.programs.includes(programId)).map(p => p.id);
+
+    document.querySelectorAll('[data-program]').forEach(row => {
+      row.classList.toggle('dimmed', row.dataset.program !== programId);
+      row.classList.toggle('linked', row.dataset.program === programId);
+    });
+    document.querySelectorAll('[data-product]').forEach(row => {
+      const isLinked = linkedIds.includes(row.dataset.product);
+      row.classList.toggle('dimmed', !isLinked);
+      row.classList.toggle('linked', isLinked);
+    });
+
+    drawVerbalConnections(programId, linkedIds);
+  }
+
+  function clearVerbalHighlight() {
+    hoverProgram = null;
+    document.querySelectorAll('.verbal-row').forEach(row => {
+      row.classList.remove('dimmed', 'linked');
+    });
+    const canvas = document.getElementById('verbal-canvas');
+    if (canvas) canvas.innerHTML = '';
+  }
+
+  function drawVerbalConnections(programId, productIds) {
+    const canvas = document.getElementById('verbal-canvas');
+    if (!canvas) return;
+    canvas.innerHTML = '';
+
+    const programRow = document.querySelector(`[data-program="${programId}"]`);
+    if (!programRow) return;
+    const programAnchor = programRow.querySelector('.verbal-anchor');
+    const canvasRect = canvas.getBoundingClientRect();
+    const pRect = programAnchor.getBoundingClientRect();
+    const x1 = pRect.left + pRect.width / 2 - canvasRect.left;
+    const y1 = pRect.top + pRect.height / 2 - canvasRect.top;
+
+    productIds.forEach(pid => {
+      const productRow = document.querySelector(`[data-product="${pid}"]`);
+      if (!productRow) return;
+      const productAnchor = productRow.querySelector('.verbal-anchor');
+      const prRect = productAnchor.getBoundingClientRect();
+      const x2 = prRect.left + prRect.width / 2 - canvasRect.left;
+      const y2 = prRect.top + prRect.height / 2 - canvasRect.top;
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      const midX = (x1 + x2) / 2;
+      const d = `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`;
+      path.setAttribute('d', d);
+      path.setAttribute('stroke', '#1a1a1a');
+      path.setAttribute('stroke-width', '0.8');
+      path.setAttribute('fill', 'none');
+      canvas.appendChild(path);
+    });
+  }
+
+  function focusProgram(programId) {
+    activeProgram = programId;
+    activeProduct = null;
+    const program = PROGRAMS.find(p => p.id === programId);
+    breadcrumb.innerHTML = `<a id="home-link">Commerce+</a><span class="sep">/</span>${program.name}`;
+    bindHomeLink();
+    hint.textContent = '';
+
+    if (mode === 'visual') renderVisualProgramFocus(programId);
+    else renderVerbalProgramFocus(programId);
+    renderPanelProgram(programId);
+  }
+
+  // ============== PRODUCT DETAIL ==============
+  function focusProduct(productName) {
+    activeProduct = productName;
+    activeProgram = null;
+    breadcrumb.innerHTML = `<a id="home-link">Commerce+</a><span class="sep">/</span><a id="products-link">Products</a><span class="sep">/</span>${productName}`;
+    bindHomeLink();
+    document.getElementById('products-link').addEventListener('click', () => { activeProduct = null; renderLanding(); });
+    hint.textContent = '';
+
+    if (mode === 'visual') renderVisualProductFocus(productName);
+    else renderVerbalProductFocus(productName);
+    renderPanelProduct(productName);
+  }
+
+  function renderVerbalProductFocus(productName) {
+    const product = PRODUCTS.find(p => p.name === productName);
+    const detail = PRODUCT_DETAIL[productName];
+    const programObjs = product.programs.map(pid => PROGRAMS.find(p => p.id === pid));
+
+    if (!detail) {
+      // stub for products without full detail copy yet
+      verbalStageEl.innerHTML = `
+        <div style="grid-column: 1 / -1; padding: 20px 0;">
+          <div class="verbal-section-label">Product</div>
+          <h1 style="font-size: 48px; line-height: 1.1; margin-bottom: 16px; max-width: 800px;">${productName}</h1>
+          <p style="font-size: 16px; line-height: 1.6; max-width: 600px; color: var(--ink-mid);">Detail copy not yet drafted for this product. The structured fields from the CSV would render here — outcome, output, phases, cost, duration, related programs, related case studies.</p>
+        </div>
+      `;
+      return;
+    }
+
+    verbalStageEl.innerHTML = `
+      <div style="grid-column: 1 / -1; max-width: 1100px;">
+        <div class="verbal-section-label">${detail.code} · Product · ${detail.category}</div>
+        <h1 style="font-size: 56px; line-height: 1.05; margin-bottom: 20px; max-width: 900px; font-weight: normal;">${productName}</h1>
+        <p style="font-size: 19px; line-height: 1.5; max-width: 720px; margin-bottom: 48px;">${detail.tagline}</p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px dashed var(--ink-faint); margin-bottom: 56px;">
+          <div style="padding: 20px 24px 20px 0; border-right: 1px dashed var(--ink-faint);">
+            <div class="verbal-section-label" style="margin-bottom: 8px;">Investment</div>
+            <div style="font-size: 22px;">${detail.cost}</div>
+          </div>
+          <div style="padding: 20px 24px; border-right: 1px dashed var(--ink-faint);">
+            <div class="verbal-section-label" style="margin-bottom: 8px;">Duration</div>
+            <div style="font-size: 22px;">${detail.duration}</div>
+          </div>
+          <div style="padding: 20px 0 20px 24px;">
+            <div class="verbal-section-label" style="margin-bottom: 8px;">Engagement</div>
+            <div style="font-size: 22px;">${detail.engagementType}</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 64px; margin-bottom: 56px;">
+          <div class="verbal-section-label">Output</div>
+          <p style="font-size: 17px; line-height: 1.55;">${detail.output}</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 64px; margin-bottom: 56px;">
+          <div class="verbal-section-label">Phases</div>
+          <div>
+            ${detail.phases.map((phase, i) => `
+              <div style="margin-bottom: 32px; ${i < detail.phases.length - 1 ? 'border-bottom: 1px dashed var(--ink-faint); padding-bottom: 32px;' : ''}">
+                <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px;">
+                  <span class="verbal-code">${String(i + 1).padStart(2, '0')}</span>
+                  <h3 style="font-size: 22px; font-weight: normal;">${phase.name}</h3>
+                </div>
+                ${phase.items.map(item => `
+                  <div style="margin-bottom: 16px; padding-left: 32px;">
+                    <h4 style="font-size: 15px; margin-bottom: 4px;">${item.title}</h4>
+                    <p style="font-size: 14px; color: var(--ink-mid); line-height: 1.5;">${item.body}</p>
+                  </div>
+                `).join('')}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 64px; margin-bottom: 56px;">
+          <div class="verbal-section-label">In Programs</div>
+          <div>
+            ${programObjs.map(p => `
+              <div class="verbal-row" data-program-jump="${p.id}" style="grid-template-columns: 50px 1fr 100px; padding: 14px 0;">
+                <span class="verbal-code">${p.code}</span>
+                <span class="verbal-name">${p.name}</span>
+                <span class="verbal-meta" style="text-align: right;">${p.arc} →</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 64px; margin-bottom: 56px;">
+          <div class="verbal-section-label">Common Growth Features</div>
+          <div>
+            <p style="font-size: 14px; color: var(--ink-mid); line-height: 1.5; margin-bottom: 16px; max-width: 520px;">Add-ons commonly built alongside this product. Not part of the core scope.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              ${detail.growthFeatures.map(gf => `
+                <span style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; padding: 8px 14px; border: 1px dashed var(--ink); color: var(--ink-mid);">${gf}</span>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 64px; margin-bottom: 80px;">
+          <div class="verbal-section-label">Case Studies · ${detail.cases.length}</div>
+          <div style="display: grid; grid-template-columns: repeat(${Math.min(detail.cases.length, 3)}, 1fr); gap: 16px;">
+            ${detail.cases.map(c => `
+              <div data-case-link="${c}" style="cursor: pointer; border: 1px solid var(--ink-faint); transition: all 0.2s;" onmouseover="this.style.borderColor='var(--ink)'" onmouseout="this.style.borderColor='var(--ink-faint)'">
+                <div style="aspect-ratio: 4/3; background: #e8e3d7; ${CASE_HEROES[c] ? `background-image: url('${CASE_HEROES[c]}'); background-size: cover; background-position: center;` : ''}"></div>
+                <div style="padding: 14px 16px;">
+                  <div style="font-size: 16px; margin-bottom: 4px;">${c}</div>
+                  <div class="verbal-meta">View case study →</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.querySelectorAll('[data-program-jump]').forEach(row => {
+      row.addEventListener('click', () => focusProgram(row.dataset.programJump));
+    });
+    document.querySelectorAll('[data-case-link]').forEach(el => {
+      el.addEventListener('click', () => focusCase(el.dataset.caseLink || el.dataset.case));
+    });
+
+    // scroll to top
+    verbalStageEl.parentElement.scrollTop = 0;
+    verbalStageEl.scrollTop = 0;
+  }
+
+  function renderVisualProductFocus(productName) {
+    // visual mode for product: show product as central node, programs around it on one side, case studies on the other
+    nodesG.innerHTML = '';
+    connectorsG.innerHTML = '';
+    // hide the landing arc labels (Transformation / Growth) when in product focus
+    document.querySelectorAll('#visual-stage svg > text.arc-label').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('#visual-stage svg > line').forEach(el => el.style.display = 'none');
+
+    const product = PRODUCTS.find(p => p.name === productName);
+    const detail = PRODUCT_DETAIL[productName];
+    const programObjs = product.programs.map(pid => PROGRAMS.find(p => p.id === pid));
+    const cases = detail ? detail.cases : [];
+
+    const cx = 600, cy = 380;
+
+    // programs on left
+    programObjs.forEach((prog, i) => {
+      const angle = Math.PI - (Math.PI / 4) * (i - (programObjs.length - 1) / 2);
+      const x = cx + Math.cos(angle) * 260;
+      const y = cy + Math.sin(angle) * 180;
+
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('class', 'connector');
+      line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+      line.setAttribute('x2', x); line.setAttribute('y2', y);
+      connectorsG.appendChild(line);
+
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'node-group');
+      g.setAttribute('transform', `translate(${x}, ${y})`);
+      g.innerHTML = `
+        <circle class="node-circle" r="14"></circle>
+        <text class="node-label" y="32">${prog.name}</text>
+        <text class="node-sublabel" y="48">${prog.code} · ${prog.arc}</text>
+      `;
+      g.addEventListener('click', () => focusProgram(prog.id));
+      nodesG.appendChild(g);
+    });
+
+    // case studies on right
+    cases.forEach((c, i) => {
+      const angle = -(Math.PI / 4) * (i - (cases.length - 1) / 2);
+      const x = cx + Math.cos(angle) * 260;
+      const y = cy + Math.sin(angle) * 180;
+
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('class', 'connector');
+      line.setAttribute('stroke-dasharray', '2 3');
+      line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+      line.setAttribute('x2', x); line.setAttribute('y2', y);
+      connectorsG.appendChild(line);
+
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'node-group product-node');
+      g.setAttribute('transform', `translate(${x}, ${y})`);
+      g.innerHTML = `
+        <rect x="-7" y="-7" width="14" height="14" fill="var(--bg)" stroke="var(--ink)" stroke-width="1"></rect>
+        <text class="node-label" y="30">${c}</text>
+      `;
+      g.addEventListener('click', () => focusCase(c));
+      nodesG.appendChild(g);
+    });
+
+    // center: product
+    const centerG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    centerG.setAttribute('class', 'node-group active');
+    centerG.setAttribute('transform', `translate(${cx}, ${cy})`);
+    centerG.innerHTML = `
+      <circle class="node-circle" r="20"></circle>
+      <text class="node-sublabel" y="-36" fill="#1a1a1a">${detail ? detail.code + ' · ' : ''}Product</text>
+      <text class="node-label" y="42">${productName}</text>
+    `;
+    nodesG.appendChild(centerG);
+
+    // column headers in black
+    const lbl1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    lbl1.setAttribute('class', 'product-focus-header');
+    lbl1.setAttribute('x', '220');
+    lbl1.setAttribute('y', '120');
+    lbl1.setAttribute('font-family', "'Courier New', monospace");
+    lbl1.setAttribute('font-size', '12');
+    lbl1.setAttribute('letter-spacing', '0.15em');
+    lbl1.setAttribute('fill', '#1a1a1a');
+    lbl1.textContent = 'PROGRAMS';
+    nodesG.appendChild(lbl1);
+
+    const lbl2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    lbl2.setAttribute('class', 'product-focus-header');
+    lbl2.setAttribute('x', '980');
+    lbl2.setAttribute('y', '120');
+    lbl2.setAttribute('font-family', "'Courier New', monospace");
+    lbl2.setAttribute('font-size', '12');
+    lbl2.setAttribute('letter-spacing', '0.15em');
+    lbl2.setAttribute('fill', '#1a1a1a');
+    lbl2.setAttribute('text-anchor', 'end');
+    lbl2.textContent = 'CASE STUDIES';
+    nodesG.appendChild(lbl2);
+  }
+
+  function renderPanelProduct(productName) {
+    const product = PRODUCTS.find(p => p.name === productName);
+    const detail = PRODUCT_DETAIL[productName];
+    const programObjs = product.programs.map(pid => PROGRAMS.find(p => p.id === pid));
+    const cases = detail ? detail.cases : [];
+
+    panel.innerHTML = `
+      <div class="panel-section">
+        <a id="back-link" style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none;cursor:pointer;">← Index</a>
+      </div>
+      <div class="panel-section">
+        <div class="panel-label">${detail ? detail.code + ' · ' : ''}Product${detail ? ' · ' + detail.category : ''}</div>
+        <div class="panel-title">${productName}</div>
+        ${detail ? `<div class="panel-body" style="margin-top:12px;"><p>${detail.tagline}</p></div>` : ''}
+      </div>
+      ${detail ? `
+      <div class="panel-section" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0;">
+        <div style="padding: 16px 24px; border-right: 1px dashed var(--ink-faint);">
+          <div class="panel-label" style="margin-bottom: 4px;">Investment</div>
+          <div style="font-size: 16px;">${detail.cost}</div>
+        </div>
+        <div style="padding: 16px 24px;">
+          <div class="panel-label" style="margin-bottom: 4px;">Duration</div>
+          <div style="font-size: 16px;">${detail.duration}</div>
+        </div>
+      </div>` : ''}
+      <div class="accordion-item open">
+        <div class="accordion-header"><span>In Programs <span style="color:var(--ink-faint);">(${programObjs.length})</span></span><span class="toggle">+</span></div>
+        <div class="accordion-content">
+          <ul class="accordion-list">
+            ${programObjs.map(p => `<li data-program-link="${p.id}"><span>${p.name}</span><span class="meta">${p.code} · ${p.arc}</span></li>`).join('')}
+          </ul>
+        </div>
+      </div>
+      ${cases.length ? `
+      <div class="accordion-item open">
+        <div class="accordion-header"><span>Case Studies <span style="color:var(--ink-faint);">(${cases.length})</span></span><span class="toggle">+</span></div>
+        <div class="accordion-content">
+          <ul class="accordion-list">
+            ${cases.map(c => `<li data-case-link="${c}"><span>${c}</span><span class="meta">→</span></li>`).join('')}
+          </ul>
+        </div>
+      </div>` : ''}
+      ${detail && detail.growthFeatures && detail.growthFeatures.length ? `
+      <div class="accordion-item">
+        <div class="accordion-header"><span>Common Growth Features <span style="color:var(--ink-faint);">(${detail.growthFeatures.length})</span></span><span class="toggle">+</span></div>
+        <div class="accordion-content">
+          <p style="color: var(--ink-mid); font-size: 12px; margin-bottom: 12px;">Add-ons commonly built alongside this product. Not part of core scope.</p>
+          <ul class="accordion-list">
+            ${detail.growthFeatures.map(gf => `<li><span>${gf}</span><span class="meta">→</span></li>`).join('')}
+          </ul>
+        </div>
+      </div>` : ''}
+    `;
+    bindPanel();
+    document.getElementById('back-link').addEventListener('click', () => { activeProduct = null; activeProgram = null; renderLanding(); });
+  }
+
+  // ============== CASE STUDY DETAIL ==============
+  function focusCase(caseName, view) {
+    activeCase = caseName;
+    activeProgram = null;
+    activeProduct = null;
+    if (view) caseView = view;
+    else caseView = 'standard';
+
+    breadcrumb.innerHTML = `<a id="home-link">Commerce+</a><span class="sep">/</span><a id="cases-link">Case Studies</a><span class="sep">/</span>${caseName}`;
+    bindHomeLink();
+    document.getElementById('cases-link').addEventListener('click', () => { activeCase = null; renderLanding(); });
+    hint.textContent = '';
+
+    if (mode === 'visual') renderVisualCaseFocus(caseName);
+    else renderVerbalCaseFocus(caseName);
+    renderPanelCase(caseName);
+  }
+
+  function renderVerbalCaseFocus(caseName) {
+    const c = CASE_STUDIES[caseName];
+    if (!c) {
+      verbalStageEl.innerHTML = `
+        <div style="grid-column: 1 / -1; padding: 20px 0;">
+          <div class="verbal-section-label">Case Study</div>
+          <h1 style="font-size: 48px; line-height: 1.1; margin-bottom: 16px;">${caseName}</h1>
+          <p style="color: var(--ink-mid);">Case study detail not yet drafted.</p>
+        </div>
+      `;
+      return;
+    }
+
+    if (caseView === 'timeline' && c.hasTimeline) {
+      renderCaseTimeline(caseName, c);
+    } else {
+      renderCaseStandard(caseName, c);
+    }
+
+    verbalStageEl.parentElement.scrollTop = 0;
+  }
+
+  function renderCaseStandard(caseName, c) {
+    const programObjs = c.programs.map(pid => PROGRAMS.find(p => p.id === pid));
+    const viewToggle = c.hasTimeline ? `
+      <div style="display: inline-flex; border: 1px solid var(--ink); margin-bottom: 32px;">
+        <button class="case-view-btn active" data-view="standard" style="background: var(--ink); color: var(--bg); border: none; padding: 8px 16px; font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">Case Study</button>
+        <button class="case-view-btn" data-view="timeline" style="background: transparent; color: var(--ink); border: none; padding: 8px 16px; font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">Engagement Timeline</button>
+      </div>
+    ` : '';
+
+    verbalStageEl.innerHTML = `
+      <div style="grid-column: 1 / -1; max-width: 1100px;">
+        <div class="verbal-section-label">Case Study · ${c.industry} · ${c.year}</div>
+        <h1 style="font-size: 56px; line-height: 1.05; margin-bottom: 20px; max-width: 900px; font-weight: normal;">${caseName}</h1>
+        <p style="font-size: 19px; line-height: 1.5; max-width: 720px; margin-bottom: 40px;">${c.summary}</p>
+        ${viewToggle}
+
+        <div style="margin-bottom: 56px; aspect-ratio: 16/9; background: #e8e3d7 url('${c.hero}') center/cover; border: 1px solid var(--ink-faint);"></div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px dashed var(--ink-faint); margin-bottom: 64px;">
+          ${c.metrics.map((m, i) => `
+            <div style="padding: 24px ${i === 0 ? '24px 24px 0' : '24px'}; ${i < c.metrics.length - 1 ? 'border-right: 1px dashed var(--ink-faint);' : ''}">
+              <div class="verbal-section-label" style="margin-bottom: 8px;">${m.label}</div>
+              <div style="font-size: 36px; line-height: 1;">${m.value}</div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 64px; margin-bottom: 48px;">
+          <div class="verbal-section-label">Challenge</div>
+          <p style="font-size: 17px; line-height: 1.55;">${c.challenge}</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 64px; margin-bottom: 48px;">
+          <div class="verbal-section-label">Approach</div>
+          <p style="font-size: 17px; line-height: 1.55;">${c.approach}</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 64px; margin-bottom: 64px;">
+          <div class="verbal-section-label">Outcome</div>
+          <p style="font-size: 17px; line-height: 1.55;">${c.outcome}</p>
+        </div>
+
+        ${c.gallery && c.gallery.length ? `
+        <div style="margin-bottom: 64px;">
+          <div class="verbal-section-label" style="margin-bottom: 24px;">Selected Work</div>
+          <div style="display: grid; grid-template-columns: repeat(${Math.min(c.gallery.length, 2)}, 1fr); gap: 16px;">
+            ${c.gallery.map(img => `
+              <div style="aspect-ratio: 4/3; background: #e8e3d7 url('${img}') center/cover; border: 1px solid var(--ink-faint);"></div>
+            `).join('')}
+          </div>
+        </div>
+        ` : ''}
+
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 64px; margin-bottom: 48px;">
+          <div class="verbal-section-label">Programs Engaged</div>
+          <div>
+            ${programObjs.map(p => `
+              <div class="verbal-row" data-program-jump="${p.id}" style="grid-template-columns: 50px 1fr 100px; padding: 14px 0;">
+                <span class="verbal-code">${p.code}</span>
+                <span class="verbal-name">${p.name}</span>
+                <span class="verbal-meta" style="text-align: right;">${p.arc} →</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 64px; margin-bottom: 48px;">
+          <div class="verbal-section-label">What We Built</div>
+          <div>
+            ${c.products.map(prodName => `
+              <div class="verbal-row" data-product-jump="${prodName}" style="grid-template-columns: 1fr 100px; padding: 14px 0;">
+                <span class="verbal-name">${prodName}</span>
+                <span class="verbal-meta" style="text-align: right;">View product →</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        ${c.growthFeatures && c.growthFeatures.length ? `
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 64px; margin-bottom: 80px;">
+          <div class="verbal-section-label">Growth Features</div>
+          <div>
+            <p style="font-size: 14px; color: var(--ink-mid); line-height: 1.5; margin-bottom: 20px; max-width: 520px;">Add-ons built alongside the core engagement, scoped and shipped separately.</p>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+              ${c.growthFeatures.map(gf => `
+                <div data-growth-feature="${gf.name}" style="border: 1px dashed var(--ink); padding: 16px 18px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='rgba(217,74,31,0.04)'" onmouseout="this.style.background='transparent'">
+                  <div style="font-family: 'Courier New', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mid); margin-bottom: 6px;">Growth Feature</div>
+                  <div style="font-size: 16px; margin-bottom: 6px;">${gf.name}</div>
+                  <div style="font-size: 13px; color: var(--ink-mid); line-height: 1.4;">${gf.desc}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+        ` : ''}
+      </div>
+    `;
+
+    bindCasePageEvents();
+  }
+
+  function renderCaseTimeline(caseName, c) {
+    const programObjs = c.programs.map(pid => PROGRAMS.find(p => p.id === pid));
+    const tl = c.timeline;
+    // build SVG timeline header
+    const tlWidth = 1000;
+    const tlPaddingX = 40;
+    const usableW = tlWidth - tlPaddingX * 2;
+    const nodePositions = tl.map((event, i) => ({
+      ...event,
+      idx: i,
+      x: tlPaddingX + (i / (tl.length - 1)) * usableW
+    }));
+
+    const viewToggle = `
+      <div style="display: inline-flex; border: 1px solid var(--ink); margin-bottom: 32px;">
+        <button class="case-view-btn" data-view="standard" style="background: transparent; color: var(--ink); border: none; padding: 8px 16px; font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">Case Study</button>
+        <button class="case-view-btn active" data-view="timeline" style="background: var(--ink); color: var(--bg); border: none; padding: 8px 16px; font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">Engagement Timeline</button>
+      </div>
+    `;
+
+    verbalStageEl.innerHTML = `
+      <div style="grid-column: 1 / -1; max-width: 1100px;">
+        <div class="verbal-section-label">Engagement Timeline · ${c.industry} · ${c.year}</div>
+        <h1 style="font-size: 56px; line-height: 1.05; margin-bottom: 20px; max-width: 900px; font-weight: normal;">${caseName}</h1>
+        <p style="font-size: 19px; line-height: 1.5; max-width: 720px; margin-bottom: 40px;">${c.summary}</p>
+        ${viewToggle}
+
+        <!-- sticky timeline -->
+        <div id="timeline-bar" style="position: sticky; top: 0; background: var(--bg); padding: 24px 0 32px; margin-bottom: 32px; z-index: 5; border-bottom: 1px dashed var(--ink-faint);">
+          <svg viewBox="0 0 ${tlWidth} 100" style="width: 100%; height: 100px; display: block;">
+            <line x1="${tlPaddingX}" y1="50" x2="${tlWidth - tlPaddingX}" y2="50" stroke="#1a1a1a" stroke-width="1"/>
+            ${nodePositions.map(n => {
+              const r = n.type === 'major' ? 10 : (n.type === 'feature' ? 5 : 7);
+              const stroke = n.type === 'ongoing' ? 'stroke-dasharray="2 2"' : '';
+              return `
+                <g class="tl-node" data-tl-idx="${n.idx}" style="cursor: pointer;">
+                  <circle cx="${n.x}" cy="50" r="${r + 12}" fill="transparent"/>
+                  <circle cx="${n.x}" cy="50" r="${r}" fill="var(--bg)" stroke="#1a1a1a" stroke-width="1.5" ${stroke}/>
+                  <text x="${n.x}" y="22" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" letter-spacing="0.08em" fill="#6b6b6b" style="text-transform: uppercase;">${n.year}</text>
+                  <text x="${n.x}" y="80" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" letter-spacing="0.08em" fill="#b8b5ae">${n.dateLabel}</text>
+                </g>
+              `;
+            }).join('')}
+          </svg>
+          <div style="display: flex; justify-content: center; gap: 24px; margin-top: 8px; font-family: 'Courier New', monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mid);">
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 12px; height: 12px; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--bg);"></span> Major engagement</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 8px; height: 8px; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--bg);"></span> Ongoing program</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 6px; height: 6px; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--bg);"></span> Growth feature</span>
+          </div>
+        </div>
+
+        <!-- timeline events -->
+        ${tl.map((event, i) => `
+          <div id="tl-section-${i}" style="display: grid; grid-template-columns: 200px 1fr; gap: 64px; padding: 40px 0; ${i < tl.length - 1 ? 'border-bottom: 1px dashed var(--ink-faint);' : ''}">
+            <div>
+              <div class="verbal-section-label" style="margin-bottom: 8px;">${event.year} · ${event.dateLabel}</div>
+              <div style="font-family: 'Courier New', monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: ${event.type === 'major' ? 'var(--accent)' : 'var(--ink-mid)'};">${event.type === 'major' ? 'Major' : event.type === 'feature' ? 'Growth Feature' : 'Ongoing'}</div>
+            </div>
+            <div>
+              <h3 style="font-size: 28px; line-height: 1.15; margin-bottom: 8px; font-weight: normal;">${event.title}</h3>
+              <div class="verbal-section-label" style="margin-bottom: 16px;">${event.product}</div>
+              <p style="font-size: 16px; line-height: 1.55; max-width: 640px; margin-bottom: ${event.image ? '20px' : '0'};">${event.body}</p>
+              ${event.image ? `<div style="aspect-ratio: 16/9; background: #e8e3d7 url('${event.image}') center/cover; border: 1px solid var(--ink-faint); max-width: 640px;"></div>` : ''}
+            </div>
+          </div>
+        `).join('')}
+
+        <div style="margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--ink); display: grid; grid-template-columns: 200px 1fr; gap: 64px; margin-bottom: 80px;">
+          <div class="verbal-section-label">Programs Engaged</div>
+          <div>
+            ${programObjs.map(p => `
+              <div class="verbal-row" data-program-jump="${p.id}" style="grid-template-columns: 50px 1fr 100px; padding: 14px 0;">
+                <span class="verbal-code">${p.code}</span>
+                <span class="verbal-name">${p.name}</span>
+                <span class="verbal-meta" style="text-align: right;">${p.arc} →</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+
+    bindCasePageEvents();
+    // wire timeline node clicks
+    document.querySelectorAll('.tl-node').forEach(node => {
+      node.addEventListener('click', () => {
+        const idx = node.dataset.tlIdx;
+        const target = document.getElementById(`tl-section-${idx}`);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+
+  function bindCasePageEvents() {
+    document.querySelectorAll('.case-view-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        focusCase(activeCase, btn.dataset.view);
+      });
+    });
+    document.querySelectorAll('[data-program-jump]').forEach(row => {
+      row.addEventListener('click', () => focusProgram(row.dataset.programJump));
+    });
+    document.querySelectorAll('[data-product-jump]').forEach(row => {
+      row.addEventListener('click', () => focusProduct(row.dataset.productJump));
+    });
+    document.querySelectorAll('[data-growth-feature]').forEach(el => {
+      el.addEventListener('click', () => alert(`Growth feature detail: ${el.dataset.growthFeature}\n\n(Future round — these will become their own clickable detail pages)`));
+    });
+  }
+
+  function renderVisualCaseFocus(caseName) {
+    nodesG.innerHTML = '';
+    connectorsG.innerHTML = '';
+    document.querySelectorAll('#visual-stage svg > text.arc-label').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('#visual-stage svg > line').forEach(el => el.style.display = 'none');
+
+    const c = CASE_STUDIES[caseName];
+    if (!c) return;
+    const programObjs = c.programs.map(pid => PROGRAMS.find(p => p.id === pid));
+    const cx = 600, cy = 380;
+
+    // programs on left
+    programObjs.forEach((prog, i) => {
+      const angle = Math.PI - (Math.PI / 4) * (i - (programObjs.length - 1) / 2);
+      const x = cx + Math.cos(angle) * 280;
+      const y = cy + Math.sin(angle) * 180;
+
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('class', 'connector');
+      line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+      line.setAttribute('x2', x); line.setAttribute('y2', y);
+      connectorsG.appendChild(line);
+
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'node-group');
+      g.setAttribute('transform', `translate(${x}, ${y})`);
+      g.innerHTML = `
+        <circle class="node-circle" r="14"></circle>
+        <text class="node-label" y="32">${prog.name}</text>
+        <text class="node-sublabel" y="48">${prog.code} · ${prog.arc}</text>
+      `;
+      g.addEventListener('click', () => focusProgram(prog.id));
+      nodesG.appendChild(g);
+    });
+
+    // products on right
+    c.products.forEach((prodName, i) => {
+      const angle = -(Math.PI / 4) * (i - (c.products.length - 1) / 2);
+      const x = cx + Math.cos(angle) * 280;
+      const y = cy + Math.sin(angle) * 180;
+
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('class', 'connector');
+      line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+      line.setAttribute('x2', x); line.setAttribute('y2', y);
+      connectorsG.appendChild(line);
+
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'node-group product-node');
+      g.setAttribute('transform', `translate(${x}, ${y})`);
+      g.innerHTML = `
+        <circle class="node-circle" r="6"></circle>
+        <text class="node-label" y="24">${prodName}</text>
+      `;
+      g.addEventListener('click', () => focusProduct(prodName));
+      nodesG.appendChild(g);
+    });
+
+    // center: case study (square)
+    const centerG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    centerG.setAttribute('class', 'node-group active');
+    centerG.setAttribute('transform', `translate(${cx}, ${cy})`);
+    centerG.innerHTML = `
+      <rect x="-22" y="-22" width="44" height="44" fill="${'#d94a1f'}" stroke="${'#d94a1f'}" stroke-width="1.5"></rect>
+      <text class="node-sublabel" y="-36" fill="#1a1a1a">Case Study</text>
+      <text class="node-label" y="50">${caseName}</text>
+    `;
+    nodesG.appendChild(centerG);
+
+    // headers
+    const lbl1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    lbl1.setAttribute('x', '220'); lbl1.setAttribute('y', '120');
+    lbl1.setAttribute('font-family', "'Courier New', monospace");
+    lbl1.setAttribute('font-size', '12');
+    lbl1.setAttribute('letter-spacing', '0.15em');
+    lbl1.setAttribute('fill', '#1a1a1a');
+    lbl1.textContent = 'PROGRAMS';
+    nodesG.appendChild(lbl1);
+
+    const lbl2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    lbl2.setAttribute('x', '980'); lbl2.setAttribute('y', '120');
+    lbl2.setAttribute('font-family', "'Courier New', monospace");
+    lbl2.setAttribute('font-size', '12');
+    lbl2.setAttribute('letter-spacing', '0.15em');
+    lbl2.setAttribute('fill', '#1a1a1a');
+    lbl2.setAttribute('text-anchor', 'end');
+    lbl2.textContent = 'PRODUCTS';
+    nodesG.appendChild(lbl2);
+  }
+
+  function renderPanelCase(caseName) {
+    const c = CASE_STUDIES[caseName];
+    if (!c) {
+      panel.innerHTML = `<div class="panel-section"><div class="panel-title">${caseName}</div></div>`;
+      return;
+    }
+    const programObjs = c.programs.map(pid => PROGRAMS.find(p => p.id === pid));
+
+    panel.innerHTML = `
+      <div class="panel-section">
+        <a id="back-link" style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none;cursor:pointer;">← Index</a>
+      </div>
+      <div class="panel-section">
+        <div class="panel-label">Case Study · ${c.industry}</div>
+        <div class="panel-title">${caseName}</div>
+        <div class="panel-subtitle">${c.year}</div>
+        <div class="panel-body" style="margin-top:12px;"><p>${c.summary}</p></div>
+      </div>
+      <div class="panel-section" style="display: grid; grid-template-columns: repeat(${c.metrics.length}, 1fr); gap: 0; padding: 0;">
+        ${c.metrics.map((m, i) => `
+          <div style="padding: 16px 16px; ${i < c.metrics.length - 1 ? 'border-right: 1px dashed var(--ink-faint);' : ''}">
+            <div class="panel-label" style="margin-bottom: 4px; font-size: 9px;">${m.label}</div>
+            <div style="font-size: 18px;">${m.value}</div>
+          </div>
+        `).join('')}
+      </div>
+      ${c.hasTimeline ? `
+      <div class="panel-section">
+        <div class="panel-label">View</div>
+        <div style="display: flex; border: 1px solid var(--ink); margin-top: 8px;">
+          <button class="case-view-btn ${caseView === 'standard' ? 'active' : ''}" data-view="standard" style="flex: 1; background: ${caseView === 'standard' ? 'var(--ink)' : 'transparent'}; color: ${caseView === 'standard' ? 'var(--bg)' : 'var(--ink)'}; border: none; padding: 8px 12px; font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">Case Study</button>
+          <button class="case-view-btn ${caseView === 'timeline' ? 'active' : ''}" data-view="timeline" style="flex: 1; background: ${caseView === 'timeline' ? 'var(--ink)' : 'transparent'}; color: ${caseView === 'timeline' ? 'var(--bg)' : 'var(--ink)'}; border: none; padding: 8px 12px; font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;">Timeline</button>
+        </div>
+      </div>` : ''}
+      <div class="accordion-item open">
+        <div class="accordion-header"><span>Programs <span style="color:var(--ink-faint);">(${programObjs.length})</span></span><span class="toggle">+</span></div>
+        <div class="accordion-content">
+          <ul class="accordion-list">
+            ${programObjs.map(p => `<li data-program-link="${p.id}"><span>${p.name}</span><span class="meta">${p.code} · ${p.arc}</span></li>`).join('')}
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item open">
+        <div class="accordion-header"><span>Products <span style="color:var(--ink-faint);">(${c.products.length})</span></span><span class="toggle">+</span></div>
+        <div class="accordion-content">
+          <ul class="accordion-list">
+            ${c.products.map(p => `<li data-product-link="${p}"><span>${p}</span><span class="meta">→</span></li>`).join('')}
+          </ul>
+        </div>
+      </div>
+      ${c.growthFeatures && c.growthFeatures.length ? `
+      <div class="accordion-item">
+        <div class="accordion-header"><span>Growth Features <span style="color:var(--ink-faint);">(${c.growthFeatures.length})</span></span><span class="toggle">+</span></div>
+        <div class="accordion-content">
+          <ul class="accordion-list">
+            ${c.growthFeatures.map(gf => `<li data-growth-feature="${gf.name}"><span>${gf.name}</span><span class="meta">→</span></li>`).join('')}
+          </ul>
+        </div>
+      </div>` : ''}
+    `;
+    bindPanel();
+    document.getElementById('back-link').addEventListener('click', () => { activeCase = null; renderLanding(); });
+    // case view toggle in panel
+    document.querySelectorAll('.panel .case-view-btn').forEach(btn => {
+      btn.addEventListener('click', () => focusCase(activeCase, btn.dataset.view));
+    });
+  }
+
+  // ============== BROWSE VIEWS ==============
+  function openBrowse(which) {
+    activeBrowse = which;
+    activeProgram = null;
+    activeProduct = null;
+    activeCase = null;
+    browseFilters = {};
+
+    const titleMap = { products: 'All Products', cases: 'All Case Studies', features: 'All Growth Features' };
+    breadcrumb.innerHTML = `<a id="home-link">Commerce+</a><span class="sep">/</span>${titleMap[which]}`;
+    bindHomeLink();
+    hint.textContent = '';
+
+    // Browse uses verbal stage as a single full-width container (visual graph is hidden during browse)
+    visualStage.classList.add('hidden');
+    verbalStageWrap.classList.remove('hidden');
+
+    renderBrowse();
+    renderPanelBrowse();
+  }
+
+  function getBrowseItems() {
+    if (activeBrowse === 'products') return PRODUCTS.map(p => ({ ...p, _kind: 'product', _tags: PRODUCT_TAGS[p.name] || { engagement: '', areas: [] } }));
+    if (activeBrowse === 'cases') return Object.keys(CASE_STUDIES).map(name => ({ name, ...CASE_STUDIES[name], _kind: 'case', _tags: CASE_TAGS[name] || { industry: '', areas: [] } }));
+    if (activeBrowse === 'features') return GROWTH_FEATURES.map(g => ({ ...g, _kind: 'feature' }));
+    return [];
+  }
+
+  function itemMatchesFilters(item) {
+    // returns true if item matches ALL active filters
+    for (const [filterType, value] of Object.entries(browseFilters)) {
+      if (!value) continue;
+      if (filterType === 'program') {
+        if (item._kind === 'product' && !item.programs.includes(value)) return false;
+        if (item._kind === 'case' && !item.programs.includes(value)) return false;
+        if (item._kind === 'feature') {
+          // feature matches a program if any of its products belong to that program
+          const matches = item.products.some(prodName => {
+            const prod = PRODUCTS.find(p => p.name === prodName);
+            return prod && prod.programs.includes(value);
+          });
+          if (!matches) return false;
+        }
+      }
+      if (filterType === 'engagement') {
+        if (item._kind !== 'product') continue;
+        if (item._tags.engagement !== value) return false;
+      }
+      if (filterType === 'area') {
+        if (item._kind === 'product' || item._kind === 'case') {
+          if (!item._tags.areas.includes(value)) return false;
+        }
+        if (item._kind === 'feature') {
+          if (!item.areas.includes(value)) return false;
+        }
+      }
+      if (filterType === 'industry') {
+        if (item._kind !== 'case') continue;
+        if (item._tags.industry !== value) return false;
+      }
+      if (filterType === 'tier') {
+        if (item._kind !== 'feature') continue;
+        if (item.tier !== value) return false;
+      }
+    }
+    return true;
+  }
+
+  function renderBrowse() {
+    const items = getBrowseItems();
+    const matchCount = items.filter(itemMatchesFilters).length;
+
+    // build filter chips depending on browse type
+    let filtersHtml = `<span class="filter-bar-title">Filter</span>`;
+
+    // PROGRAM filter — applies to all
+    filtersHtml += `<span class="filter-group-label">Program</span><div class="filter-group">`;
+    PROGRAMS.forEach(p => {
+      const active = browseFilters.program === p.id;
+      filtersHtml += `<button class="filter-chip ${active ? 'active' : ''}" data-filter-type="program" data-filter-value="${p.id}">${p.code}</button>`;
+    });
+    filtersHtml += `</div>`;
+
+    if (activeBrowse === 'products') {
+      filtersHtml += `<span class="filter-group-label">Engagement</span><div class="filter-group">`;
+      ENGAGEMENT_TYPES.forEach(t => {
+        const active = browseFilters.engagement === t;
+        filtersHtml += `<button class="filter-chip ${active ? 'active' : ''}" data-filter-type="engagement" data-filter-value="${t}">${t}</button>`;
+      });
+      filtersHtml += `</div>`;
+    }
+
+    // AREAS — products, cases, features
+    filtersHtml += `<span class="filter-group-label">Area</span><div class="filter-group">`;
+    AREAS_OF_INTEREST.forEach(a => {
+      const active = browseFilters.area === a;
+      filtersHtml += `<button class="filter-chip ${active ? 'active' : ''}" data-filter-type="area" data-filter-value="${a}">${a}</button>`;
+    });
+    filtersHtml += `</div>`;
+
+    if (activeBrowse === 'cases') {
+      filtersHtml += `<span class="filter-group-label">Industry</span><div class="filter-group">`;
+      INDUSTRIES.forEach(ind => {
+        const active = browseFilters.industry === ind;
+        filtersHtml += `<button class="filter-chip ${active ? 'active' : ''}" data-filter-type="industry" data-filter-value="${ind}">${ind}</button>`;
+      });
+      filtersHtml += `</div>`;
+    }
+
+    if (activeBrowse === 'features') {
+      filtersHtml += `<span class="filter-group-label">Tier</span><div class="filter-group">`;
+      GROWTH_TIERS.forEach(t => {
+        const active = browseFilters.tier === t;
+        filtersHtml += `<button class="filter-chip ${active ? 'active' : ''}" data-filter-type="tier" data-filter-value="${t}">${t}</button>`;
+      });
+      filtersHtml += `</div>`;
+    }
+
+    const hasFilters = Object.values(browseFilters).some(v => v);
+    filtersHtml += `<span class="filter-count">${matchCount} of ${items.length}</span>`;
+    if (hasFilters) filtersHtml += `<button class="filter-reset" id="filter-reset">Reset ✕</button>`;
+
+    // build content
+    let contentHtml = '';
+    if (mode === 'verbal') {
+      contentHtml = renderBrowseVerbal(items);
+    } else {
+      contentHtml = renderBrowseVisual(items);
+    }
+
+    verbalStageEl.innerHTML = `
+      <div class="browse-stage" style="grid-column: 1 / -1; padding: 0; overflow: visible;">
+        <div class="filter-bar">${filtersHtml}</div>
+        <div class="browse-content">${contentHtml}</div>
+      </div>
+    `;
+
+    // wire filter chips
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const type = chip.dataset.filterType;
+        const value = chip.dataset.filterValue;
+        browseFilters[type] = browseFilters[type] === value ? null : value;
+        renderBrowse();
+      });
+    });
+    const reset = document.getElementById('filter-reset');
+    if (reset) reset.addEventListener('click', () => { browseFilters = {}; renderBrowse(); });
+
+    // wire item clicks
+    document.querySelectorAll('[data-browse-product]').forEach(el => el.addEventListener('click', () => focusProduct(el.dataset.browseProduct)));
+    document.querySelectorAll('[data-browse-case]').forEach(el => el.addEventListener('click', () => focusCase(el.dataset.browseCase)));
+    document.querySelectorAll('[data-browse-feature]').forEach(el => el.addEventListener('click', () => alert(`Growth feature: ${el.dataset.browseFeature}\n\n(Future round — these will become their own clickable detail pages)`)));
+
+    verbalStageEl.parentElement.scrollTop = 0;
+  }
+
+  function renderBrowseVerbal(items) {
+    if (activeBrowse === 'products') {
+      const sorted = [...items].sort((a, b) => a.name.localeCompare(b.name));
+      return `
+        <div style="display: grid; grid-template-columns: 80px 1fr 200px 220px 120px; gap: 16px; padding: 0 0 8px; border-bottom: 1px solid var(--ink); font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mid);">
+          <span>Programs</span><span>Name</span><span>Engagement</span><span>Areas</span><span style="text-align: right;">Detail</span>
+        </div>
+        ${sorted.map(p => {
+          const matches = itemMatchesFilters(p);
+          return `
+            <div class="browse-row ${!matches ? 'faded' : ''}" data-browse-product="${p.name}" style="grid-template-columns: 80px 1fr 200px 220px 120px; gap: 16px;">
+              <span class="verbal-code">${p.programs.map(pid => PROGRAMS.find(x => x.id === pid).code).join(', ')}</span>
+              <span class="verbal-name">${p.name}</span>
+              <span class="verbal-meta">${p._tags.engagement || '—'}</span>
+              <span class="verbal-meta">${p._tags.areas.join(', ') || '—'}</span>
+              <span class="verbal-meta" style="text-align: right;">View →</span>
+            </div>
+          `;
+        }).join('')}
+      `;
+    }
+    if (activeBrowse === 'cases') {
+      return `
+        <div style="display: grid; grid-template-columns: 1fr 220px 220px 120px; gap: 16px; padding: 0 0 8px; border-bottom: 1px solid var(--ink); font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mid);">
+          <span>Client</span><span>Industry</span><span>Areas</span><span style="text-align: right;">Detail</span>
+        </div>
+        ${items.map(c => {
+          const matches = itemMatchesFilters(c);
+          return `
+            <div class="browse-row ${!matches ? 'faded' : ''}" data-browse-case="${c.name}" style="grid-template-columns: 1fr 220px 220px 120px; gap: 16px;">
+              <span class="verbal-name">${c.name}</span>
+              <span class="verbal-meta">${c._tags.industry}</span>
+              <span class="verbal-meta">${c._tags.areas.join(', ')}</span>
+              <span class="verbal-meta" style="text-align: right;">View →</span>
+            </div>
+          `;
+        }).join('')}
+      `;
+    }
+    if (activeBrowse === 'features') {
+      const sorted = [...items].sort((a, b) => a.name.localeCompare(b.name));
+      return `
+        <div style="display: grid; grid-template-columns: 80px 1fr 200px 240px 120px; gap: 16px; padding: 0 0 8px; border-bottom: 1px solid var(--ink); font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mid);">
+          <span>Tier</span><span>Name</span><span>Areas</span><span>Common Products</span><span style="text-align: right;">Detail</span>
+        </div>
+        ${sorted.map(g => {
+          const matches = itemMatchesFilters(g);
+          return `
+            <div class="browse-row ${!matches ? 'faded' : ''}" data-browse-feature="${g.name}" style="grid-template-columns: 80px 1fr 200px 240px 120px; gap: 16px;">
+              <span class="verbal-meta">${g.tier}</span>
+              <span class="verbal-name">${g.name}</span>
+              <span class="verbal-meta">${g.areas.join(', ')}</span>
+              <span class="verbal-meta">${g.products.length} product${g.products.length === 1 ? '' : 's'}</span>
+              <span class="verbal-meta" style="text-align: right;">View →</span>
+            </div>
+          `;
+        }).join('')}
+      `;
+    }
+    return '';
+  }
+
+  function renderBrowseVisual(items) {
+    if (activeBrowse === 'cases') {
+      return `<div class="browse-grid">${items.map(c => {
+        const matches = itemMatchesFilters(c);
+        return `
+          <div class="browse-card ${!matches ? 'faded' : ''}" data-browse-case="${c.name}">
+            <div class="browse-card-image" style="background-image: url('${c.hero}');"></div>
+            <div class="browse-card-meta">
+              <div class="browse-card-name">${c.name}</div>
+              <div class="browse-card-sub">${c._tags.industry} · ${c.year}</div>
+            </div>
+          </div>
+        `;
+      }).join('')}</div>`;
+    }
+    if (activeBrowse === 'products') {
+      const sorted = [...items].sort((a, b) => a.name.localeCompare(b.name));
+      return `<div class="browse-grid">${sorted.map((p, i) => {
+        const matches = itemMatchesFilters(p);
+        return `
+          <div class="browse-card ${!matches ? 'faded' : ''}" data-browse-product="${p.name}">
+            <div class="browse-card-typographic">
+              <span class="bc-engagement">${p._tags.engagement || 'Product'}</span>
+              <span class="bc-num">${String(i + 1).padStart(2, '0')}</span>
+              <span class="bc-engagement" style="text-align: right;">${p.programs.map(pid => PROGRAMS.find(x => x.id === pid).code).join(' · ')}</span>
+            </div>
+            <div class="browse-card-meta">
+              <div class="browse-card-name">${p.name}</div>
+              <div class="browse-card-sub">${p._tags.areas.slice(0, 2).join(' · ') || '—'}</div>
+            </div>
+          </div>
+        `;
+      }).join('')}</div>`;
+    }
+    if (activeBrowse === 'features') {
+      const sorted = [...items].sort((a, b) => a.name.localeCompare(b.name));
+      return `<div class="browse-grid">${sorted.map(g => {
+        const matches = itemMatchesFilters(g);
+        const tierSize = g.tier === 'Large' ? 56 : g.tier === 'Medium' ? 44 : 32;
+        return `
+          <div class="browse-card ${!matches ? 'faded' : ''}" data-browse-feature="${g.name}" style="border-style: dashed;">
+            <div class="browse-card-typographic">
+              <span class="bc-tier">${g.tier} · Growth Feature</span>
+              <span class="bc-num" style="font-size: ${tierSize}px;">◯</span>
+              <span class="bc-tier" style="text-align: right;">${g.areas[0] || ''}</span>
+            </div>
+            <div class="browse-card-meta">
+              <div class="browse-card-name">${g.name}</div>
+              <div class="browse-card-sub">${g.products.length} product${g.products.length === 1 ? '' : 's'} · ${g.areas.length} area${g.areas.length === 1 ? '' : 's'}</div>
+            </div>
+          </div>
+        `;
+      }).join('')}</div>`;
+    }
+    return '';
+  }
+
+  function renderPanelBrowse() {
+    const titleMap = { products: 'All Products', cases: 'All Case Studies', features: 'All Growth Features' };
+    const descMap = {
+      products: 'The full Commerce+ catalog. Filter by program, engagement type, or area of interest.',
+      cases: 'Selected client work. Filter by program, industry, or area of interest.',
+      features: 'Add-on functionality scoped and shipped alongside core engagements. Filter by program, tier, or area of interest.'
+    };
+    const countMap = { products: PRODUCTS.length, cases: Object.keys(CASE_STUDIES).length, features: GROWTH_FEATURES.length };
+
+    panel.innerHTML = `
+      <div class="panel-section">
+        <a id="back-link" style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none;cursor:pointer;">← Index</a>
+      </div>
+      <div class="panel-section">
+        <div class="panel-label">Catalog</div>
+        <div class="panel-title">${titleMap[activeBrowse]}</div>
+        <div class="panel-subtitle">${countMap[activeBrowse]} items</div>
+        <div class="panel-body" style="margin-top:12px;"><p>${descMap[activeBrowse]}</p></div>
+      </div>
+      <div class="panel-section">
+        <div class="panel-label">Other catalogs</div>
+        <ul class="accordion-list" style="margin-top: 8px;">
+          ${Object.entries(titleMap).filter(([k]) => k !== activeBrowse).map(([k, v]) => `
+            <li data-browse-jump="${k}"><span>${v}</span><span class="meta">${countMap[k]} →</span></li>
+          `).join('')}
+        </ul>
+      </div>
+    `;
+    document.getElementById('back-link').addEventListener('click', () => { activeBrowse = null; renderLanding(); });
+    document.querySelectorAll('[data-browse-jump]').forEach(el => {
+      el.addEventListener('click', () => openBrowse(el.dataset.browseJump));
+    });
+  }
+
+  function renderVisualProgramFocus(programId) {
+    nodesG.innerHTML = '';
+    connectorsG.innerHTML = '';
+    // hide landing arc labels — program focus has its own context
+    document.querySelectorAll('#visual-stage svg > text.arc-label').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('#visual-stage svg > line').forEach(el => el.style.display = 'none');
+    const program = PROGRAMS.find(p => p.id === programId);
+    const products = PRODUCTS.filter(p => p.programs.includes(programId));
+    const cx = 600, cy = 380;
+    const angleStep = (Math.PI * 2) / products.length;
+    const radius = Math.min(220, 100 + products.length * 12);
+    const positions = products.map((prod, i) => {
+      const angle = -Math.PI / 2 + i * angleStep;
+      return { ...prod, x: cx + Math.cos(angle) * radius, y: cy + Math.sin(angle) * radius };
+    });
+
+    positions.forEach(prod => {
+      const isShared = prod.programs.length > 1;
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('class', `connector ${isShared ? 'shared' : ''}`);
+      line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+      line.setAttribute('x2', prod.x); line.setAttribute('y2', prod.y);
+      connectorsG.appendChild(line);
+    });
+
+    const centerG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    centerG.setAttribute('class', 'node-group active');
+    centerG.setAttribute('transform', `translate(${cx}, ${cy})`);
+    centerG.innerHTML = `
+      <circle class="node-circle" r="22"></circle>
+      <text class="node-sublabel" y="-38" fill="#1a1a1a">${program.code} · ${program.arc}</text>
+      <text class="node-label" y="46">${program.name}</text>
+    `;
+    nodesG.appendChild(centerG);
+
+    positions.forEach(prod => {
+      const isShared = prod.programs.length > 1;
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', `node-group product-node ${isShared ? 'shared' : ''}`);
+      g.setAttribute('transform', `translate(${prod.x}, ${prod.y})`);
+      const labelY = prod.y > cy ? 24 : -16;
+      g.innerHTML = `
+        <circle class="node-circle" r="6"></circle>
+        <text class="product-label" y="${labelY}">${prod.name}</text>
+      `;
+      g.addEventListener('click', (e) => {
+        e.stopPropagation();
+        focusProduct(prod.name);
+      });
+      nodesG.appendChild(g);
+    });
+  }
+
+  function renderVerbalProgramFocus(programId) {
+    const program = PROGRAMS.find(p => p.id === programId);
+    const products = PRODUCTS.filter(p => p.programs.includes(programId));
+    const cases = MOCK_CASES[programId] || [];
+
+    verbalStageEl.innerHTML = `
+      <div class="verbal-col">
+        <div class="verbal-section-label">Products in this program · ${products.length}</div>
+        <div class="verbal-col-header">
+          <span></span><span>Name</span><span>Other programs</span><span></span>
+        </div>
+        ${products.map(p => `
+          <div class="verbal-row" data-product="${p.id}">
+            <span class="verbal-code">·</span>
+            <span class="verbal-name">${p.name}</span>
+            <span class="verbal-meta">${p.programs.length > 1 ? p.programs.filter(pr => pr !== programId).map(pr => PROGRAMS.find(x => x.id === pr).code).join(', ') : '—'}</span>
+            <span class="verbal-anchor"></span>
+          </div>
+        `).join('')}
+      </div>
+      <div></div>
+      <div class="verbal-col">
+        <div class="verbal-section-label" style="text-align:right;">Case studies · ${cases.length}</div>
+        <div class="verbal-col-header right">
+          <span></span><span>Client</span><span></span>
+        </div>
+        ${cases.length ? cases.map(c => `
+          <div class="verbal-row right" data-case="${c}">
+            <span class="verbal-anchor"></span>
+            <span class="verbal-name">${c}</span>
+            <span class="verbal-meta">→</span>
+          </div>
+        `).join('') : `
+          <div style="padding: 24px 0; color: var(--ink-mid); font-size: 13px; text-align: right;">No published case studies yet.</div>
+        `}
+      </div>
+    `;
+
+    document.querySelectorAll('[data-product]').forEach(row => {
+      row.addEventListener('click', () => {
+        const prod = PRODUCTS.find(p => p.id === row.dataset.product);
+        if (prod) focusProduct(prod.name);
+      });
+    });
+    document.querySelectorAll('[data-case]').forEach(row => {
+      row.addEventListener('click', () => focusCase(row.dataset.case));
+    });
+  }
+
+  function renderPanelLanding() {
+    panel.innerHTML = `
+      <div class="panel-section">
+        <div class="panel-label">Index</div>
+        <div class="panel-title">Commerce+</div>
+        <div class="panel-subtitle">Engagement Model</div>
+        <div class="panel-body">
+          <p>Seven programs across two arcs. Brands hire us by problem, not by hours.</p>
+          <p>Transformation programs reset the foundation. Growth programs compound on top of it. Most partnerships move between the two over years.</p>
+        </div>
+      </div>
+      <div class="accordion-item open">
+        <div class="accordion-header"><span>Programs <span style="color:var(--ink-faint);">(7)</span></span><span class="toggle">+</span></div>
+        <div class="accordion-content">
+          <ul class="accordion-list">
+            ${PROGRAMS.map(p => `<li data-program-link="${p.id}"><span>${p.name}</span><span class="meta">${p.code} · ${p.arc}</span></li>`).join('')}
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" data-browse-trigger="products"><span>All Products <span style="color:var(--ink-faint);">(${PRODUCTS.length})</span></span><span class="toggle">→</span></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" data-browse-trigger="features"><span>All Growth Features <span style="color:var(--ink-faint);">(${GROWTH_FEATURES.length})</span></span><span class="toggle">→</span></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" data-browse-trigger="cases"><span>All Case Studies <span style="color:var(--ink-faint);">(${Object.keys(CASE_STUDIES).length})</span></span><span class="toggle">→</span></div>
+      </div>
+    `;
+    bindPanel();
+    document.querySelectorAll('[data-browse-trigger]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openBrowse(el.dataset.browseTrigger);
+      });
+    });
+  }
+
+  function renderPanelProgram(programId) {
+    const program = PROGRAMS.find(p => p.id === programId);
+    const products = PRODUCTS.filter(p => p.programs.includes(programId));
+    const cases = MOCK_CASES[programId] || [];
+
+    panel.innerHTML = `
+      <div class="panel-section">
+        <a id="back-link" style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none;cursor:pointer;">← Index</a>
+      </div>
+      <div class="panel-section">
+        <div class="panel-label">Program · ${program.code} · ${program.arc}</div>
+        <div class="panel-title">${program.name}</div>
+        <div class="panel-body" style="margin-top:12px;"><p>${PROGRAM_DESC[programId]}</p></div>
+      </div>
+      <div class="accordion-item open">
+        <div class="accordion-header"><span>Products <span style="color:var(--ink-faint);">(${products.length})</span></span><span class="toggle">+</span></div>
+        <div class="accordion-content">
+          <ul class="accordion-list">
+            ${products.map(p => `<li data-product-link="${p.name}"><span>${p.name}</span>${p.programs.length > 1 ? `<span class="meta" style="color:var(--accent);">shared</span>` : '<span class="meta">→</span>'}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item ${cases.length ? 'open' : ''}">
+        <div class="accordion-header"><span>Case Studies <span style="color:var(--ink-faint);">(${cases.length})</span></span><span class="toggle">+</span></div>
+        <div class="accordion-content">
+          ${cases.length ? `<ul class="accordion-list">${cases.map(c => `<li data-case-link="${c}"><span>${c}</span><span class="meta">→</span></li>`).join('')}</ul>` : `<p style="color:var(--ink-mid);font-size:12px;">No published case studies yet.</p>`}
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header"><span>Connections</span><span class="toggle">+</span></div>
+        <div class="accordion-content"><p style="color:var(--ink-mid);font-size:12px;">Other programs that share products with this one →</p></div>
+      </div>
+    `;
+    bindPanel();
+    document.getElementById('back-link').addEventListener('click', () => { activeProgram = null; renderLanding(); });
+  }
+
+  function bindPanel() {
+    document.querySelectorAll('.accordion-header').forEach(h => {
+      h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+    });
+    document.querySelectorAll('[data-program-link]').forEach(el => {
+      el.addEventListener('click', () => focusProgram(el.dataset.programLink));
+    });
+    document.querySelectorAll('[data-product-link]').forEach(el => {
+      el.addEventListener('click', () => focusProduct(el.dataset.productLink));
+    });
+    document.querySelectorAll('[data-case-link]').forEach(el => {
+      el.addEventListener('click', () => focusCase(el.dataset.caseLink || el.dataset.case));
+    });
+    document.querySelectorAll('.panel [data-growth-feature]').forEach(el => {
+      el.addEventListener('click', () => alert(`Growth feature: ${el.dataset.growthFeature}\n\n(Future round — these will become their own clickable detail pages)`));
+    });
+  }
+
+  window.addEventListener('resize', () => {
+    if (mode === 'verbal' && hoverProgram) {
+      const linked = PRODUCTS.filter(p => p.programs.includes(hoverProgram)).map(p => p.id);
+      drawVerbalConnections(hoverProgram, linked);
+    }
+  });
+
+  renderLanding();
+</script>
+
+</body>
+</html>
