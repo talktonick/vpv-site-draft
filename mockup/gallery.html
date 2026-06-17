@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V+V — Module Library</title>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/typography.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="modules.css">
+  <link rel="stylesheet" href="islands.css">
+  <link rel="stylesheet" href="islands2.css">
+  <link rel="stylesheet" href="islands3.css">
+  <link rel="stylesheet" href="video.css">
+  <link rel="stylesheet" href="layout.css">
+</head>
+<body>
+
+  <!-- ===== Gallery intro ===== -->
+  <header class="gallery__intro">
+    <p class="gallery__kicker">V+V · Insights & Case Study Modules</p>
+    <h1 class="gallery__title">Component library reference</h1>
+    <p class="gallery__lede">A working mockup of every drop-in module, built on the real V+V design tokens. Each block is labeled for translation into the Webflow / MAST build. Media, type, and color reflect production intent — Vimeo replaces the native video shown here.</p>
+    <div class="gallery__meta">
+      <span>Foundation: Neue Haas Display · Victor Serif · 4px spacing scale</span>
+      <span>Accent: Purple #3012E4</span>
+      <span>Breakpoints: 991 / 767</span>
+    </div>
+  </header>
+
+  <!-- ===== 00 Layout system ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">00</span><span class="specimen__name">Layout system</span>
+      <span class="specimen__note">Every module snaps to one of these. One <code style="font:var(--type-ui)">--margin</code> = outer inset = column gap. Try ?m=24 / ?m=40 / ?m=64 in the URL.</span>
+    </div>
+    <div class="lay-bleed"><div style="background:var(--midnight);color:var(--cream);padding:var(--s-3) var(--margin);font:var(--type-eyebrow);text-transform:uppercase;letter-spacing:var(--tr-eyebrow)">Full-bleed</div></div>
+    <div class="lay-full" style="margin-top:var(--s-3)"><div style="background:var(--color-bg-muted);border:1px solid var(--color-rule);padding:var(--s-4);font:var(--type-ui);color:var(--color-text-muted)">Full — within the margin</div></div>
+    <div class="lay-half" style="margin-top:var(--s-3)">
+      <div style="background:var(--color-bg-muted);border:1px solid var(--color-rule);padding:var(--s-4);font:var(--type-ui);color:var(--color-text-muted)">Half</div>
+      <div style="background:var(--color-bg-muted);border:1px solid var(--color-rule);padding:var(--s-4);font:var(--type-ui);color:var(--color-text-muted)">Half · gap = margin</div>
+    </div>
+    <div class="lay-split" style="margin-top:var(--s-3)">
+      <div style="background:var(--color-bg-muted);border:1px solid var(--color-rule);padding:var(--s-4);font:var(--type-ui);color:var(--color-text-muted)">Two-thirds</div>
+      <div style="background:var(--color-bg-muted);border:1px solid var(--color-rule);padding:var(--s-4);font:var(--type-ui);color:var(--color-text-muted)">One-third</div>
+    </div>
+    <div class="lay-read" style="margin-top:var(--s-3)"><div style="background:var(--color-bg-muted);border:1px solid var(--color-rule);padding:var(--s-4);font:var(--type-ui);color:var(--color-text-muted)">Reading column — centered, ≈640px (prose · pull quote · single centered asset)</div></div>
+    <div class="lay-read lay-read--left" style="margin-top:var(--s-3)"><div style="background:var(--color-bg-muted);border:1px solid var(--color-rule);padding:var(--s-4);font:var(--type-ui);color:var(--color-text-muted)">Reading column — left-anchored (Mouthwash); the right space becomes the 1/3 for meta/credits</div></div>
+  </section>
+
+  <!-- ===== 01 Article Header ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">01</span><span class="specimen__name">Article Header</span>
+      <span class="specimen__note">Editorial top section — serif display headline, deck, byline, category tags.</span>
+    </div>
+    <div class="mod-container">
+      <header class="article-header">
+        <p class="article-header__eyebrow">Thought Leadership</p>
+        <h2 class="article-header__title">The replatform is the <em>easy</em> part</h2>
+        <p class="article-header__deck">Why the hardest decisions in a Shopify migration have nothing to do with the platform — and everything to do with what you choose to carry forward.</p>
+        <div class="article-header__byline">
+          <span class="article-header__avatar">N</span>
+          <div>
+            <div class="article-header__by">By <em>Nick Park</em></div>
+            <div class="article-header__role">Founder, Verbal + Visual</div>
+          </div>
+        </div>
+        <div class="article-header__tags">
+          <span class="tag-pill">Migration</span>
+          <span class="tag-pill">Strategy</span>
+          <span class="tag-pill">Shopify</span>
+        </div>
+      </header>
+    </div>
+  </section>
+
+  <!-- ===== 02 Case Study Header ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">02</span><span class="specimen__name">Case Study Header</span>
+      <span class="specimen__note">Client / year / scope meta and hero media.</span>
+    </div>
+    <div class="mod-container--wide">
+      <header class="case-header">
+        <div class="case-header__top">
+          <div>
+            <p class="case-header__eyebrow">Case Study</p>
+            <h2 class="case-header__title">An accelerated Shopify replatform</h2>
+          </div>
+          <p class="case-header__lede">A four-month timeline, a rapid theme-design solution, and a launch that captured the brand's minimalist style without losing momentum.</p>
+        </div>
+        <div class="case-header__meta">
+          <div><span class="case-meta__label">Client</span><span class="case-meta__value">Quip</span></div>
+          <div><span class="case-meta__label">Year</span><span class="case-meta__value">2024</span></div>
+          <div><span class="case-meta__label">Industry</span><span class="case-meta__value">Oral Care · DTC</span></div>
+          <div><span class="case-meta__label">Scope</span><span class="case-meta__value">Replatform · Theme · CRO</span></div>
+        </div>
+        <div class="case-header__hero">
+          <div class="media-frame media-frame--16x9">
+            <img src="../assets/images/pdp-playground/01-fullbody.jpg" alt="">
+          </div>
+        </div>
+      </header>
+    </div>
+  </section>
+
+  <!-- ===== 03 Prose ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">03</span><span class="specimen__name">Prose / Info Paragraph</span>
+      <span class="specimen__note">The article body workhorse — headings, paragraphs, lists, links.</span>
+    </div>
+    <div class="mod-container">
+      <div class="prose">
+        <p>Every replatform starts with the same fantasy: a clean slate. In practice, the platform is rarely the constraint. The constraint is the accumulated logic of the old store — the redirects, the metafields, the merchandising rules that nobody fully remembers but everybody depends on.</p>
+        <h2>What you carry forward is the real decision</h2>
+        <p>The temptation is to rebuild everything. The discipline is to decide, deliberately, what earns its place in the new system. A migration is a <em>forcing function</em> for editing — and the teams that treat it that way ship faster and cleaner.</p>
+        <h3>A useful heuristic</h3>
+        <p>If a feature can't be explained in one sentence to the person who'll maintain it, it probably shouldn't survive the migration. Complexity that can't be owned is complexity that rots.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 04 Pull Quote ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">04</span><span class="specimen__name">Pull Quote</span>
+      <span class="specimen__note">Editorial emphasis — Victor Serif italic, accent rule.</span>
+    </div>
+    <div class="mod-container">
+      <blockquote class="pull-quote">
+        <p class="pull-quote__text">A migration is a forcing function for editing. The teams that treat it that way ship faster and cleaner.</p>
+        <cite class="pull-quote__cite">— Nick Park, Verbal + Visual</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ===== 05 Numbered Sequence ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">05</span><span class="specimen__name">Numbered Sequence</span>
+      <span class="specimen__note">Light-grey cards for listed / series info — engagement phases, deliverables, methodology. Accent numeral in the gutter, titled list of items.</span>
+    </div>
+    <div class="mod-container--wide">
+      <div class="num-seq">
+        <p class="num-seq__eyebrow">Engagement</p>
+        <div class="num-card">
+          <span class="num-card__num">01</span>
+          <h3 class="num-card__title">Brand + Digital Assessment</h3>
+          <div class="num-card__items">
+            <div class="num-item"><p class="num-item__label">Stakeholder Interview Analysis</p><p class="num-item__body">Synthesize leadership and cross-functional perspectives into a clear set of shared priorities, risks, and decision drivers.</p></div>
+            <div class="num-item"><p class="num-item__label">Digital Experience Audit</p><p class="num-item__body">Evaluation of visual identity, messaging, and customer touch points to identify experience risks and opportunities that impact conversion, clarity, and brand expression.</p></div>
+            <div class="num-item"><p class="num-item__label">Industry Benchmarking Analysis</p><p class="num-item__body">Compare the current experience against relevant industry and category standards to identify competitive gaps, strengths, and priority opportunities.</p></div>
+          </div>
+        </div>
+        <div class="num-card">
+          <span class="num-card__num">02</span>
+          <h3 class="num-card__title">Strategy Blueprint</h3>
+          <div class="num-card__items">
+            <div class="num-item"><p class="num-item__label">Experience Principles Framework</p><p class="num-item__body">Define a clear set of digital experience principles that power customer-centric brand strategy decisions and govern ongoing site initiatives across teams.</p></div>
+            <div class="num-item"><p class="num-item__label">Digital Strategy Execution Guide</p><p class="num-item__body">Translate brand pillars into digital concepts, priorities, and execution guidance that drive engagement, conversion, and consistent brand expression.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 06 Media Single — image ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">06</span><span class="specimen__name">Media — Single (image)</span>
+      <span class="specimen__note">Rounded frame, 16:9, contained width. Caption is a separate drop-in below.</span>
+    </div>
+    <div class="mod-container">
+      <figure class="media-single">
+        <div class="media-frame media-frame--16x9">
+          <img src="../assets/images/pdp-playground/02-front.jpg" alt="">
+        </div>
+        <figcaption class="media-caption"><b>PDP redesign.</b> The new product template, built to merchandise without a developer in the loop.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== 07 Video — three modes ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">07</span><span class="specimen__name">Video — three modes</span>
+      <span class="specimen__note">One component. <b>Loop</b> (silent, autoplay) · <b>Sound</b> (autoplay muted, unmute) · <b>Hover</b> (plays on hover). Corner play/pause always. No fullscreen — size is a layout choice.</span>
+    </div>
+    <div class="lay-full" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)">
+      <div>
+        <div class="media-frame media-frame--16x9">
+          <div class="vid" data-vid-mode="loop">
+            <video class="vid__video" src="../assets/video/home-reel.mp4"></video>
+            <div class="vid__controls"><button class="vid__btn" data-vid-toggle aria-label="Play/pause"><svg class="vid__icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><svg class="vid__icon-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button></div>
+          </div>
+        </div>
+        <p class="media-caption"><b>Loop</b> — silent ambient texture.</p>
+      </div>
+      <div>
+        <div class="media-frame media-frame--16x9">
+          <div class="vid" data-vid-mode="sound">
+            <video class="vid__video" src="../assets/video/home-reel.mp4"></video>
+            <div class="vid__controls">
+              <button class="vid__mute" data-vid-mute aria-label="Mute"><svg class="vid__icon-mute" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3Zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Z"/></svg><svg class="vid__icon-unmute" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3Zm16.5 3a4.5 4.5 0 0 0-2.5-4M14 4c3 .9 5 3.6 5 6.7" stroke="currentColor" stroke-width="0"/><path d="M4.3 3 3 4.3 7.7 9H3v6h4l5 5v-6.7l4.3 4.3L19 21 4.3 3Z"/></svg></button>
+              <button class="vid__btn" data-vid-toggle aria-label="Play/pause"><svg class="vid__icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><svg class="vid__icon-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <p class="media-caption"><b>Sound</b> — autoplays muted; unmute for a walkthrough.</p>
+      </div>
+      <div>
+        <div class="media-frame media-frame--16x9">
+          <div class="vid" data-vid-mode="hover" data-vid-src="../assets/video/home-reel.mp4">
+            <img class="vid__video" src="../assets/images/pdp-playground/02-front.jpg" alt="" style="position:absolute;inset:0">
+            <video class="vid__video"></video>
+            <span class="vid__hint">Hover to play</span>
+            <div class="vid__controls"><button class="vid__btn" data-vid-toggle aria-label="Play/pause"><svg class="vid__icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><svg class="vid__icon-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button></div>
+          </div>
+        </div>
+        <p class="media-caption"><b>Hover</b> — lazy-loads + plays on hover.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 08 Media Pair ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">08</span><span class="specimen__name">Media — Pair (two-up)</span>
+      <span class="specimen__note">Portrait ratio by default — reads cohesively beside a full-width landscape. Either side can be video.</span>
+    </div>
+    <div class="mod-container--wide">
+      <div class="media-pair">
+        <div class="media-frame media-frame--3x4">
+          <div class="vid" data-vid-mode="loop"><video class="vid__video" src="../assets/video/home-reel.mp4"></video></div>
+        </div>
+        <div class="media-frame media-frame--3x4">
+          <img src="../assets/images/pdp-playground/03-back.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 09 Media Gallery ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">09</span><span class="specimen__name">Media — Gallery</span>
+      <span class="specimen__note">2 / 3 / 4 across, mixed ratios. Shown 3-up.</span>
+    </div>
+    <div class="mod-container--wide">
+      <div class="media-gallery">
+        <div class="media-frame media-frame--3x4"><img src="../assets/images/pdp-playground/02-front.jpg" alt=""></div>
+        <div class="media-frame media-frame--3x4"><img src="../assets/images/pdp-playground/04-detail.jpg" alt=""></div>
+        <div class="media-frame media-frame--3x4"><img src="../assets/images/pdp-playground/05-product.jpg" alt=""></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 10 Media + Text — layout options ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">10</span><span class="specimen__name">Media + Text — layout options</span>
+      <span class="specimen__note">Same module, three placements. Tell me which to keep — we drop the rest so it's not even an option.</span>
+    </div>
+
+    <div class="lay-full" style="margin-bottom:var(--s-3)"><p class="t-eyebrow">A · Half + Half (card height matches the media)</p></div>
+    <div class="media-text">
+      <div class="media-text__media"><div class="media-frame media-frame--4x5"><img src="../assets/images/pdp-playground/04-detail.jpg" alt=""></div></div>
+      <div class="content-card">
+        <p class="content-card__eyebrow">Design Detail</p>
+        <h3 class="content-card__heading">A pill system, built into the type</h3>
+        <p class="content-card__desc">Inspired by the form of the hero product, the pill becomes a defining feature within the typography's stylistic set — strengthening the connection between product and brand.</p>
+        <div class="content-card__footer"><span class="content-card__label">Stylistic Sets</span><button class="content-card__cta" data-drawer-target="story" aria-label="Read more"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button></div>
+      </div>
+    </div>
+
+    <div class="lay-full" style="margin:var(--s-8) 0 var(--s-3)"><p class="t-eyebrow">B · 2/3 media + 1/3 text</p></div>
+    <div class="lay-split">
+      <div class="media-frame media-frame--16x9"><img src="../assets/images/pdp-playground/02-front.jpg" alt=""></div>
+      <div class="content-card">
+        <p class="content-card__eyebrow">Color as a Signal</p>
+        <h3 class="content-card__heading">Color guides the journey</h3>
+        <p class="content-card__desc">The expanded palette is a visual tool for guiding customers across the brand experience.</p>
+        <div class="content-card__footer"><span class="content-card__label">Brand System</span></div>
+      </div>
+    </div>
+
+    <div class="lay-full" style="margin:var(--s-8) 0 var(--s-3)"><p class="t-eyebrow">C · 1/3 media + 2/3 text</p></div>
+    <div class="lay-split lay-split--mirror">
+      <div class="media-frame media-frame--4x5"><img src="../assets/images/pdp-playground/05-product.jpg" alt=""></div>
+      <div class="content-card">
+        <p class="content-card__eyebrow">Packaging</p>
+        <h3 class="content-card__heading">A studio system for product photography</h3>
+        <p class="content-card__desc">Every shot framed to a consistent system, so the catalogue reads as one coherent body of work rather than a pile of one-offs. The narrow media keeps the focus on the writing.</p>
+        <div class="content-card__footer"><span class="content-card__label">Art Direction</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 12 Scope columns + Visit link ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">12</span><span class="specimen__name">Scope Columns + Visit Link</span>
+      <span class="specimen__note">Credits / scope lists and the external "visit site" link.</span>
+    </div>
+    <div class="mod-container--wide">
+      <div class="scope-cols">
+        <div class="scope-col">
+          <p class="scope-col__head">Brand</p>
+          <ul class="scope-col__list"><li>Business and brand insights</li><li>Visual identity</li><li>Design systems</li></ul>
+        </div>
+        <div class="scope-col">
+          <p class="scope-col__head">Experience</p>
+          <ul class="scope-col__list"><li>Research and analysis</li><li>Experience design</li><li>Prioritization and roadmapping</li></ul>
+        </div>
+        <div class="scope-col">
+          <p class="scope-col__head">Technology</p>
+          <ul class="scope-col__list"><li>Shopify theme development</li><li>Custom interface development</li><li>Analytics and optimization</li></ul>
+        </div>
+      </div>
+      <div style="margin-top: var(--s-6)">
+        <a class="visit-link" href="#">quip.com <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 13 Up Next / Related ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">13</span><span class="specimen__name">Up Next / Related</span>
+      <span class="specimen__note">Cross-link cards — image (or hover-video) + kicker + title.</span>
+    </div>
+    <div class="mod-container--wide">
+      <h2 class="up-next__title">Up next</h2>
+      <div class="up-next__grid">
+        <a class="related-card" href="#">
+          <div class="media-frame media-frame--16x9"><img src="../assets/images/pdp-playground/05-product.jpg" alt=""></div>
+          <div class="related-card__kicker"><span>Case Study</span><span>2023</span></div>
+          <div class="related-card__title">Rebuilding subscription for retention</div>
+        </a>
+        <a class="related-card" href="#">
+          <div class="media-frame media-frame--16x9"><img src="../assets/images/pdp-playground/01-fullbody.jpg" alt=""></div>
+          <div class="related-card__kicker"><span>Article</span><span>Strategy</span></div>
+          <div class="related-card__title">When native interactions break down</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 14 CTA Block ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">14</span><span class="specimen__name">CTA Block</span>
+      <span class="specimen__note">Page closer — reuses the system .button component.</span>
+    </div>
+    <div class="mod-container--wide">
+      <div class="cta-block">
+        <h2 class="cta-block__title">Let's talk.</h2>
+        <p class="cta-block__sub">If this resonates with where your brand is headed, we'd like to hear about it.</p>
+        <a href="#" class="button button--primary">Talk to our team</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 17 Expanding Feature Pills (Osmo island) ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">17</span><span class="specimen__name">Expanding Feature Pills</span>
+      <span class="specimen__note">Osmo island re-skinned into the content-bubble family. Click a pill → it expands + the synced visual (image or video) crossfades.</span>
+    </div>
+    <div class="mod-container--wide">
+      <div data-feature-pills-active="false" aria-label="features" data-feature-pills-init data-edit-mode="false" class="feature-pills__wrap">
+        <div class="feature-pills__layout">
+          <div class="feature-pills__col">
+            <div data-feature-pills-collection class="feature-pills__info-collection">
+              <ul role="list" data-feature-pills-list class="feature-pills__info-list">
+                <li data-feature-pills-item data-active="false" class="feature-pills__info-item">
+                  <div class="feature-pills__item-bg"></div>
+                  <button data-feature-pills-button aria-expanded="false" class="feature-pills__item-button"><span class="feature-pills__item-label">Headless architecture</span><span class="feature-pills__item-icon"><span class="feature-pills__item-icon-bar"></span><span class="feature-pills__item-icon-bar is--horizontal"></span></span></button>
+                  <div aria-hidden="true" data-feature-pills-content class="feature-pills__item-content"><div class="feature-pills__item-mask"><div data-feature-pills-inner class="feature-pills__item-inner"><p class="feature-pills__item-body">Headless architecture.<br><br><span class="feature-pills__item-body-span">A decoupled front end so the team ships UI changes without waiting on the platform.</span></p></div></div></div>
+                </li>
+                <li data-feature-pills-item data-active="false" class="feature-pills__info-item">
+                  <div class="feature-pills__item-bg"></div>
+                  <button data-feature-pills-button aria-expanded="false" class="feature-pills__item-button"><span class="feature-pills__item-label">Subscription engine</span><span class="feature-pills__item-icon"><span class="feature-pills__item-icon-bar"></span><span class="feature-pills__item-icon-bar is--horizontal"></span></span></button>
+                  <div aria-hidden="true" data-feature-pills-content class="feature-pills__item-content"><div class="feature-pills__item-mask"><div data-feature-pills-inner class="feature-pills__item-inner"><p class="feature-pills__item-body">Subscription engine.<br><br><span class="feature-pills__item-body-span">Recurring orders, dunning, and a self-serve portal built for retention from day one.</span></p></div></div></div>
+                </li>
+                <li data-feature-pills-item data-active="false" class="feature-pills__info-item">
+                  <div class="feature-pills__item-bg"></div>
+                  <button data-feature-pills-button aria-expanded="false" class="feature-pills__item-button"><span class="feature-pills__item-label">Merchandising tools</span><span class="feature-pills__item-icon"><span class="feature-pills__item-icon-bar"></span><span class="feature-pills__item-icon-bar is--horizontal"></span></span></button>
+                  <div aria-hidden="true" data-feature-pills-content class="feature-pills__item-content"><div class="feature-pills__item-mask"><div data-feature-pills-inner class="feature-pills__item-inner"><p class="feature-pills__item-body">Merchandising tools.<br><br><span class="feature-pills__item-body-span">Drag-and-drop collection rules so marketing updates the storefront without a developer.</span></p></div></div></div>
+                </li>
+                <li data-feature-pills-item data-active="false" class="feature-pills__info-item">
+                  <div class="feature-pills__item-bg"></div>
+                  <button data-feature-pills-button aria-expanded="false" class="feature-pills__item-button"><span class="feature-pills__item-label">Analytics layer</span><span class="feature-pills__item-icon"><span class="feature-pills__item-icon-bar"></span><span class="feature-pills__item-icon-bar is--horizontal"></span></span></button>
+                  <div aria-hidden="true" data-feature-pills-content class="feature-pills__item-content"><div class="feature-pills__item-mask"><div data-feature-pills-inner class="feature-pills__item-inner"><p class="feature-pills__item-body">Analytics layer.<br><br><span class="feature-pills__item-body-span">Server-side events and clean attribution so optimization decisions rest on real data.</span></p></div></div></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="feature-pills__col is--visual">
+            <div class="feature-pills__visual-collection">
+              <div class="feature-pills__visual-list">
+                <div aria-hidden="true" data-feature-pills-visual class="feature-pills__visual-item"><video class="feature-pills__visual-img" src="../assets/video/home-reel.mp4" autoplay muted loop playsinline></video></div>
+                <div aria-hidden="true" data-feature-pills-visual class="feature-pills__visual-item"><img src="../assets/images/pdp-playground/02-front.jpg" class="feature-pills__visual-img"></div>
+                <div aria-hidden="true" data-feature-pills-visual class="feature-pills__visual-item"><img src="../assets/images/pdp-playground/04-detail.jpg" class="feature-pills__visual-img"></div>
+                <div aria-hidden="true" data-feature-pills-visual class="feature-pills__visual-item"><img src="../assets/images/pdp-playground/05-product.jpg" class="feature-pills__visual-img"></div>
+              </div>
+            </div>
+            <div data-feature-pills-cover class="feature-pills__visual-cover"><img src="../assets/images/pdp-playground/01-fullbody.jpg" class="feature-pills__visual-cover-img"></div>
+          </div>
+        </div>
+        <div class="feature-pills__close"><button data-feature-pills-close aria-hidden="true" class="feature-pills__close-button"><span class="feature-pills__item-icon-bar"></span><span class="feature-pills__item-icon-bar is--horizontal"></span></button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 18 Horizontal Scrolling Sections (Osmo island) ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">18</span><span class="specimen__name">Horizontal Scrolling Sections</span>
+      <span class="specimen__note">Osmo island. Section pins and panels scroll sideways as you scroll down. Re-skinned process sequence.</span>
+    </div>
+    <section class="horizontal__wrap" data-horizontal-scroll-wrap data-horizontal-scroll-disable="mobileLandscape">
+      <div data-horizontal-scroll-panel class="horizontal__panel"><div class="horizontal__panel-inner"><div class="h-card"><div class="h-card__bg"><img src="../assets/images/pdp-playground/01-fullbody.jpg" alt=""></div><div class="h-card__scrim"></div><div class="h-card__inner"><p class="h-card__step">Step 01</p><h2 class="h-card__title">Discover</h2></div></div></div></div>
+      <div data-horizontal-scroll-panel class="horizontal__panel"><div class="horizontal__panel-inner"><div class="h-card"><div class="h-card__bg"><img src="../assets/images/pdp-playground/02-front.jpg" alt=""></div><div class="h-card__scrim"></div><div class="h-card__inner"><p class="h-card__step">Step 02</p><h2 class="h-card__title">Design</h2></div></div></div></div>
+      <div data-horizontal-scroll-panel class="horizontal__panel"><div class="horizontal__panel-inner"><div class="h-card"><div class="h-card__bg"><img src="../assets/images/pdp-playground/04-detail.jpg" alt=""></div><div class="h-card__scrim"></div><div class="h-card__inner"><p class="h-card__step">Step 03</p><h2 class="h-card__title">Build</h2></div></div></div></div>
+      <div data-horizontal-scroll-panel class="horizontal__panel"><div class="horizontal__panel-inner"><div class="h-card"><div class="h-card__bg"><img src="../assets/images/pdp-playground/05-product.jpg" alt=""></div><div class="h-card__scrim"></div><div class="h-card__inner"><p class="h-card__step">Step 04</p><h2 class="h-card__title">Launch</h2></div></div></div></div>
+    </section>
+  </section>
+
+  <!-- ===== 19 Highlight Text on Scroll (Osmo island) ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">19</span><span class="specimen__name">Highlight Text on Scroll</span>
+      <span class="specimen__note">Osmo island. Text fades from faint to solid character-by-character as it scrolls through. SplitText.</span>
+    </div>
+    <div class="mod-container--wide">
+      <h2 class="highlight-statement" data-highlight-text data-highlight-fade="0.18">The best migration is the one your customers never notice — <em>until</em> everything is suddenly faster.</h2>
+    </div>
+  </section>
+
+  <!-- ===== 21 Audio Player (Osmo island) ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">21</span><span class="specimen__name">Audio Player ("Hear")</span>
+      <span class="specimen__note">Slim single-row bar — play · title · inline progress. Takes minimal room and drops into context (under a paragraph, beside a quote). Purple play, real audio.</span>
+    </div>
+    <div class="lay-full">
+      <div data-howler data-howler-src="../assets/audio/pfi-david-model.m4a" data-howler-status="not-playing" class="howler-player">
+        <div class="howler-player__top">
+          <div class="howler-player__cover"><img src="../assets/images/pdp-playground/04-detail.jpg" loading="eager" alt="" class="howler-player__cover-img"></div>
+          <div class="howler-player__title">
+            <h2 class="howler-player__title-h2">In conversation</h2>
+            <p class="howler-player__title-p">V+V × quip · Founder interview</p>
+          </div>
+          <button data-howler-control="toggle-play" aria-label="Play" aria-pressed="false" class="howler-player__btn">
+            <div class="howler-player__btn-play"><span class="howler-player__btn-span">Play</span><svg viewBox="0 0 42 42" fill="none" width="100%"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.4 10.74a1.93 1.93 0 0 1 2.74-1.42c1.4.56 4.54 1.85 8.5 4.5 3.97 2.1 6.84 3.97 8.36 5.03 1.3.91 1.3 2.55 0 3.46-1.51 1.06-4.4 2.93-8.36 4.99-3.96 2.1-7.1 3.4-8.5 3.95-1.49.6-3.16-.3-3.35-1.8C10.6 31.13 10.15 27.14 10.15 21.75c0-5.38.43-9.37.65-11.13Z" fill="currentColor"></path></svg></div>
+            <div class="howler-player__btn-pause"><span class="howler-player__btn-span">Pause</span><svg viewBox="0 0 24 24" fill="none" width="100%"><path d="M6 5.58C6 5.26 6.3 5 6.67 5h2.66c.37 0 .67.26.67.58v12.84c0 .32-.3.58-.67.58H6.67A.6.6 0 0 1 6 18.42V5.58Z" fill="currentColor"></path><path d="M14 5.58c0-.32.3-.58.67-.58h2.66c.37 0 .67.26.67.58v12.84c0 .32-.3.58-.67.58h-2.66a.6.6 0 0 1-.67-.58V5.58Z" fill="currentColor"></path></svg></div>
+          </button>
+        </div>
+        <div class="howler-player__bottom">
+          <span data-howler-info="progress" aria-live="polite" class="howler-player__time">0:00</span>
+          <div data-howler-control="timeline" role="progressbar" aria-label="Audio progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" class="howler-player__timeline">
+            <div class="howler-player__timeline-back"></div>
+            <div data-howler-control="progress" class="howler-player__timeline-progress"></div>
+          </div>
+          <span data-howler-info="duration" aria-hidden="true" class="howler-player__time">0:00</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 22 Drawer (Read more / See more) — in context ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">22</span><span class="specimen__name">Drawer — "Read more / See more"</span>
+      <span class="specimen__note">In context: a "Read more →" under a paragraph. The drawer holds the overflow (deeper read, full credits). Grid-aligned ≈ the 1/3 column.</span>
+    </div>
+    <div class="lay-read">
+      <div>
+        <p class="t-body" style="max-width:62ch">When a claim needs more room than the page should give it, the drawer holds the overflow — a deeper read, a fuller credit list, the long version of a short statement. It keeps the main column calm while the detail stays one tap away.</p>
+        <button data-drawer-target="story" class="button button--primary" style="margin-top:var(--s-5)">Read more →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 27 Download Button — in context ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">27</span><span class="specimen__name">Download Button (in context)</span>
+      <span class="specimen__note">Shown inside a Media + Text block — e.g. the case-study PDF lives in the card. Animates idle → downloading → success.</span>
+    </div>
+    <div class="lay-half">
+      <div class="media-frame media-frame--4x5"><img src="../assets/images/pdp-playground/01-fullbody.jpg" alt=""></div>
+      <div class="content-card">
+        <p class="content-card__eyebrow">Case Study</p>
+        <h3 class="content-card__heading">An accelerated Shopify replatform</h3>
+        <p class="content-card__desc">The full write-up — process, metrics, and credits — as a PDF.</p>
+        <div class="content-card__footer">
+          <button data-download-src="../assets/images/pdp-playground/05-product.jpg" data-download-name="vv-case-study.jpg" class="download-btn">
+            <span data-download-icon-wrap class="download-btn__icon-hold">
+              <svg viewBox="0 0 16 16" fill="none" data-download-icon class="download-btn__icon"><path d="M8.749 10.773 12.469 7.054 13.529 8.114 7.999 13.645 2.469 8.114 3.529 7.054 7.249 10.773V0.083H8.749V10.773Z" fill="currentColor" data-download-arrow></path><path d="M15.5 14.75V16.25H0.5V14.75H15.5Z" fill="currentColor" data-download-base></path></svg>
+              <svg viewBox="0 0 20 20" fill="none" data-download-success class="download-btn__icon is--success"><path d="M2 9.5 8 15.5 19 4.5" stroke="currentColor" stroke-width="1.75" stroke-dasharray="25" stroke-dashoffset="25"></path></svg>
+            </span>
+            <span data-download-label data-download-success="Saved" class="download-btn__label">Download case study</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 28 Tooltip + tooltip-on-image-grid (Osmo island) ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">28</span><span class="specimen__name">Tooltip → info popup on an image grid</span>
+      <span class="specimen__note">Osmo island (pure CSS). Inline term tooltip, AND applied to a gridded image set — hover a shot to reveal an info card (your "globe" idea).</span>
+    </div>
+    <div class="mod-container">
+      <p class="t-body" style="max-width:60ch">The migration touched every layer of the
+        <span data-css-tooltip-hover class="css-tooltip">stack<span data-css-tooltip-x="center" data-css-tooltip-y="top" class="css-tooltip__icon">
+          <svg viewBox="0 0 24 24" fill="none" width="100%"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v5M12 8h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="css-tooltip__box"><span class="css-tooltip__box-inner"><span class="css-tooltip__card"><span class="css-tooltip__card-h">Full stack</span><span class="css-tooltip__card-p css-tooltip__card-text">Storefront theme, checkout, subscription logic, and the analytics layer underneath.</span></span><span class="css-tootlip__tip"><svg viewBox="0 0 124 30" fill="none" width="100%"><path d="M103.284 3H121c1.657 0 3-1.343 3-3H0c0 1.657 1.343 3 3 3h17.716c5.304 0 10.391 2.107 14.142 5.858l16.535 16.535c5.858 5.858 15.356 5.858 21.214 0l16.535-16.535C92.893 5.107 97.98 3 103.284 3Z" fill="currentColor"/></svg></span></span></span>
+        </span></span> — not just the front end.</p>
+
+      <div class="tip-grid" style="margin-top: var(--s-6)">
+        <div class="tip-grid__cell" data-css-tooltip-hover>
+          <div class="media-frame media-frame--3x4"><img src="../assets/images/pdp-playground/02-front.jpg" alt=""></div>
+          <span data-css-tooltip-x="center" data-css-tooltip-y="top" class="css-tooltip__box"><span class="css-tooltip__box-inner"><span class="css-tooltip__card"><span class="css-tooltip__card-h">Product page</span><span class="css-tooltip__card-p css-tooltip__card-text">The redesigned PDP — merchandised without a developer in the loop.</span></span><span class="css-tootlip__tip"><svg viewBox="0 0 124 30" fill="none" width="100%"><path d="M103.284 3H121c1.657 0 3-1.343 3-3H0c0 1.657 1.343 3 3 3h17.716c5.304 0 10.391 2.107 14.142 5.858l16.535 16.535c5.858 5.858 15.356 5.858 21.214 0l16.535-16.535C92.893 5.107 97.98 3 103.284 3Z" fill="currentColor"/></svg></span></span></span>
+        </div>
+        <div class="tip-grid__cell" data-css-tooltip-hover>
+          <div class="media-frame media-frame--3x4"><img src="../assets/images/pdp-playground/04-detail.jpg" alt=""></div>
+          <span data-css-tooltip-x="center" data-css-tooltip-y="top" class="css-tooltip__box"><span class="css-tooltip__box-inner"><span class="css-tooltip__card"><span class="css-tooltip__card-h">Detail system</span><span class="css-tooltip__card-p css-tooltip__card-text">Reusable detail modules that scale across the catalog.</span></span><span class="css-tootlip__tip"><svg viewBox="0 0 124 30" fill="none" width="100%"><path d="M103.284 3H121c1.657 0 3-1.343 3-3H0c0 1.657 1.343 3 3 3h17.716c5.304 0 10.391 2.107 14.142 5.858l16.535 16.535c5.858 5.858 15.356 5.858 21.214 0l16.535-16.535C92.893 5.107 97.98 3 103.284 3Z" fill="currentColor"/></svg></span></span></span>
+        </div>
+        <div class="tip-grid__cell" data-css-tooltip-hover>
+          <div class="media-frame media-frame--3x4"><img src="../assets/images/pdp-playground/05-product.jpg" alt=""></div>
+          <span data-css-tooltip-x="center" data-css-tooltip-y="top" class="css-tooltip__box"><span class="css-tooltip__box-inner"><span class="css-tooltip__card"><span class="css-tooltip__card-h">Packaging</span><span class="css-tooltip__card-p css-tooltip__card-text">Studio product photography, shot to a consistent system.</span></span><span class="css-tootlip__tip"><svg viewBox="0 0 124 30" fill="none" width="100%"><path d="M103.284 3H121c1.657 0 3-1.343 3-3H0c0 1.657 1.343 3 3 3h17.716c5.304 0 10.391 2.107 14.142 5.858l16.535 16.535c5.858 5.858 15.356 5.858 21.214 0l16.535-16.535C92.893 5.107 97.98 3 103.284 3Z" fill="currentColor"/></svg></span></span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 15 Top Section — Case Study Overview ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">15</span><span class="specimen__name">Top Section — Case Study Overview</span>
+      <span class="specimen__note">One adaptable hero, four use cases (15–18). Split: title + meta + actions left, intro + metrics right. Same slots re-arrange for the others.</span>
+    </div>
+    <div class="hero hero--split">
+      <div class="hero__grid">
+        <div class="hero__col">
+          <p class="hero__eyebrow hero__eyebrow--accent">Case Study</p>
+          <h2 class="hero__title hero__title--display">An accelerated Shopify <em>replatform</em></h2>
+          <div class="hero__meta">
+            <div class="hero__metaitem"><span class="hero__metalabel">Client</span><span class="hero__metavalue">Quip</span></div>
+            <div class="hero__metaitem"><span class="hero__metalabel">Year</span><span class="hero__metavalue">2024</span></div>
+            <div class="hero__metaitem"><span class="hero__metalabel">Industry</span><span class="hero__metavalue">Oral Care · DTC</span></div>
+            <div class="hero__metaitem"><span class="hero__metalabel">Scope</span><span class="hero__metavalue">Replatform · Theme · CRO</span></div>
+          </div>
+          <div class="hero__actions">
+            <a href="#" class="button button--ghost">View live site <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+        <div class="hero__col">
+          <p class="hero__dek">A four-month timeline, a rapid theme-design solution, and a launch that captured the brand's minimalist style without losing momentum.</p>
+          <div class="hero__metrics">
+            <div class="hero__metric"><span class="hero__metric-value">+31%</span><span class="hero__metric-label">Conversion rate</span></div>
+            <div class="hero__metric"><span class="hero__metric-value">−51%</span><span class="hero__metric-label">Load time (LCP)</span></div>
+            <div class="hero__metric"><span class="hero__metric-value">+18%</span><span class="hero__metric-label">Sessions</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 16 Top Section — Thought Leadership ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">16</span><span class="specimen__name">Top Section — Thought Leadership</span>
+      <span class="specimen__note">Stacked editorial column — the refined article opener. Sans-light display with one serif-italic word, byline, topic pills.</span>
+    </div>
+    <div class="hero hero--stacked">
+      <div class="hero__grid">
+        <div class="hero__col">
+          <p class="hero__eyebrow">Thought Leadership</p>
+          <h1 class="hero__title hero__title--display">The replatform is the <em>easy</em> part</h1>
+          <p class="hero__dek">Why the hardest decisions in a Shopify migration have nothing to do with the platform — and everything to do with what you choose to carry forward.</p>
+          <div class="hero__byline">
+            <span class="hero__avatar">N</span>
+            <div>
+              <div class="hero__byname">By Nick Park</div>
+              <div class="hero__byrole">Founder, Verbal + Visual</div>
+            </div>
+          </div>
+          <div class="hero__pills"><span class="tag-pill">Migration</span><span class="tag-pill">Strategy</span><span class="tag-pill">Shopify</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 17 Top Section — Micro Case Study (color-blocked) ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">17</span><span class="specimen__name">Top Section — Micro Case Study</span>
+      <span class="specimen__note">Compact inverted band — color blocking + a metric rail. Lower height, for a one-screen story or an index row.</span>
+    </div>
+    <div class="hero-band hero-band--invert">
+      <div class="hero hero--micro">
+        <div class="hero__grid">
+          <div class="hero__col">
+            <p class="hero__eyebrow hero__eyebrow--accent">Micro Case</p>
+            <h2 class="hero__title hero__title--md">Subscription, rebuilt for <em>retention</em></h2>
+            <p class="hero__dek">A self-serve portal and smarter dunning lifted active subscriptions without touching acquisition spend.</p>
+            <div class="hero__pills"><span class="tag-pill">Subscriptions</span><span class="tag-pill">Retention</span></div>
+          </div>
+          <div class="hero__col">
+            <div class="hero__metrics">
+              <div class="hero__metric"><span class="hero__metric-value">+18%</span><span class="hero__metric-label">Active subscribers</span></div>
+              <div class="hero__metric"><span class="hero__metric-value">−24%</span><span class="hero__metric-label">Involuntary churn</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 18 Top Section — Custom Tool ===== -->
+  <section class="specimen">
+    <div class="specimen__head">
+      <span class="specimen__num">18</span><span class="specimen__name">Top Section — Custom Tool</span>
+      <span class="specimen__note">Tool launcher — icon chip, primary action, and a color-blocked panel teasing the output. For interactive / calculator pages.</span>
+    </div>
+    <div class="hero hero--tool">
+      <div class="hero__grid">
+        <div class="hero__col">
+          <p class="hero__eyebrow hero__eyebrow--accent"><span class="hero__icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.5 4.9 2.6 7 7.5 7.5C14.6 10 12.5 12.1 12 17c-.5-4.9-2.6-7-7.5-7.5C9.4 9 11.5 6.9 12 2Z"/></svg></span> Interactive Tool</p>
+          <h2 class="hero__title hero__title--lg">Replatform readiness <em>scorecard</em></h2>
+          <p class="hero__dek">Answer eight questions about your current stack and get a tailored migration risk profile in under two minutes.</p>
+          <div class="hero__actions">
+            <a href="#" class="button button--accent">Launch the tool <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a href="#" class="visit-link">See a sample report</a>
+          </div>
+        </div>
+        <div class="hero__col">
+          <div class="hero__panel">
+            <p class="hero__panel-eyebrow">Your readiness</p>
+            <p class="hero__panel-stat">87<span style="font-size:.42em;opacity:.55"> / 100</span></p>
+            <div class="hero__panel-rows">
+              <div class="hero__panel-row"><span>Theme architecture</span><span>Strong</span></div>
+              <div class="hero__panel-row"><span>Data portability</span><span>At risk</span></div>
+              <div class="hero__panel-row"><span>Integration surface</span><span>Moderate</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="max-width: var(--col-wide); margin-inline: auto; padding: var(--s-8) var(--s-6); border-top: 1px solid var(--color-rule); margin-top: var(--s-8);">
+    <p class="t-eyebrow">V+V Module Library · 16 static modules + 13 Osmo islands · adaptable top-section system. Next: assembled case-study page.</p>
+  </footer>
+
+  <!-- Drawer (one per page) -->
+  <div data-drawer data-drawer-status="closed" class="drawer">
+    <div data-drawer-close class="drawer__scrim"></div>
+    <aside class="drawer__panel">
+      <button data-drawer-close class="drawer__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+      <div data-drawer-name="story" class="drawer__item">
+        <div class="media-frame media-frame--16x9 drawer__media"><img src="../assets/images/pdp-playground/05-product.jpg" alt=""></div>
+        <p class="drawer__eyebrow">Project Overview</p>
+        <h3 class="drawer__title">The full story</h3>
+        <p class="drawer__body">Avex tackled quip's four-month timeline by deploying a rapid theme-design solution. By focusing on both speed and design integrity, the team delivered a cohesive eCommerce experience that launched on time and captured the essence of the brand identity — without losing momentum.</p>
+        <p class="drawer__body">"They understood what we were trying to achieve and worked tirelessly to help us in our incredibly rapid transition." — Meredith Glansberg, CRO</p>
+      </div>
+      <div data-drawer-name="method" class="drawer__item">
+        <p class="drawer__eyebrow">How we work</p>
+        <h3 class="drawer__title">Methodology</h3>
+        <p class="drawer__body">A migration is a forcing function for editing. We map the existing system, decide deliberately what earns its place, and rebuild only what survives that test — then spend the saved time on the parts customers actually feel.</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ===== Libraries (site-wide loads, per conventions.md) ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"></script>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src="islands.js"></script>
+  <script src="islands2.js"></script>
+  <script src="islands3.js"></script>
+  <script src="video.js"></script>
+  <script src="layout.js"></script>
+</body>
+</html>

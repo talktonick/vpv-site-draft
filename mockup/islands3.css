@@ -1,0 +1,88 @@
+/* ============================================================
+   V+V — Osmo Islands, Batch B (utilities), re-skinned.
+   play-on-hover · directional list · download button · tooltip
+   (+ tooltip-on-image-grid = the "info popup on gridded images" idea)
+   Island rule: structure + data-attrs + JS verbatim; values → V+V.
+   ============================================================ */
+
+/* ============================================================
+   25 — PLAY VIDEO ON HOVER  (osmo/play-video-on-hover.md)
+   ============================================================ */
+.video-card { gap: 1em; background-color: var(--color-bg-elevated); border: 1px solid var(--color-rule); border-radius: var(--radius-l); flex-flow: column; width: 100%; padding: .75em .75em 1.125em; transition: background-color .2s, border-color .2s; display: flex; }
+.video-card:hover { border-color: var(--color-rule-strong); }
+.video-card-visual { aspect-ratio: 1.6; border-radius: var(--radius-m); width: 100%; position: relative; overflow: hidden; }
+.video-card-visual__img { object-fit: cover; width: 100%; height: 100%; }
+.video-card-visual__video { opacity: 0; width: 100%; height: 100%; transition: opacity .2s; position: absolute; inset: 0%; object-fit: cover; }
+.video-card-title { padding-left: .75em; font: var(--type-ui); font-weight: var(--fw-medium); }
+[data-video-on-hover="active"] video { opacity: 1; }
+
+/* ============================================================
+   26 — DIRECTIONAL LIST HOVER  (osmo/directional-list-hover.md)
+   Re-skinned: midnight text, purple fill tile, cream-on-hover.
+   ============================================================ */
+.directional-list { color: var(--color-text); flex-flow: column; width: 100%; max-width: var(--col-wide); display: flex; position: relative; }
+.directional-list__info { gap: 1em; justify-content: space-between; align-items: center; width: 100%; padding: 0 1.5em 1em; display: flex; position: relative; }
+.direcitonal-list__eyebrow { color: var(--color-text-subtle); letter-spacing: var(--tr-eyebrow); text-transform: uppercase; margin: 0; font-size: var(--t-micro); font-weight: var(--fw-medium); line-height: 1; }
+.directional-list__item { gap: 1em; color: inherit; justify-content: space-between; align-items: center; margin-top: -1px; padding: 1.5em; text-decoration: none; display: flex; position: relative; overflow: hidden; transition: color .4s cubic-bezier(.16,1,.3,1); }
+.directional-list__item:hover { color: var(--cream); }
+.directional-list__col-award { min-width: 30%; position: relative; z-index: 2; }
+.directional-list__col-client { flex: 1; position: relative; z-index: 2; }
+.directional-list__col-year { flex: none; min-width: 3em; position: relative; z-index: 2; }
+.direcitonal-list__p { margin: 0; font: var(--type-ui); line-height: 1; }
+.directional-list__border { z-index: 2; opacity: .14; background-color: currentColor; width: 100%; height: 1px; position: absolute; bottom: 0; left: 0; }
+.directional-list__border.is--item { top: 0; bottom: auto; }
+.directional-list__hover-tile { z-index: 1; background-color: var(--purple); width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+[data-directional-hover-tile] { transition: transform .5s cubic-bezier(.16,1,.3,1); transform: translateY(-100%); will-change: transform; }
+
+/* ============================================================
+   27 — DOWNLOAD BUTTON  (osmo/download-button.md)
+   Re-skinned: midnight button, purple hover, cream icon hold.
+   ============================================================ */
+.download-btn { gap: .625em; color: var(--cream); background-color: var(--midnight); border: 0; border-radius: var(--radius-pill); justify-content: center; align-items: center; padding: .75em 1.5em .75em 1em; display: inline-flex; cursor: pointer; font: var(--type-ui); font-weight: var(--fw-medium); transition: background-color .25s ease; }
+.download-btn__label { font: var(--type-ui); font-weight: var(--fw-medium); }
+.download-btn__icon-hold { background-color: color-mix(in oklab, var(--cream) 18%, transparent); border-radius: 100em; flex: none; justify-content: center; align-items: center; width: 2em; height: 2em; padding: 0; display: flex; }
+.download-btn__icon { justify-content: center; align-items: center; width: .85em; height: .85em; display: flex; overflow: visible !important; }
+.download-btn__icon.is--success { position: absolute; }
+[data-download-arrow], [data-download-base] { transition: .5s transform cubic-bezier(.625,.05,0,1); }
+[data-download-icon-wrap] { clip-path: inset(0 round 100em); transition: .5s clip-path cubic-bezier(.625,.05,0,1); }
+[data-download-success] path { transition: .4s stroke-dashoffset cubic-bezier(.625,.05,0,1); }
+[data-download-base] { transform-origin: center center; }
+[data-download-src][data-download-state="downloading"] { pointer-events: none; }
+[data-download-src][data-download-state="ready"] [data-download-icon-wrap] { transition-delay: .15s; clip-path: inset(.35em round 100em); }
+[data-download-src][data-download-state="ready"] [data-download-arrow] { transform: translate(0, 200%); }
+[data-download-src][data-download-state="ready"] [data-download-base] { transition-delay: .1s; transform: scale(0, 1); }
+[data-download-src][data-download-state="ready"] [data-download-success] path { transition-delay: .25s; stroke-dashoffset: 0; }
+@media (hover:hover) and (pointer:fine) {
+  [data-download-src]:hover { background-color: var(--purple); }
+  [data-download-src][data-download-state="idle"]:hover [data-download-arrow] { transform: translate(0, -30%); }
+  [data-download-src][data-download-state="idle"]:hover [data-download-base] { transform: scale(1.2, 1); }
+}
+
+/* ============================================================
+   28 — TOOLTIP (CSS)  (osmo/tooltip-css.md)
+   Re-skinned: midnight card, cream text. Used inline AND on an image grid
+   (= the "info popup on gridded images" idea, in place of the globe).
+   ============================================================ */
+.css-tooltip { margin: 0; }
+.css-tooltip__icon { vertical-align: sub; cursor: pointer; width: 1em; height: 1em; margin-left: .15em; display: inline-block; color: var(--color-accent); }
+.css-tooltip__box { flex-flow: column; align-items: center; padding-block: .5em; display: flex; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); transition: all .4s cubic-bezier(.625,.05,0,1); opacity: 0; visibility: hidden; z-index: 5; }
+[data-css-tooltip-hover]:hover .css-tooltip__box { opacity: 1; visibility: visible; }
+.css-tooltip__box-inner { flex-flow: column; align-items: center; display: flex; position: relative; transition: transform .4s cubic-bezier(.625,.05,0,1); transform: translateY(1em) scale(.92); }
+[data-css-tooltip-hover]:hover .css-tooltip__box-inner { transform: translateY(0) scale(1); }
+.css-tooltip__card { gap: .5em; color: var(--cream); background-color: var(--midnight); border-radius: var(--radius-m); flex-flow: column; width: 21em; max-width: calc(100vw - 1em); margin-inline: .5em; padding: 1.25em; display: flex; box-shadow: var(--shadow-soft); }
+.css-tootlip__tip { width: 2.5em; margin: -.0625em 1.25em; display: flex; position: relative; color: var(--midnight); }
+.css-tooltip__card-text { opacity: .72; }
+.css-tooltip__card-h { font: var(--type-h4); margin: 0; }
+.css-tooltip__card-p { margin: 0; font: var(--type-ui); }
+[data-css-tooltip-hover] { position: relative; cursor: pointer; }
+[data-css-tooltip-y="bottom"] { top: 100%; bottom: unset; }
+[data-css-tooltip-y="bottom"] .css-tooltip__card { order: 2; }
+[data-css-tooltip-y="bottom"] .css-tootlip__tip { transform: scaleY(-1); }
+[data-css-tooltip-y="bottom"] .css-tooltip__box-inner { transform: translateY(-1em) scale(.92); }
+
+/* image grid that uses the tooltip (globe-as-tooltip idea) */
+.tip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); }
+.tip-grid__cell { position: relative; }
+.tip-grid__cell .media-frame { cursor: pointer; }
+.tip-grid__cell .css-tooltip__box { left: 50%; bottom: 100%; }
+@media (max-width: 767px) { .tip-grid { grid-template-columns: 1fr 1fr; } }

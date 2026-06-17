@@ -1,0 +1,72 @@
+/* ============================================================
+   V+V — Global Canvas CSS  (MAST "Global Canvas CSS" component / Project Custom Code <head>)
+   Holds what the Webflow Variables panel can't author: color-mix oklab tints,
+   the heading clamp fallbacks, and shared island theming overrides.
+   Brand hexes are written literally here (Webflow compiles variables to hashed names,
+   so color-mix references the raw values to stay reliable).
+   ============================================================ */
+
+:root {
+  /* Brand (mirror of the Color variable collection, for use in color-mix below) */
+  --purple:   #3012E4;
+  --white:    #FFFFFF;
+  --cream:    #FDFCFA;
+  --silver:   #F4F4F4;
+  --navy:     #2D2B3A;
+  --midnight: #1B1828;
+
+  /* Tints — color-mix oklab (cannot live in the Variables panel) */
+  --color-text-muted:  color-mix(in oklab, var(--midnight) 65%, transparent);
+  --color-text-subtle: color-mix(in oklab, var(--midnight) 40%, transparent);
+  --color-rule:        color-mix(in oklab, var(--midnight)  8%, transparent);
+  --color-rule-strong: color-mix(in oklab, var(--midnight) 20%, transparent);
+
+  /* Soft shadow (matches existing --shadow-soft) */
+  --shadow-soft:
+    0 1px 2px color-mix(in oklab, var(--midnight) 5%, transparent),
+    0 4px 12px color-mix(in oklab, var(--midnight) 4%, transparent);
+
+  /* Heading sizes — define here ONLY if the Variables panel rejected clamp().
+     Desktop max = exact V+V value; min scales down across 375→1440px. */
+  --size-h4:      clamp(1.375rem, 1.33rem + 0.19vw, 1.5rem);
+  --size-h3:      clamp(1.625rem, 1.54rem + 0.38vw, 1.875rem);
+  --size-h2:      clamp(2rem,     1.82rem + 0.75vw, 2.5rem);
+  --size-h1:      clamp(2.5rem,   2.15rem + 1.5vw,  3.5rem);
+  --size-display: clamp(3rem,     2.12rem + 3.76vw, 5.5rem);
+}
+
+::selection { background: var(--purple); color: var(--cream); }
+
+/* ---- Article hero: the editorial Victor-Serif-at-display exception (kept from V+V) ---- */
+.article-hero__headline {
+  font-family: var(--font-serif, 'Victor Serif', 'Times New Roman', serif);
+  font-weight: 400;
+  font-size: var(--size-display);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+}
+
+/* ---- Osmo TOC island: active link (Osmo ships no active style). V+V purple left border.
+   Keyed off the island's own attribute contract, NOT .active / aria-current. ---- */
+.toc-link[data-toc-status="active"] {
+  color: var(--midnight);
+  border-left-color: var(--purple);
+}
+/* depth-2 vs depth-3 indentation (optional) */
+.toc-link[data-toc-depth="3"] { padding-left: 2em; }
+
+/* ============================================================
+   Osmo island theming overrides — recolor each island's own custom props /
+   hardcoded accents to V+V purple. (Editing values, not refactoring classes — allowed.)
+   ============================================================ */
+
+/* Vimeo player + lightbox: timeline/progress accent #FF4C24 → purple */
+.vimeo-player, .vimeo-lightbox {
+  --timeline-dot-color: var(--purple);
+  --progress-fill-bg:   var(--purple);
+}
+
+/* Tab System autoplay progress bar #ff4c24 → purple */
+.tab-progress { background-color: var(--purple); }
+
+/* Highlight-on-scroll, feature pills, etc. inherit currentColor — no override needed. */

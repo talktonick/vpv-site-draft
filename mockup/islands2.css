@@ -1,0 +1,170 @@
+/* ============================================================
+   V+V — Osmo Islands, Batch A (content modules), re-skinned.
+   Island rule: structure + data-attrs + JS verbatim; only values → V+V.
+   ============================================================ */
+
+/* ============================================================
+   19 — HIGHLIGHT TEXT ON SCROLL  (osmo/highlight-text-on-scroll.md)
+   No component CSS — SplitText tweens char opacity. Just type it big.
+   ============================================================ */
+.highlight-statement {
+  font: var(--type-h2); letter-spacing: var(--tr-h);
+  max-width: 24ch; margin-inline: auto; text-align: center;
+}
+.highlight-statement em { font-family: var(--serif); font-style: italic; font-weight: var(--fw-light); }
+
+/* ============================================================
+   20 — VIMEO LIGHTBOX (advanced)  (osmo/vimeo-lightbox-advanced.md)
+   Fullscreen overlay; purple timeline; dark chrome.
+   ============================================================ */
+.vimeo-lightbox {
+  --timeline-rounded-corners: 1.5em; --timeline-dot-height: 0.75em;
+  --timeline-dot-color: var(--purple); --progress-bg: rgba(253,252,250,0.2);
+  --progress-fill-bg: var(--purple); --progress-height: 0.2em;
+  z-index: 300; pointer-events: none; justify-content: center; align-items: center;
+  padding: 5vw; display: flex; position: fixed; inset: 0; overflow: hidden;
+}
+.vimeo-lightbox__calc { justify-content: center; align-items: center; width: 100%; height: 100%; display: flex; position: relative; }
+.vimeo-lightbox__calc-wrap { width: 100%; position: relative; }
+.vimeo-lightbox__player { pointer-events: auto; color: var(--cream); isolation: isolate; background-color: var(--midnight); border-radius: var(--radius-l); justify-content: center; align-items: center; width: 100%; display: flex; position: relative; overflow: hidden; transition: all .3s cubic-bezier(.625,.05,0,1); opacity: 0; visibility: hidden; transform: scale(.9); }
+.vimeo-lightbox[data-vimeo-activated="true"] .vimeo-lightbox__player { opacity: 1; visibility: visible; transform: scale(1); }
+.vimeo-lightbox__before { padding-top: 56.25%; }
+.vimeo-lightbox__bg { pointer-events: auto; background-color: color-mix(in oklab, var(--midnight) 92%, transparent); justify-content: center; align-items: center; width: 100%; height: 100%; display: flex; position: absolute; top: 0; left: 0; transition: all .3s cubic-bezier(.625,.05,0,1); opacity: 0; visibility: hidden; }
+.vimeo-lightbox[data-vimeo-activated="loading"] .vimeo-lightbox__bg, .vimeo-lightbox[data-vimeo-activated="true"] .vimeo-lightbox__bg { opacity: 1; visibility: visible; }
+.vimeo-lightbox__close { z-index: 600; pointer-events: auto; border-radius: 50%; justify-content: center; align-items: center; width: 3em; height: 3em; display: flex; position: absolute; top: 2.5vw; right: 2.5vw; transition: all .5s cubic-bezier(.625,.05,0,1); opacity: 0; visibility: hidden; color: var(--cream); background: color-mix(in oklab, var(--cream) 12%, transparent); }
+.vimeo-lightbox[data-vimeo-activated="true"] .vimeo-lightbox__close { opacity: 1; visibility: visible; }
+.vimeo-lightbox__close-bar { background-color: currentColor; width: 1em; height: .125em; position: absolute; transform: rotate(-45deg); }
+.vimeo-lightbox__close-bar.is--duplicate { transform: rotate(45deg); }
+.vimeo-lightbox__iframe { pointer-events: none; width: 100%; height: 100%; position: absolute; }
+.vimeo-lightbox__loading { pointer-events: none; justify-content: center; align-items: center; width: 100%; height: 100%; transition: opacity .3s linear; display: flex; position: absolute; opacity: 0; }
+.vimeo-lightbox__loading-svg { color: var(--purple); width: 5em; }
+.vimeo-lightbox[data-vimeo-playing="true"] .vimeo-lightbox__loading { opacity: 1; }
+.vimeo-lightbox[data-vimeo-playing="true"][data-vimeo-loaded="true"] .vimeo-lightbox__loading { opacity: 0; }
+.vimeo-lightbox__dark { opacity: .5; pointer-events: none; background-color: var(--midnight); width: 100%; height: 100%; transition: opacity .3s linear; position: absolute; }
+.vimeo-lightbox[data-vimeo-playing="false"] .vimeo-lightbox__dark { opacity: .33; }
+.vimeo-lightbox[data-vimeo-activated="false"][data-vimeo-playing="false"] .vimeo-lightbox__dark { opacity: 0; }
+.vimeo-lightbox[data-vimeo-activated="true"][data-vimeo-loaded="true"] .vimeo-lightbox__dark { opacity: 0; }
+.vimeo-lightbox__placeholder { object-fit: cover; width: 100%; height: 100%; transition: opacity .3s linear; display: block; position: absolute; }
+.vimeo-lightbox[data-vimeo-loaded="true"] .vimeo-lightbox__placeholder { opacity: 0; }
+.vimeo-lightbox__play, .vimeo-lightbox__pause { cursor: pointer; justify-content: center; align-items: center; width: 100%; height: 100%; display: flex; position: absolute; }
+.vimeo-lightbox__btn { -webkit-backdrop-filter: blur(1em); backdrop-filter: blur(1em); background-color: rgba(253,252,250,0.18); border-radius: 50%; justify-content: center; align-items: center; width: 5em; height: 5em; transition: background-color .2s linear, opacity .3s linear; display: flex; position: relative; }
+.vimeo-lightbox__btn:hover { background-color: var(--purple); }
+.vimeo-lightbox__btn-play-svg { width: 40%; }
+.vimeo-lightbox__btn-pause-svg { width: 50%; }
+.vimeo-lightbox .vimeo-lightbox__pause { display: none; }
+.vimeo-lightbox[data-vimeo-playing="true"] .vimeo-lightbox__pause { display: flex; }
+.vimeo-lightbox .vimeo-lightbox__pause .vimeo-lightbox__btn { opacity: 0; }
+.vimeo-lightbox[data-vimeo-activated="true"][data-vimeo-playing="false"] .vimeo-lightbox__pause .vimeo-lightbox__btn,
+.vimeo-lightbox[data-vimeo-activated="true"][data-vimeo-hover="true"]:hover .vimeo-lightbox__pause .vimeo-lightbox__btn { opacity: 1; }
+.vimeo-lightbox[data-vimeo-playing="true"] .vimeo-lightbox__play { opacity: 0; }
+.vimeo-lightbox__interface { pointer-events: none; flex-flow: column; justify-content: flex-end; align-items: stretch; width: 100%; height: 100%; padding: min(2em,4vw); transition: opacity .3s linear; display: flex; position: absolute; opacity: 0; }
+.vimeo-lightbox[data-vimeo-activated="false"][data-vimeo-playing="false"] .vimeo-lightbox__interface { opacity: 1; }
+.vimeo-lightbox .vimeo-lightbox__interface * { pointer-events: all; }
+.vimeo-lightbox[data-vimeo-activated="true"][data-vimeo-playing="false"] .vimeo-lightbox__interface,
+.vimeo-lightbox[data-vimeo-activated="true"][data-vimeo-hover="true"]:hover .vimeo-lightbox__interface { opacity: 1; }
+.vimeo-lightbox__interface-bottom { gap: 1em; justify-content: flex-start; align-items: center; display: flex; }
+.vimeo-lightbox__timeline { flex-grow: 1; justify-content: center; align-items: center; height: 1.5em; display: flex; position: relative; }
+.vimeo-lightbox__timeline-input { pointer-events: auto; cursor: pointer; -webkit-appearance: none; appearance: none; background: #0000; width: 100%; height: 100%; display: block; position: relative; }
+.vimeo-lightbox__timeline-progress { -webkit-appearance: none; appearance: none; height: var(--progress-height); border-radius: var(--timeline-rounded-corners); color: var(--progress-fill-bg); background: #0000; border: none; width: 100%; margin: 0; position: absolute; left: 0; overflow: hidden; }
+.vimeo-lightbox progress::-webkit-progress-bar { border-radius: var(--timeline-rounded-corners); background-color: var(--progress-bg); }
+.vimeo-lightbox progress::-webkit-progress-value { background: var(--progress-fill-bg); }
+.vimeo-lightbox progress::-moz-progress-bar { border-radius: var(--timeline-rounded-corners); background: var(--progress-fill-bg); }
+.vimeo-lightbox [type="range"]::-webkit-slider-thumb { -webkit-appearance: none; height: var(--timeline-dot-height); width: var(--timeline-dot-height); border-radius: var(--timeline-rounded-corners); background: var(--timeline-dot-color); cursor: pointer; margin-top: calc((var(--progress-height)/2) - (var(--timeline-dot-height)/2)); }
+.vimeo-lightbox [type="range"]::-moz-range-thumb { border: 0; height: var(--timeline-dot-height); width: var(--timeline-dot-height); border-radius: var(--timeline-rounded-corners); background: var(--timeline-dot-color); cursor: pointer; }
+.vimeo-lightbox__mute, .vimeo-lightbox__fullscreen { cursor: pointer; flex-shrink: 0; justify-content: center; align-items: center; width: 1.5em; height: 1.5em; display: flex; position: relative; }
+.vimeo-lightbox__volume-up-svg, .vimeo-lightbox__volume-mute-svg, .vimeo-lightbox__fullscreen-scale-svg, .vimeo-lightbox__fullscreen-shrink-svg { width: 100%; position: absolute; }
+.vimeo-lightbox .vimeo-lightbox__mute svg:nth-child(2), .vimeo-lightbox[data-vimeo-muted="true"] .vimeo-lightbox__mute svg:nth-child(1) { display: none; }
+.vimeo-lightbox .vimeo-lightbox__mute svg:nth-child(1), .vimeo-lightbox[data-vimeo-muted="true"] .vimeo-lightbox__mute svg:nth-child(2) { display: block; }
+.vimeo-lightbox .vimeo-lightbox__fullscreen svg:nth-child(2), .vimeo-lightbox[data-vimeo-fullscreen="true"] .vimeo-lightbox__fullscreen svg:nth-child(1) { display: none; }
+.vimeo-lightbox .vimeo-lightbox__fullscreen svg:nth-child(1), .vimeo-lightbox[data-vimeo-fullscreen="true"] .vimeo-lightbox__fullscreen svg:nth-child(2) { display: block; }
+.vimeo-lightbox__duration { flex-shrink: 0; width: 2.25em; }
+.vimeo-lightbox__duration-span { text-align: center; white-space: nowrap; user-select: none; width: 100%; display: block; }
+
+/* ============================================================
+   21 — AUDIO PLAYER (Howler)  (osmo/audio-player-howler.md)
+   Re-skinned: silver card, purple play, midnight pause, purple progress.
+   ============================================================ */
+.howler-player { gap: 1.5em; background-color: var(--color-bg-elevated); border: 1px solid var(--color-rule); border-radius: var(--radius-l); flex-flow: column; flex-grow: 1; max-width: 28em; padding: 1.5em; display: flex; position: relative; }
+.howler-player__top { gap: 1.25em; align-items: center; display: flex; }
+.howler-player__bottom { gap: .5em; align-items: center; display: flex; }
+.howler-player__btn { font: inherit; color: inherit; border: 0; border-radius: 50%; flex-shrink: 0; justify-content: center; align-items: center; width: 2.75em; height: 2.75em; display: flex; position: relative; cursor: pointer; }
+.howler-player__btn-play { color: var(--cream); background-color: var(--purple); border-radius: 50%; justify-content: center; align-items: center; width: 100%; height: 100%; padding: 20% 25%; position: absolute; }
+.howler-player__btn-pause { color: var(--cream); background-color: var(--midnight); border-radius: 50%; justify-content: center; align-items: center; width: 100%; height: 100%; padding-inline: 25%; display: flex; position: absolute; }
+[data-howler-status="not-playing"] .howler-player__btn-play, [data-howler-status="playing"] .howler-player__btn-pause { display: flex; }
+[data-howler-status="playing"] .howler-player__btn-play, [data-howler-status="not-playing"] .howler-player__btn-pause { display: none; }
+.howler-player__btn-span { opacity: 0; pointer-events: none; position: absolute; }
+.howler-player__time { opacity: .6; text-align: center; width: 3em; display: block; font-size: var(--t-small); }
+.howler-player__timeline { cursor: pointer; flex-grow: 1; justify-content: flex-start; align-items: center; height: 1em; display: flex; position: relative; }
+.howler-player__timeline-progress { background-color: var(--purple); border-radius: 1em; width: 0%; height: .25em; transition: width .1s linear; position: relative; }
+.howler-player__timeline-back { background-color: var(--color-rule-strong); border-radius: 1em; width: 100%; height: .25em; position: absolute; }
+.howler-player__cover { border-radius: var(--radius-m); flex-shrink: 0; width: 3.25em; height: 3.25em; position: relative; overflow: hidden; }
+.howler-player__cover-img { width: 100%; height: 100%; object-fit: cover; }
+.howler-player__title { gap: .125em; flex-flow: column; flex-grow: 1; justify-content: center; display: flex; }
+.howler-player__title-h2 { margin: 0; font: var(--type-h4); }
+.howler-player__title-p { opacity: .55; margin: 0; font: var(--type-ui); }
+
+/* ============================================================
+   22 — BASIC MODAL  (osmo/basic-modal.md)
+   Re-skinned: cream card, midnight scrim, V+V close.
+   ============================================================ */
+.modal { z-index: 100; opacity: 0; pointer-events: none; visibility: hidden; justify-content: center; align-items: center; padding: 2em 1em; display: flex; position: fixed; inset: 0; overflow: hidden; transition: all .2s linear; }
+.modal[data-modal-group-status="active"] { opacity: 1; visibility: visible; }
+.modal__dark { opacity: .5; pointer-events: auto; cursor: pointer; background-color: var(--midnight); width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+.modal__card { pointer-events: auto; background-color: var(--color-bg-elevated); border-radius: var(--radius-xl); width: 100%; max-width: 48em; max-height: 100%; padding: .75em; display: none; position: relative; }
+.modal__card[data-modal-status="active"] { display: flex; }
+.modal__scroll { background-color: var(--color-bg); border-radius: var(--radius-l); flex-flow: column; width: 100%; max-height: 100%; display: flex; position: relative; overflow: auto; }
+.modal__content { gap: 1em; flex-flow: column; padding: 2.5em; display: flex; }
+.modal__h2 { margin: 0; font: var(--type-h2); letter-spacing: var(--tr-h); }
+.modal__p { margin: 0; font: var(--type-body); color: var(--color-text-muted); max-width: 60ch; }
+.modal__btn-close { background-color: var(--color-bg-elevated); border: 1px solid var(--color-rule); border-radius: 50%; justify-content: center; align-items: center; width: 3em; height: 3em; display: flex; position: absolute; top: 1.75em; right: 1.75em; cursor: pointer; }
+.modal__btn-close-bar { background-color: var(--color-text); width: .1em; height: 36%; position: absolute; transform: rotate(45deg); }
+.modal__btn-close-bar.is--second { transform: rotate(-45deg); }
+
+/* ============================================================
+   23 — TAB SYSTEM WITH AUTOPLAY  (osmo/tab-system-autoplay.md)
+   Re-skinned: purple progress, V+V type/colors.
+   ============================================================ */
+.tab-layout__wrap { z-index: 1; row-gap: 3em; flex-flow: wrap; display: flex; position: relative; }
+.tab-layout__col { width: 50%; padding-inline: .5em; }
+.tab-content__inner { gap: 3em; flex-flow: column; justify-content: space-between; align-items: flex-start; min-height: 100%; padding-right: 2.5em; display: flex; }
+.tab-heading { margin: 0; font: var(--type-h2); letter-spacing: var(--tr-h); }
+.tab-visual__wrap { aspect-ratio: 1.4; position: relative; }
+.tab-visual__item { visibility: hidden; justify-content: flex-start; align-items: center; width: 100%; height: 100%; display: flex; position: absolute; }
+.tab-visual__item.active { visibility: visible; }
+.tab-visual__inner { border-radius: var(--radius-l); width: 100%; height: 100%; overflow: hidden; }
+.tab-image { object-fit: cover; border-radius: var(--radius-l); width: 100%; height: 100%; }
+.tab-content__bottom { flex-flow: column; justify-content: space-between; align-items: stretch; width: 100%; max-width: 30em; display: flex; }
+.tab-content__item { color: var(--color-text); width: 100%; padding-block: 1.5em; text-decoration: none; transition: opacity .25s; position: relative; cursor: pointer; }
+.tab-content__item-main { gap: 1.5em; justify-content: flex-start; align-items: flex-start; width: 100%; display: flex; }
+.content-item__nr { color: var(--cream); background-color: var(--midnight); border-radius: 100em; justify-content: center; align-items: center; width: 2.5em; height: 2.5em; margin-top: .2em; font: var(--type-eyebrow); flex: none; display: flex; }
+.content-item__heading { margin: 0; font: var(--type-h4); }
+.tab-content__item-detail { width: 100%; height: 0; padding-left: 4em; overflow: hidden; }
+.tab-description { margin: 0; font: var(--type-body); color: var(--color-text-muted); }
+.tab-description__spacer { padding-top: .75em; }
+.tab-content__item-bottom { background-color: var(--color-rule); width: 100%; height: 1px; position: absolute; inset: auto 0 0; }
+.tab-progress { transform-origin: 0%; background-color: var(--purple); width: 100%; height: 1px; transform: scale3d(0,1,1); }
+@media (max-width: 991px) {
+  .tab-layout__col { width: 100%; padding-inline: 0; }
+  .tab-content__inner { padding-right: 0; }
+  .tab-visual__wrap { height: auto; aspect-ratio: 1.4; }
+  .tab-heading { font: var(--type-h3); }
+}
+
+/* ============================================================
+   24 — STICKY SECTION TABS (CSS only)  (osmo/sticky-section-tabs.md)
+   Re-skinned to V+V: cream sections, midnight sticky header bar.
+   ============================================================ */
+.sticky-tab-group { --nav-height: 0px; overflow: clip; border-radius: var(--radius-l); border: 1px solid var(--color-rule); }
+.sticky-tab { background-color: var(--color-bg); position: relative; overflow: clip; }
+.sticky-tab + .sticky-tab { border-top: 0; }
+.sticky-tab__sticky { z-index: 1; top: calc(var(--nav-height) - 1px); flex-flow: column; margin-top: -1px; display: flex; position: sticky; }
+.sticky-tab__inner { background-color: var(--midnight); color: var(--cream); border-top: 1px solid var(--color-rule); justify-content: space-between; align-items: center; padding-block: 1.25em; }
+.sticky-tab__content { justify-content: space-between; align-items: center; padding-inline: 2em; display: flex; }
+.sticky-tab__title { margin: 0; font: var(--type-h4); }
+.sticky-tab__placeholder-content { justify-content: center; align-items: center; height: 44vh; display: flex; padding-inline: 2em; }
+.sticky-tab__placeholder-content .media-frame { width: 100%; max-width: 40em; }
+
+/* ============================================================
+   Shared: a "trigger" pill button (reuses .button .button--primary)
+   ============================================================ */
+.island-trigger-row { display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; }

@@ -50,26 +50,27 @@
   --sans: 'Neue Haas Display', -apple-system, sans-serif;
   --serif: 'Victor Serif', 'Times New Roman', serif;
 
-  /* Modular type scale */
+  /* Modular type scale — fixed below body, fluid (clamp) for every heading so
+     type scales with the viewport instead of jumping at breakpoints. */
   --t-micro: 0.6875rem;
   --t-small: 0.8125rem;
   --t-ui: 0.9375rem;
   --t-body: 1.0625rem;
-  --t-lead: 1.25rem;
-  --t-h4: 1.5rem;
-  --t-h3: 1.875rem;
-  --t-h2: 2.5rem;
-  --t-h1: 3.5rem;
-  --t-display: 5.5rem;
+  --t-lead:    clamp(1.15rem, 1.06rem + 0.40vw, 1.3rem);
+  --t-h4:      clamp(1.3rem,  1.20rem + 0.45vw, 1.5rem);
+  --t-h3:      clamp(1.55rem, 1.36rem + 0.85vw, 1.875rem);
+  --t-h2:      clamp(1.95rem, 1.55rem + 1.95vw, 2.6rem);
+  --t-h1:      clamp(2.5rem,  1.90rem + 2.90vw, 3.5rem);
+  --t-display: clamp(3rem,    2.05rem + 4.60vw, 5rem);
 
-  /* Line heights */
-  --lh-display: 0.95;
-  --lh-tight: 1.1;
-  --lh-snug: 1.25;
+  /* Line heights — tightened for big display, a hair more air for the serif */
+  --lh-display: 1.0;
+  --lh-tight: 1.07;
+  --lh-snug: 1.22;
   --lh-body: 1.55;
 
   /* Letter spacing */
-  --tr-display: -0.025em;
+  --tr-display: -0.03em;
   --tr-h: -0.015em;
   --tr-body: 0em;
   --tr-ui: 0.005em;

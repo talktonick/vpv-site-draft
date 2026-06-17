@@ -1,0 +1,46 @@
+/* ============================================================
+   V+V VIDEO — one component, three modes. Sits inside a media-frame.
+   Modes (data-vid-mode): loop · sound · hover.
+   Always a corner play/pause; sound mode adds unmute. No fullscreen.
+   Size is controlled by the LAYOUT placement, never the video.
+   (Mockup uses native <video>; in production these map to Vimeo:
+    loop/sound → Vimeo bg player w/ data-vimeo-muted + unmute,
+    hover → play-on-hover. The dev swaps the element, keeps the modes.)
+   ============================================================ */
+.vid { position: absolute; inset: 0; }
+.vid__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.vid__controls {
+  position: absolute; right: var(--s-3); bottom: var(--s-3); z-index: 2;
+  display: flex; gap: var(--s-2);
+}
+.vid__btn, .vid__mute {
+  width: 2.5em; height: 2.5em; border-radius: 50%; border: 0; cursor: pointer;
+  background: color-mix(in oklab, var(--midnight) 42%, transparent);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  color: var(--cream); display: grid; place-items: center;
+  transition: background var(--dur-fast) var(--ease), opacity var(--dur-base) var(--ease);
+}
+.vid__btn:hover, .vid__mute:hover { background: var(--purple); }
+.vid__btn svg, .vid__mute svg { width: 44%; height: 44%; }
+
+/* icon state (driven by JS attributes) */
+.vid__icon-pause, .vid__icon-unmute { display: none; }
+.vid[data-vid-playing="true"] .vid__icon-play { display: none; }
+.vid[data-vid-playing="true"] .vid__icon-pause { display: block; }
+.vid[data-vid-muted="false"] .vid__icon-mute { display: none; }
+.vid[data-vid-muted="false"] .vid__icon-unmute { display: block; }
+
+/* hover mode: controls only on hover; tiny "hover to play" hint otherwise */
+.vid[data-vid-mode="hover"] .vid__controls { opacity: 0; transition: opacity var(--dur-base) var(--ease); }
+.vid[data-vid-mode="hover"]:hover .vid__controls { opacity: 1; }
+.vid__hint {
+  position: absolute; left: var(--s-3); bottom: var(--s-3); z-index: 2;
+  font: var(--type-eyebrow); text-transform: uppercase; letter-spacing: var(--tr-eyebrow);
+  color: var(--cream); background: color-mix(in oklab, var(--midnight) 42%, transparent);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  padding: var(--s-1) var(--s-3); border-radius: var(--radius-pill);
+  transition: opacity var(--dur-base) var(--ease);
+}
+.vid[data-vid-mode="hover"]:hover .vid__hint { opacity: 0; }
+.vid:not([data-vid-mode="hover"]) .vid__hint { display: none; }

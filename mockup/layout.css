@@ -1,0 +1,149 @@
+/* ============================================================
+   V+V LAYOUT SYSTEM
+   One margin value (= outer inset = column gap). Five placements.
+   A grid-aligned slide-out drawer for "read more / see more".
+   Tune the margin live: append ?m=24 / ?m=40 / ?m=64 to the URL.
+   ============================================================ */
+:root {
+  --frame-max: 1440px;
+  --margin: 24px;          /* THE value — outer inset AND column gap (thinnest) */
+  --gap: var(--margin);
+  --reading: 640px;        /* reading measure for prose + centered assets */
+  --drawer-w: clamp(360px, 33vw, 520px);
+  --radius-asset: 4px;     /* barely-rounded asset/container corners */
+}
+@media (max-width: 767px) { :root { --margin: 16px; } }
+
+/* ---- Barely-rounded asset containers (overrides the 16px defaults) ---- */
+.media-frame, .content-card, .feature-pills__wrap, .drawer__media,
+.h-card, .video-card-visual, .tab-visual__inner, .cta-block { border-radius: var(--radius-asset); }
+.media-frame--fullbleed { border-radius: 0; }
+
+/* ============================================================
+   REFINEMENTS (Nick's review)
+   ============================================================ */
+
+/* Media+Text half/half was touching the screen edge (no frame margin) */
+.media-text { max-width: var(--frame-max); margin-inline: auto; padding-inline: var(--margin); }
+
+/* Horizontal scroll: align to the system — first panel at the margin,
+   gap between panels = the margin (was an inconsistent 1.25em inset) */
+.horizontal__panel-inner { padding: 0 0 0 var(--gap); }
+.horizontal__wrap { padding-right: var(--margin); }
+
+/* Feature pills → 1/3 text bubble + 2/3 media frame, separated by the gap
+   (was a 50/50 single block with the two sides touching) */
+[data-feature-pills-init] { --content-item-expanded: 17em; }
+.feature-pills__wrap { background: transparent; border: 0; max-width: none; height: 24em; overflow: visible; }
+.feature-pills__layout { gap: var(--gap); }
+.feature-pills__col { width: 33.333%; background: var(--midnight); color: var(--cream); border-radius: var(--radius-asset); }
+.feature-pills__col.is--visual { width: 66.666%; background: var(--color-bg-muted); overflow: hidden; }
+@media (max-width: 991px) {
+  .feature-pills__col, .feature-pills__col.is--visual { width: 100%; }
+  .feature-pills__wrap { height: auto; }
+}
+
+/* Audio player → slim single-row bar. No stage, no glass — takes less room.
+   The Osmo markup is unchanged; CSS re-flows it: [▶] title ——timeline—— time. */
+.howler-player {
+  flex-flow: row nowrap; align-items: center; gap: var(--s-4);
+  max-width: 34em; padding: var(--s-2) var(--s-4) var(--s-2) var(--s-2);
+  border-radius: var(--radius-pill); background: var(--color-bg-elevated);
+  border: 1px solid var(--color-rule); box-shadow: none;
+}
+.howler-player__top { flex: 0 0 auto; gap: var(--s-3); }
+.howler-player__cover { display: none; }        /* drop the thumbnail — slimmer */
+.howler-player__btn { order: -1; width: 2.4em; height: 2.4em; }
+.howler-player__btn-play, .howler-player__btn-pause { padding: 27%; }
+.howler-player__title { flex: 0 0 auto; gap: 0; }
+.howler-player__title-h2 { font: var(--type-ui); font-weight: var(--fw-medium); line-height: 1.2; }
+.howler-player__title-p { display: none; }       /* keep the bar to one line */
+.howler-player__bottom { flex: 1 1 auto; gap: var(--s-3); }
+.howler-player__time { width: auto; min-width: 2.6em; }
+@media (max-width: 600px) {
+  .howler-player { flex-wrap: wrap; border-radius: var(--radius-l); padding: var(--s-3); }
+  .howler-player__bottom { flex-basis: 100%; }
+}
+
+/* Download button in context (on a Midnight content card → cream so it reads) */
+.content-card .download-btn { background: var(--cream); color: var(--midnight); }
+.content-card .download-btn:hover { background: var(--purple); color: var(--cream); }
+.content-card .download-btn__icon-hold { background: color-mix(in oklab, var(--midnight) 12%, transparent); }
+
+/* ---- The 5 canonical placements ---- */
+.lay-bleed { width: 100%; }
+
+.lay-full {
+  max-width: var(--frame-max); margin-inline: auto; padding-inline: var(--margin);
+}
+
+.lay-half {
+  max-width: var(--frame-max); margin-inline: auto; padding-inline: var(--margin);
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-items: stretch;
+}
+
+.lay-split {
+  max-width: var(--frame-max); margin-inline: auto; padding-inline: var(--margin);
+  display: grid; grid-template-columns: 2fr 1fr; gap: var(--gap); align-items: start;
+}
+.lay-split--mirror { grid-template-columns: 1fr 2fr; }
+
+.lay-read {
+  max-width: var(--frame-max); margin-inline: auto; padding-inline: var(--margin);
+}
+.lay-read > * { max-width: var(--reading); }
+.lay-read:not(.lay-read--left) > * { margin-inline: auto; }   /* centered (default) */
+/* .lay-read--left → children stay margin-inline:0 = pinned to the left margin */
+
+@media (max-width: 991px) {
+  .lay-half, .lay-split, .lay-split--mirror { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   Adopt the single margin/gap into the existing mockup classes
+   (so both pages move onto the system without rewiring every wrapper).
+   Legacy → placement: mod-container = reading · --wide = full · fullbleed = bleed.
+   ============================================================ */
+.mod-container        { max-width: calc(var(--reading) + (var(--margin) * 2)); margin-inline: auto; padding-inline: var(--margin); }
+.mod-container--wide  { max-width: var(--frame-max); margin-inline: auto; padding-inline: var(--margin); }
+.mod-container--narrow{ max-width: calc(var(--reading) + (var(--margin) * 2)); margin-inline: auto; padding-inline: var(--margin); }
+.mod-fullbleed        { width: 100%; }
+/* one gap value everywhere splits/grids occur */
+.media-pair, .media-gallery, .media-gallery--2, .metrics-strip, .scope-cols, .up-next__grid, .media-text, .see-hear, .tip-grid { gap: var(--gap); }
+
+/* ============================================================
+   DRAWER — grid-aligned right panel for "read more / see more"
+   Replaces the centered content modal. Width ≈ the 1/3 column.
+   ============================================================ */
+.drawer { position: fixed; inset: 0; z-index: 200; pointer-events: none; }
+.drawer[data-drawer-status="open"] { pointer-events: auto; }
+.drawer__scrim {
+  position: absolute; inset: 0; background: color-mix(in oklab, var(--midnight) 45%, transparent);
+  opacity: 0; transition: opacity .4s var(--ease);
+}
+.drawer[data-drawer-status="open"] .drawer__scrim { opacity: 1; }
+.drawer__panel {
+  position: absolute; top: 0; right: 0; height: 100%;
+  width: var(--drawer-w); max-width: calc(100vw - var(--s-6));
+  background: var(--color-bg-elevated); border-left: 1px solid var(--color-rule);
+  padding: var(--margin); overflow-y: auto;
+  display: flex; flex-direction: column; gap: var(--s-5);
+  transform: translateX(100%); transition: transform .5s cubic-bezier(.625,.05,0,1);
+  box-shadow: -8px 0 40px color-mix(in oklab, var(--midnight) 10%, transparent);
+}
+.drawer[data-drawer-status="open"] .drawer__panel { transform: translateX(0); }
+.drawer__close {
+  align-self: flex-end; width: 2.5em; height: 2.5em; border-radius: 50%;
+  border: 1px solid var(--color-rule); background: none; color: var(--color-text);
+  display: grid; place-items: center; cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.drawer__close:hover { background: var(--color-bg-muted); border-color: var(--color-text); }
+.drawer__close svg { width: 14px; height: 14px; }
+.drawer__item { display: none; flex-direction: column; gap: var(--s-4); }
+.drawer__item[data-drawer-status="active"] { display: flex; }
+.drawer__media { border-radius: var(--radius-l); overflow: hidden; }
+.drawer__media img { display: block; width: 100%; }
+.drawer__eyebrow { font: var(--type-eyebrow); text-transform: uppercase; letter-spacing: var(--tr-eyebrow); color: var(--color-text-muted); }
+.drawer__title { font: var(--type-h3); letter-spacing: var(--tr-h); max-width: 18ch; }
+.drawer__body { font: var(--type-body); color: var(--color-text-muted); }

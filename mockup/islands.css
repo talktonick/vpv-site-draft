@@ -1,0 +1,195 @@
+/* ============================================================
+   V+V — Osmo Islands, re-skinned to the V+V system
+   ISLAND RULE: structure + data-attributes + JS stay as Osmo ships
+   them. Only color/bg/border/radius/font VALUES are changed to V+V
+   tokens (theming, not refactoring). Animation/state rules keyed on
+   [data-*] are preserved verbatim.
+   ============================================================ */
+
+/* ============================================================
+   15 — TABLE OF CONTENTS  (osmo/table-of-contents.md)
+   ============================================================ */
+.toc-layout {
+  display: flex; gap: var(--s-7); align-items: flex-start;
+  max-width: var(--col-wide); margin-inline: auto; padding-inline: var(--s-6);
+}
+.toc-sidebar {
+  position: sticky; top: var(--s-5); width: 14rem; flex: none;
+  display: flex; flex-direction: column; gap: var(--s-4);
+}
+.toc-hero__label {
+  font: var(--type-eyebrow); text-transform: uppercase;
+  letter-spacing: var(--tr-eyebrow); color: var(--color-text-muted);
+}
+.toc-list { display: flex; flex-direction: column; border-left: 1px solid var(--color-rule); }
+.toc-link {
+  display: block; padding: .4rem .75rem; margin-left: -1px;
+  font: var(--type-ui); color: var(--color-text-muted); text-decoration: none;
+  border-left: 1px solid transparent;
+  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.toc-link:hover { color: var(--color-text); }
+.toc-link[data-toc-status="active"] { color: var(--color-text); border-left-color: var(--color-accent); }
+.toc-link[data-toc-depth="3"] { padding-left: 1.6rem; }
+.toc-article { flex: 1; min-width: 0; max-width: var(--col-medium); }
+.toc-article h2 { font: var(--type-h2); letter-spacing: var(--tr-h); margin: var(--s-7) 0 var(--s-4); }
+.toc-article h2:first-child { margin-top: 0; }
+.toc-article h3 { font: var(--type-h3); letter-spacing: var(--tr-h); margin: var(--s-5) 0 var(--s-3); }
+.toc-article p { font: var(--type-body); color: var(--color-text); margin-bottom: var(--s-4); max-width: 64ch; }
+@media (max-width: 991px) {
+  .toc-layout { flex-direction: column; }
+  .toc-sidebar { position: relative; top: 0; width: 100%; }
+}
+
+/* ============================================================
+   16 — VIMEO PLAYER (advanced)  (osmo/vimeo-player-advanced.md)
+   Player chrome kept dark (controls are conventionally dark);
+   timeline/progress recolored to V+V purple; frame rounded.
+   ============================================================ */
+.vimeo-player {
+  --timeline-rounded-corners: 1.5em; --timeline-dot-height: 0.75em;
+  --timeline-dot-color: var(--purple);
+  --progress-bg: rgba(253,252,250,0.2); --progress-fill-bg: var(--purple);
+  --progress-height: 0.2em;
+  pointer-events: auto; color: var(--cream); isolation: isolate;
+  background-color: var(--midnight); border-radius: var(--radius-l);
+  justify-content: center; align-items: center; width: 100%;
+  display: flex; position: relative; overflow: hidden;
+}
+.vimeo-player[data-vimeo-update-size="cover"] { width:100%; min-width:100%; max-width:100%; height:100%; min-height:100%; max-height:100%; }
+.vimeo-player__iframe { pointer-events: none; width: 100%; height: 100%; position: absolute; }
+.vimeo-player__before { padding-top: 56.25%; }
+.vimeo-player__placeholder { object-fit: cover; width: 100%; height: 100%; transition: opacity .3s linear; display: block; position: absolute; }
+.vimeo-player[data-vimeo-activated="true"][data-vimeo-loaded="true"] .vimeo-player__placeholder { opacity: 0; }
+.vimeo-player__dark { opacity: .5; pointer-events: none; background-color: var(--midnight); width: 100%; height: 100%; transition: opacity .3s linear; position: absolute; }
+.vimeo-player[data-vimeo-playing="false"] .vimeo-player__dark { opacity: 0.33; }
+.vimeo-player[data-vimeo-activated="false"][data-vimeo-playing="false"] .vimeo-player__dark { opacity: 0; }
+.vimeo-player[data-vimeo-activated="true"][data-vimeo-loaded="true"] .vimeo-player__dark { opacity: 0; }
+@media (hover:hover) and (pointer:fine){ .vimeo-player[data-vimeo-hover="true"]:hover .vimeo-player__dark { opacity:0.33 !important; } }
+.vimeo-player__play, .vimeo-player__pause { cursor: pointer; justify-content: center; align-items: center; width: 100%; height: 100%; display: flex; position: absolute; }
+.vimeo-player__btn { -webkit-backdrop-filter: blur(1em); backdrop-filter: blur(1em); background-color: rgba(253,252,250,0.18); border-radius: 50%; justify-content: center; align-items: center; width: 5em; height: 5em; transition: background-color .2s linear, opacity .3s linear; display: flex; position: relative; }
+.vimeo-player__btn:hover { background-color: var(--purple); }
+.vimeo-player__btn-play-svg { width: 40%; }
+.vimeo-player__btn-pause-svg { width: 50%; }
+.vimeo-player .vimeo-player__pause { display: none; }
+.vimeo-player[data-vimeo-playing="true"] .vimeo-player__pause { display: flex; }
+.vimeo-player .vimeo-player__pause .vimeo-player__btn { opacity: 0; }
+.vimeo-player[data-vimeo-activated="true"][data-vimeo-playing="false"] .vimeo-player__pause .vimeo-player__btn,
+.vimeo-player[data-vimeo-activated="true"][data-vimeo-hover="true"]:hover .vimeo-player__pause .vimeo-player__btn { opacity: 1; }
+.vimeo-player[data-vimeo-playing="true"] .vimeo-player__play { opacity: 0; }
+.vimeo-player__loading-svg { width: 5em; }
+.vimeo-player__loading { pointer-events: none; color: var(--purple); justify-content: center; align-items: center; width: 100%; height: 100%; transition: opacity .3s linear; display: flex; position: absolute; opacity: 0; }
+.vimeo-player[data-vimeo-playing="true"] .vimeo-player__loading { opacity: 1; }
+.vimeo-player[data-vimeo-playing="true"][data-vimeo-loaded="true"] .vimeo-player__loading { opacity: 0; }
+.vimeo-player .vimeo-player__interface { opacity: 0; }
+.vimeo-player[data-vimeo-activated="false"][data-vimeo-playing="false"] .vimeo-player__interface { opacity: 1; }
+.vimeo-player .vimeo-player__interface * { pointer-events: all; }
+.vimeo-player[data-vimeo-activated="true"][data-vimeo-playing="false"] .vimeo-player__interface,
+.vimeo-player[data-vimeo-activated="true"][data-vimeo-hover="true"]:hover .vimeo-player__interface { opacity: 1; }
+.vimeo-player__interface { pointer-events: none; flex-flow: column; justify-content: flex-end; align-items: stretch; width: 100%; height: 100%; padding: min(2em,4vw); transition: opacity .3s linear; display: flex; position: absolute; }
+.vimeo-player__interface-bottom { gap: 1em; justify-content: flex-start; align-items: center; display: flex; }
+.vimeo-player__timeline { flex-grow: 1; justify-content: center; align-items: center; height: 1.5em; display: flex; position: relative; }
+.vimeo-player__timeline-input { pointer-events: auto; cursor: pointer; -webkit-appearance: none; appearance: none; background-color: #0000; width: 100%; height: 100%; display: block; position: relative; }
+.vimeo-player__timeline-progress { vertical-align: top; -webkit-appearance: none; appearance: none; height: var(--progress-height); border-radius: var(--timeline-rounded-corners); color: var(--progress-fill-bg); background-color: #0000; border: none; width: 100%; margin: 0; position: absolute; left: 0; overflow: hidden; }
+.vimeo-player progress::-webkit-progress-bar { border-radius: var(--timeline-rounded-corners); background-color: var(--progress-bg); }
+.vimeo-player progress::-webkit-progress-value { background: var(--progress-fill-bg); }
+.vimeo-player progress::-moz-progress-bar { border-radius: var(--timeline-rounded-corners); background: var(--progress-fill-bg); }
+.vimeo-player [type="range"]::-webkit-slider-thumb { -webkit-appearance: none; height: var(--timeline-dot-height); width: var(--timeline-dot-height); border-radius: var(--timeline-rounded-corners); background-color: var(--timeline-dot-color); cursor: pointer; margin-top: calc((var(--progress-height)/2) - (var(--timeline-dot-height)/2)); }
+.vimeo-player [type="range"]:focus { outline: none; }
+.vimeo-player [type="range"]::-webkit-slider-runnable-track { width: 100%; height: var(--progress-height); cursor: pointer; background: transparent; border-radius: var(--timeline-rounded-corners); }
+.vimeo-player [type="range"]::-moz-range-track { width: 100%; height: var(--progress-height); cursor: pointer; background: var(--progress-bg); border-radius: var(--timeline-rounded-corners); }
+.vimeo-player [type="range"]::-moz-range-thumb { border: 0; height: var(--timeline-dot-height); width: var(--timeline-dot-height); border-radius: var(--timeline-rounded-corners); background: var(--timeline-dot-color); cursor: pointer; }
+.vimeo-player__mute, .vimeo-player__fullscreen { cursor: pointer; flex-shrink: 0; justify-content: center; align-items: center; width: 1.5em; height: 1.5em; display: flex; position: relative; }
+.vimeo-player__volume-up-svg, .vimeo-player__volume-mute-svg, .vimeo-player__fullscreen-scale-svg, .vimeo-player__fullscreen-shrink-svg { width: 100%; position: absolute; }
+.vimeo-player .vimeo-player__mute svg:nth-child(2), .vimeo-player[data-vimeo-muted="true"] .vimeo-player__mute svg:nth-child(1) { display: none; }
+.vimeo-player .vimeo-player__mute svg:nth-child(1), .vimeo-player[data-vimeo-muted="true"] .vimeo-player__mute svg:nth-child(2) { display: block; }
+.vimeo-player .vimeo-player__fullscreen svg:nth-child(2), .vimeo-player[data-vimeo-fullscreen="true"] .vimeo-player__fullscreen svg:nth-child(1) { display: none; }
+.vimeo-player .vimeo-player__fullscreen svg:nth-child(1), .vimeo-player[data-vimeo-fullscreen="true"] .vimeo-player__fullscreen svg:nth-child(2) { display: block; }
+.vimeo-player__duration { flex-shrink: 0; width: 2.25em; }
+.vimeo-player__duration-span { text-align: center; white-space: nowrap; user-select: none; width: 100%; display: block; }
+
+/* ============================================================
+   17 — EXPANDING FEATURE PILLS  (osmo/expanding-feature-pills.md)
+   Re-skinned to the Midnight content-bubble family.
+   Structural + [data-feature-pills-*] state rules preserved.
+   ============================================================ */
+[data-feature-pills-init] { --content-item-expanded: 25em; }
+@media (max-width:991px){ [data-feature-pills-init] { --content-item-expanded: calc(50% - 0.5em); } }
+@media (max-width:767px){ [data-feature-pills-init] { --content-item-expanded: 100%; } }
+
+.feature-pills__wrap {
+  color: var(--cream); background-color: var(--midnight);
+  border: 1px solid var(--color-rule-strong); border-radius: var(--radius-l);
+  width: 100%; max-width: 75em; height: 40em; position: relative; overflow: clip;
+}
+.feature-pills__layout { justify-content: flex-start; align-items: stretch; width: 100%; height: 100%; display: flex; position: relative; }
+.feature-pills__col { width: 50%; position: relative; }
+.feature-pills__visual-collection { z-index: 0; width: 100%; height: 100%; position: relative; }
+.feature-pills__visual-item { opacity: 0; width: 100%; height: 100%; position: absolute; inset: 0%; }
+.feature-pills__visual-list { width: 100%; height: 100%; position: relative; overflow: hidden; }
+.feature-pills__visual-img { object-fit: cover; width: 100%; height: 100%; }
+.feature-pills__info-collection { flex-flow: column; justify-content: center; align-items: flex-start; width: 100%; height: 100%; padding-inline: 1.25em; display: flex; }
+.feature-pills__info-list { gap: .75em; max-width: var(--content-item-expanded); flex-flow: column; flex: none; justify-content: center; align-items: flex-start; width: 100%; margin: 0 auto; padding: 0; list-style: none; display: flex; }
+.feature-pills__info-item { padding: 0; position: relative; }
+.feature-pills__item-bg { z-index: 0; background-color: color-mix(in oklab, var(--cream) 10%, transparent); border-radius: 2em; width: 100%; height: 100%; position: absolute; inset: 0%; }
+.feature-pills__item-button { z-index: 1; gap: .625em; background-color: #0000; border: 0; flex-flow: row; justify-content: flex-start; align-items: center; padding: .75em 1.25em; display: flex; position: relative; cursor: pointer; color: var(--cream); }
+.feature-pills__item-label { letter-spacing: -.015em; white-space: nowrap; flex: none; font-size: 1.125em; font-weight: var(--fw-medium); font-family: var(--sans); }
+.feature-pills__item-icon { aspect-ratio: 1; background-color: color-mix(in oklab, var(--cream) 20%, transparent); border-radius: 100em; flex: none; justify-content: center; align-items: center; width: 1.25em; display: flex; position: relative; }
+.feature-pills__item-icon-bar { background-color: var(--cream); flex: none; width: 1px; height: 50%; position: absolute; }
+.feature-pills__item-icon-bar.is--horizontal { width: 50%; height: 1px; }
+.feature-pills__visual-cover { z-index: 1; width: 100%; height: 100%; position: absolute; inset: 0%; }
+.feature-pills__visual-cover-img { object-fit: cover; width: 100%; height: 100%; }
+.feature-pills__item-content { z-index: 2; pointer-events: none; position: absolute; inset: 0%; }
+.feature-pills__item-mask { width: 100%; height: 100%; overflow: hidden; }
+.feature-pills__item-inner { max-width: var(--content-item-expanded); flex-flow: column; justify-content: flex-start; align-items: flex-start; width: max-content; padding: 1.25em 1.25em 1.75em; display: flex; }
+.feature-pills__item-body { margin: 0; font-size: 1.125em; font-weight: var(--fw-medium); font-family: var(--sans); }
+.feature-pills__item-body-span { opacity: .6; font-weight: var(--fw-regular); }
+.feature-pills__close { z-index: 2; position: absolute; top: 1em; right: 1em; }
+.feature-pills__close-button { aspect-ratio: 1; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); background-color: color-mix(in oklab, var(--cream) 12%, transparent); border: 0; border-radius: 10em; justify-content: center; align-items: center; width: 2em; padding: 8px; display: flex; position: relative; cursor: pointer; }
+/* state rules (verbatim from Osmo) */
+[data-feature-pills-button] { opacity: 1; transition: opacity 400ms ease-in-out 300ms; }
+[data-feature-pills-inner] { opacity: 0; transition: opacity 300ms ease-in-out 0ms; }
+[data-feature-pills-visual] { opacity: 0; transition: opacity 350ms ease-in-out; }
+[data-feature-pills-cover] { opacity: 1; transition: opacity 350ms ease-in-out; }
+[data-feature-pills-item][data-active="true"] [data-feature-pills-button] { opacity: 0; transition: opacity 50ms ease-in-out 0ms; }
+[data-feature-pills-item][data-active="true"] [data-feature-pills-inner] { opacity: 1; }
+[data-feature-pills-visual][data-active="true"] { opacity: 1; }
+[data-feature-pills-cover][data-active="false"] { opacity: 0; }
+[data-feature-pills-close] { transform: scale(0) rotate(135deg); opacity: 0; pointer-events: none; transition: all 500ms cubic-bezier(.7,0,.3,1); }
+[data-feature-pills-active="true"] [data-feature-pills-close] { transform: scale(1) rotate(45deg); opacity: 1; pointer-events: auto; }
+@media (max-width:991px){
+  .feature-pills__wrap { background-color: #0000; border: 0; border-radius: 0; height: auto; color: var(--color-text); }
+  .feature-pills__layout { flex-flow: column; }
+  .feature-pills__col { width: 100%; }
+  .feature-pills__col.is--visual { aspect-ratio: 1; border-radius: var(--radius-l); order: -9999; overflow: hidden; }
+  .feature-pills__info-collection { padding: 2em 0 3em; }
+  .feature-pills__info-list { flex-flow: wrap; justify-content: flex-start; align-items: flex-start; max-width: none; }
+  .feature-pills__info-item { width: var(--content-item-expanded); }
+  .feature-pills__item-button { justify-content: space-between; width: 100%; color: var(--color-text); }
+  .feature-pills__item-label { font-family: var(--sans); }
+  .feature-pills__item-bg { background-color: var(--color-bg-muted); }
+  .feature-pills__item-icon { background-color: var(--color-rule-strong); }
+  .feature-pills__item-icon-bar { background-color: var(--color-text); }
+  .feature-pills__item-inner { max-width: 100%; }
+}
+
+/* ============================================================
+   18 — HORIZONTAL SCROLLING SECTIONS  (osmo/horizontal-scrolling-sections.md)
+   Re-skinned panels = rounded media-frame + step label.
+   ============================================================ */
+.horizontal__wrap { flex-flow: row; min-height: 100dvh; display: flex; overflow: hidden; align-items: center; background: var(--color-bg); }
+.horizontal__panel { flex: none; width: min(60vw, 44em); }
+.horizontal__panel-inner { width: 100%; padding: var(--s-4); }
+.h-card { border-radius: var(--radius-l); aspect-ratio: 4 / 3; display: flex; flex-flow: column; justify-content: flex-end; align-items: flex-start; padding: var(--s-6); position: relative; overflow: hidden; }
+.h-card__bg { z-index: 0; position: absolute; inset: 0; }
+.h-card__bg img { object-fit: cover; width: 100%; height: 100%; }
+.h-card__scrim { z-index: 1; position: absolute; inset: 0; background: linear-gradient(to top, color-mix(in oklab, var(--midnight) 75%, transparent), transparent 55%); }
+.h-card__inner { z-index: 2; position: relative; color: var(--cream); }
+.h-card__step { font: var(--type-eyebrow); text-transform: uppercase; letter-spacing: var(--tr-eyebrow); opacity: .7; }
+.h-card__title { font: var(--type-h2); letter-spacing: var(--tr-h); margin-top: var(--s-2); }
+@media (max-width:767px){
+  .horizontal__wrap { flex-flow: column; min-height: 0; }
+  .horizontal__panel { width: 100%; }
+  .h-card { aspect-ratio: 16/10; }
+  .h-card__title { font: var(--type-h3); }
+}

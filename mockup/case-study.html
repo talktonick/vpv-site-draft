@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V+V — Case Study (assembled)</title>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/typography.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="modules.css">
+  <link rel="stylesheet" href="islands.css">
+  <link rel="stylesheet" href="islands2.css">
+  <link rel="stylesheet" href="islands3.css">
+  <link rel="stylesheet" href="layout.css">
+  <style>
+    /* Page chrome (assembled-page only; uses V+V tokens) */
+    .cs-nav { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between;
+      padding: var(--s-4) var(--s-6); background: color-mix(in oklab, var(--cream) 86%, transparent);
+      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--color-rule); }
+    .cs-nav__brand { font: var(--type-ui); font-weight: var(--fw-medium); letter-spacing: var(--tr-ui); }
+    .cs-nav__brand em { font-family: var(--serif); font-style: italic; font-weight: var(--fw-light); }
+    .cs-nav__links { display: flex; gap: var(--s-5); font: var(--type-ui); color: var(--color-text-muted); }
+    .cs-nav__links a:hover { color: var(--color-accent); }
+    .cs-section { padding-block: var(--s-9); }
+    .cs-section--tight { padding-block: var(--s-7); }
+    .cs-eyebrow { font: var(--type-eyebrow); text-transform: uppercase; letter-spacing: var(--tr-eyebrow); color: var(--color-accent); margin-bottom: var(--s-4); }
+    .cs-section-title { font: var(--type-h2); letter-spacing: var(--tr-h); max-width: 20ch; margin-bottom: var(--s-6); }
+    .cs-hero-media { margin-top: var(--s-7); }
+    .see-hear { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--s-6); align-items: center; }
+    @media (max-width: 991px) { .see-hear { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="cs-nav">
+    <span class="cs-nav__brand">Verbal<em>+</em>Visual</span>
+    <span class="cs-nav__links"><a href="gallery.html">Work</a><a href="#">Services</a><a href="#">Insights</a><a href="#">Contact</a></span>
+  </nav>
+
+  <!-- HERO / CASE HEADER -->
+  <header class="cs-section mod-container--wide">
+    <p class="cs-eyebrow">Case Study · Replatform</p>
+    <div class="case-header__top">
+      <h1 class="case-header__title">An accelerated Shopify replatform</h1>
+      <p class="case-header__lede">A four-month timeline, a rapid theme-design solution, and a launch that captured the brand's minimalist style without losing momentum.</p>
+    </div>
+    <div class="case-header__meta">
+      <div><span class="case-meta__label">Client</span><span class="case-meta__value">Quip</span></div>
+      <div><span class="case-meta__label">Year</span><span class="case-meta__value">2024</span></div>
+      <div><span class="case-meta__label">Industry</span><span class="case-meta__value">Oral Care · DTC</span></div>
+      <div><span class="case-meta__label">Scope</span><span class="case-meta__value">Replatform · Theme · Subscriptions · CRO</span></div>
+    </div>
+  </header>
+
+  <!-- full-bleed ambient hero video -->
+  <div class="mod-fullbleed cs-hero-media">
+    <div class="media-frame media-frame--16x9 media-frame--fullbleed">
+      <span class="media-frame__badge">Ambient · muted loop</span>
+      <video src="../assets/video/home-reel.mp4" autoplay muted loop playsinline></video>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <section class="cs-section--tight mod-container--wide">
+    <div class="metrics-strip" style="border-top:0;margin-top:0">
+      <div class="metric"><div class="metric__value">4mo</div><div class="metric__label">Kickoff to launch</div></div>
+      <div class="metric"><div class="metric__value">+38%</div><div class="metric__label">Conversion rate post-launch</div></div>
+      <div class="metric"><div class="metric__value">0</div><div class="metric__label">Days of downtime at cutover</div></div>
+    </div>
+  </section>
+
+  <!-- THE CHALLENGE — prose + TOC -->
+  <section class="cs-section">
+    <div data-toc-wrap data-toc-levels="h2,h3" data-toc-offset="90" class="toc-layout">
+      <aside class="toc-sidebar">
+        <p class="toc-hero__label">On this page</p>
+        <nav data-toc-list class="toc-list"><a data-toc-link data-toc-item href="#" class="toc-link"><span data-toc-text=""></span></a></nav>
+      </aside>
+      <div data-toc-content class="toc-article">
+        <h2>The constraint was never the platform</h2>
+        <p>Quip came to us with a four-month window and a store that had accumulated years of logic — redirects, metafields, and merchandising rules nobody fully remembered but everybody depended on. The brief looked like a replatform. The real work was an edit.</p>
+        <h3>What we chose to carry forward</h3>
+        <p>We mapped the existing system and decided, deliberately, what earned its place in the new build. A migration is a <em>forcing function</em> for editing — and treating it that way is what kept the timeline honest.</p>
+        <h2>A theme built to be merchandised</h2>
+        <p>The new system put control in the marketing team's hands: drag-and-drop collection rules, a flexible PDP, and a subscription flow built for retention from day one — no developer in the loop for everyday updates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHT STATEMENT -->
+  <section class="cs-section mod-container--wide">
+    <h2 class="highlight-statement" data-highlight-text data-highlight-fade="0.18">The best migration is the one your customers never notice — <em>until</em> everything is suddenly faster.</h2>
+  </section>
+
+  <!-- MEDIA PAIR -->
+  <section class="cs-section mod-container--wide">
+    <div class="media-pair">
+      <div class="media-frame media-frame--3x4"><span class="media-frame__badge">Video</span><video src="../assets/video/home-reel.mp4" autoplay muted loop playsinline></video></div>
+      <div class="media-frame media-frame--3x4"><img src="../assets/images/pdp-playground/03-back.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <!-- MEDIA + TEXT BUBBLE -->
+  <section class="cs-section mod-container--wide">
+    <div class="media-text">
+      <div class="media-text__media"><div class="media-frame media-frame--4x5"><img src="../assets/images/pdp-playground/04-detail.jpg" alt=""></div></div>
+      <div class="content-card">
+        <p class="content-card__eyebrow">Design Detail</p>
+        <h3 class="content-card__heading">A pill system, built into the type</h3>
+        <p class="content-card__desc">Inspired by the form of the hero product, the pill becomes a defining feature within the typography's stylistic set — strengthening the connection between product and brand.</p>
+        <div class="content-card__footer">
+          <span class="content-card__label">Stylistic Sets</span>
+          <button class="content-card__cta" data-drawer-target="detail" aria-label="Read more"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE BUILT — feature pills -->
+  <section class="cs-section mod-container--wide">
+    <p class="cs-eyebrow">What we built</p>
+    <h2 class="cs-section-title">Four systems, one storefront</h2>
+    <div data-feature-pills-active="false" aria-label="features" data-feature-pills-init data-edit-mode="false" class="feature-pills__wrap">
+      <div class="feature-pills__layout">
+        <div class="feature-pills__col"><div data-feature-pills-collection class="feature-pills__info-collection"><ul role="list" data-feature-pills-list class="feature-pills__info-list">
+          <li data-feature-pills-item data-active="false" class="feature-pills__info-item"><div class="feature-pills__item-bg"></div><button data-feature-pills-button aria-expanded="false" class="feature-pills__item-button"><span class="feature-pills__item-label">Headless front end</span><span class="feature-pills__item-icon"><span class="feature-pills__item-icon-bar"></span><span class="feature-pills__item-icon-bar is--horizontal"></span></span></button><div aria-hidden="true" data-feature-pills-content class="feature-pills__item-content"><div class="feature-pills__item-mask"><div data-feature-pills-inner class="feature-pills__item-inner"><p class="feature-pills__item-body">Headless front end.<br><br><span class="feature-pills__item-body-span">Decoupled UI so the team ships changes without waiting on the platform.</span></p></div></div></div></li>
+          <li data-feature-pills-item data-active="false" class="feature-pills__info-item"><div class="feature-pills__item-bg"></div><button data-feature-pills-button aria-expanded="false" class="feature-pills__item-button"><span class="feature-pills__item-label">Subscription engine</span><span class="feature-pills__item-icon"><span class="feature-pills__item-icon-bar"></span><span class="feature-pills__item-icon-bar is--horizontal"></span></span></button><div aria-hidden="true" data-feature-pills-content class="feature-pills__item-content"><div class="feature-pills__item-mask"><div data-feature-pills-inner class="feature-pills__item-inner"><p class="feature-pills__item-body">Subscription engine.<br><br><span class="feature-pills__item-body-span">Recurring orders and a self-serve portal built for retention.</span></p></div></div></div></li>
+          <li data-feature-pills-item data-active="false" class="feature-pills__info-item"><div class="feature-pills__item-bg"></div><button data-feature-pills-button aria-expanded="false" class="feature-pills__item-button"><span class="feature-pills__item-label">Merchandising tools</span><span class="feature-pills__item-icon"><span class="feature-pills__item-icon-bar"></span><span class="feature-pills__item-icon-bar is--horizontal"></span></span></button><div aria-hidden="true" data-feature-pills-content class="feature-pills__item-content"><div class="feature-pills__item-mask"><div data-feature-pills-inner class="feature-pills__item-inner"><p class="feature-pills__item-body">Merchandising tools.<br><br><span class="feature-pills__item-body-span">Drag-and-drop collection rules — no developer in the loop.</span></p></div></div></div></li>
+          <li data-feature-pills-item data-active="false" class="feature-pills__info-item"><div class="feature-pills__item-bg"></div><button data-feature-pills-button aria-expanded="false" class="feature-pills__item-button"><span class="feature-pills__item-label">Analytics layer</span><span class="feature-pills__item-icon"><span class="feature-pills__item-icon-bar"></span><span class="feature-pills__item-icon-bar is--horizontal"></span></span></button><div aria-hidden="true" data-feature-pills-content class="feature-pills__item-content"><div class="feature-pills__item-mask"><div data-feature-pills-inner class="feature-pills__item-inner"><p class="feature-pills__item-body">Analytics layer.<br><br><span class="feature-pills__item-body-span">Server-side events and clean attribution under the whole stack.</span></p></div></div></div></li>
+        </ul></div></div>
+        <div class="feature-pills__col is--visual"><div class="feature-pills__visual-collection"><div class="feature-pills__visual-list">
+          <div aria-hidden="true" data-feature-pills-visual class="feature-pills__visual-item"><video class="feature-pills__visual-img" src="../assets/video/home-reel.mp4" autoplay muted loop playsinline></video></div>
+          <div aria-hidden="true" data-feature-pills-visual class="feature-pills__visual-item"><img src="../assets/images/pdp-playground/02-front.jpg" class="feature-pills__visual-img"></div>
+          <div aria-hidden="true" data-feature-pills-visual class="feature-pills__visual-item"><img src="../assets/images/pdp-playground/04-detail.jpg" class="feature-pills__visual-img"></div>
+          <div aria-hidden="true" data-feature-pills-visual class="feature-pills__visual-item"><img src="../assets/images/pdp-playground/05-product.jpg" class="feature-pills__visual-img"></div>
+        </div></div><div data-feature-pills-cover class="feature-pills__visual-cover"><img src="../assets/images/pdp-playground/01-fullbody.jpg" class="feature-pills__visual-cover-img"></div></div>
+      </div>
+      <div class="feature-pills__close"><button data-feature-pills-close aria-hidden="true" class="feature-pills__close-button"><span class="feature-pills__item-icon-bar"></span><span class="feature-pills__item-icon-bar is--horizontal"></span></button></div>
+    </div>
+  </section>
+
+  <!-- THE PROCESS — horizontal scroll -->
+  <section class="cs-section--tight">
+    <div class="mod-container--wide"><p class="cs-eyebrow">The process</p><h2 class="cs-section-title">Four months, four moves</h2></div>
+    <section class="horizontal__wrap" data-horizontal-scroll-wrap data-horizontal-scroll-disable="mobileLandscape">
+      <div data-horizontal-scroll-panel class="horizontal__panel"><div class="horizontal__panel-inner"><div class="h-card"><div class="h-card__bg"><img src="../assets/images/pdp-playground/01-fullbody.jpg" alt=""></div><div class="h-card__scrim"></div><div class="h-card__inner"><p class="h-card__step">Step 01</p><h2 class="h-card__title">Discover</h2></div></div></div></div>
+      <div data-horizontal-scroll-panel class="horizontal__panel"><div class="horizontal__panel-inner"><div class="h-card"><div class="h-card__bg"><img src="../assets/images/pdp-playground/02-front.jpg" alt=""></div><div class="h-card__scrim"></div><div class="h-card__inner"><p class="h-card__step">Step 02</p><h2 class="h-card__title">Design</h2></div></div></div></div>
+      <div data-horizontal-scroll-panel class="horizontal__panel"><div class="horizontal__panel-inner"><div class="h-card"><div class="h-card__bg"><img src="../assets/images/pdp-playground/04-detail.jpg" alt=""></div><div class="h-card__scrim"></div><div class="h-card__inner"><p class="h-card__step">Step 03</p><h2 class="h-card__title">Build</h2></div></div></div></div>
+      <div data-horizontal-scroll-panel class="horizontal__panel"><div class="horizontal__panel-inner"><div class="h-card"><div class="h-card__bg"><img src="../assets/images/pdp-playground/05-product.jpg" alt=""></div><div class="h-card__scrim"></div><div class="h-card__inner"><p class="h-card__step">Step 04</p><h2 class="h-card__title">Launch</h2></div></div></div></div>
+    </section>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <section class="cs-section mod-container">
+    <blockquote class="pull-quote"><p class="pull-quote__text">They understood what we were trying to achieve and worked tirelessly to help us in our incredibly rapid transition.</p><cite class="pull-quote__cite">— Meredith Glansberg, Chief Revenue Officer, Quip</cite></blockquote>
+  </section>
+
+  <!-- SEE / HEAR -->
+  <section class="cs-section mod-container--wide">
+    <div class="see-hear">
+      <button class="media-frame media-frame--16x9" data-vimeo-lightbox-control="open" data-vimeo-lightbox-id="1019191082" style="border:0;padding:0;cursor:pointer;width:100%;display:block;">
+        <img src="../assets/images/pdp-playground/05-product.jpg" alt="" data-vimeo-lightbox-placeholder>
+        <span class="media-frame__badge">▶ Watch the film</span>
+      </button>
+      <div data-howler data-howler-src="../assets/audio/pfi-david-model.m4a" data-howler-status="not-playing" class="howler-player" style="max-width:none">
+        <div class="howler-player__top">
+          <div class="howler-player__cover"><img src="../assets/images/pdp-playground/04-detail.jpg" alt="" class="howler-player__cover-img"></div>
+          <div class="howler-player__title"><h2 class="howler-player__title-h2">In conversation</h2><p class="howler-player__title-p">Founder interview</p></div>
+          <button data-howler-control="toggle-play" aria-label="Play" aria-pressed="false" class="howler-player__btn">
+            <div class="howler-player__btn-play"><span class="howler-player__btn-span">Play</span><svg viewBox="0 0 42 42" fill="none" width="100%"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.4 10.74a1.93 1.93 0 0 1 2.74-1.42c1.4.56 4.54 1.85 8.5 4.5 3.97 2.1 6.84 3.97 8.36 5.03 1.3.91 1.3 2.55 0 3.46-1.51 1.06-4.4 2.93-8.36 4.99-3.96 2.1-7.1 3.4-8.5 3.95-1.49.6-3.16-.3-3.35-1.8C10.6 31.13 10.15 27.14 10.15 21.75c0-5.38.43-9.37.65-11.13Z" fill="currentColor"></path></svg></div>
+            <div class="howler-player__btn-pause"><span class="howler-player__btn-span">Pause</span><svg viewBox="0 0 24 24" fill="none" width="100%"><path d="M6 5.58C6 5.26 6.3 5 6.67 5h2.66c.37 0 .67.26.67.58v12.84c0 .32-.3.58-.67.58H6.67A.6.6 0 0 1 6 18.42V5.58Z" fill="currentColor"></path><path d="M14 5.58c0-.32.3-.58.67-.58h2.66c.37 0 .67.26.67.58v12.84c0 .32-.3.58-.67.58h-2.66a.6.6 0 0 1-.67-.58V5.58Z" fill="currentColor"></path></svg></div>
+          </button>
+        </div>
+        <div class="howler-player__bottom"><span data-howler-info="progress" class="howler-player__time">0:00</span><div data-howler-control="timeline" class="howler-player__timeline"><div class="howler-player__timeline-back"></div><div data-howler-control="progress" class="howler-player__timeline-progress"></div></div><span data-howler-info="duration" class="howler-player__time">0:00</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKSTREAMS — tab system -->
+  <section class="cs-section mod-container--wide">
+    <p class="cs-eyebrow">How it came together</p>
+    <div data-tabs-autoplay-duration="5000" data-tabs="wrapper" data-tabs-autoplay="true" class="tab-layout__wrap">
+      <div class="tab-layout__col"><div class="tab-content__inner"><div role="tablist" class="tab-content__bottom">
+        <a role="tab" data-tabs="content-item" href="#" class="tab-content__item"><div class="tab-content__item-main"><div class="content-item__nr"><div>01</div></div><h2 class="content-item__heading">Discovery</h2></div><div data-tabs="item-details" class="tab-content__item-detail"><div class="tab-description__spacer"></div><p class="tab-description">Mapping the accumulated logic of the existing store — what to keep, cut, and rethink.</p><div class="tab-description__spacer"></div></div><div class="tab-content__item-bottom"><div data-tabs="item-progress" class="tab-progress"></div></div></a>
+        <a role="tab" data-tabs="content-item" href="#" class="tab-content__item"><div class="tab-content__item-main"><div class="content-item__nr"><div>02</div></div><h2 class="content-item__heading">Design</h2></div><div data-tabs="item-details" class="tab-content__item-detail"><div class="tab-description__spacer"></div><p class="tab-description">A theme system built to merchandise without a developer — flexible where it matters.</p><div class="tab-description__spacer"></div></div><div class="tab-content__item-bottom"><div data-tabs="item-progress" class="tab-progress"></div></div></a>
+        <a role="tab" data-tabs="content-item" href="#" class="tab-content__item"><div class="tab-content__item-main"><div class="content-item__nr"><div>03</div></div><h2 class="content-item__heading">Launch</h2></div><div data-tabs="item-details" class="tab-content__item-detail"><div class="tab-description__spacer"></div><p class="tab-description">A clean cutover with zero downtime, and a legible system the team can keep improving.</p><div class="tab-description__spacer"></div></div><div class="tab-content__item-bottom"><div data-tabs="item-progress" class="tab-progress"></div></div></a>
+      </div></div></div>
+      <div class="tab-layout__col"><div aria-live="polite" role="region" class="tab-visual__wrap">
+        <div data-tabs="visual-item" role="tabpanel" class="tab-visual__item active"><div class="tab-visual__inner"><img src="../assets/images/pdp-playground/01-fullbody.jpg" class="tab-image"></div></div>
+        <div data-tabs="visual-item" role="tabpanel" class="tab-visual__item"><div class="tab-visual__inner"><img src="../assets/images/pdp-playground/02-front.jpg" class="tab-image"></div></div>
+        <div data-tabs="visual-item" role="tabpanel" class="tab-visual__item"><div class="tab-visual__inner"><img src="../assets/images/pdp-playground/05-product.jpg" class="tab-image"></div></div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- GALLERY w/ tooltips -->
+  <section class="cs-section mod-container--wide">
+    <p class="cs-eyebrow">Selected screens</p>
+    <div class="tip-grid">
+      <div class="tip-grid__cell" data-css-tooltip-hover><div class="media-frame media-frame--3x4"><img src="../assets/images/pdp-playground/02-front.jpg" alt=""></div><span data-css-tooltip-x="center" data-css-tooltip-y="top" class="css-tooltip__box"><span class="css-tooltip__box-inner"><span class="css-tooltip__card"><span class="css-tooltip__card-h">Product page</span><span class="css-tooltip__card-p css-tooltip__card-text">Redesigned PDP — merchandised without a developer.</span></span><span class="css-tootlip__tip"><svg viewBox="0 0 124 30" fill="none" width="100%"><path d="M103.284 3H121c1.657 0 3-1.343 3-3H0c0 1.657 1.343 3 3 3h17.716c5.304 0 10.391 2.107 14.142 5.858l16.535 16.535c5.858 5.858 15.356 5.858 21.214 0l16.535-16.535C92.893 5.107 97.98 3 103.284 3Z" fill="currentColor"/></svg></span></span></span></div>
+      <div class="tip-grid__cell" data-css-tooltip-hover><div class="media-frame media-frame--3x4"><img src="../assets/images/pdp-playground/04-detail.jpg" alt=""></div><span data-css-tooltip-x="center" data-css-tooltip-y="top" class="css-tooltip__box"><span class="css-tooltip__box-inner"><span class="css-tooltip__card"><span class="css-tooltip__card-h">Detail system</span><span class="css-tooltip__card-p css-tooltip__card-text">Reusable modules that scale across the catalog.</span></span><span class="css-tootlip__tip"><svg viewBox="0 0 124 30" fill="none" width="100%"><path d="M103.284 3H121c1.657 0 3-1.343 3-3H0c0 1.657 1.343 3 3 3h17.716c5.304 0 10.391 2.107 14.142 5.858l16.535 16.535c5.858 5.858 15.356 5.858 21.214 0l16.535-16.535C92.893 5.107 97.98 3 103.284 3Z" fill="currentColor"/></svg></span></span></span></div>
+      <div class="tip-grid__cell" data-css-tooltip-hover><div class="media-frame media-frame--3x4"><img src="../assets/images/pdp-playground/05-product.jpg" alt=""></div><span data-css-tooltip-x="center" data-css-tooltip-y="top" class="css-tooltip__box"><span class="css-tooltip__box-inner"><span class="css-tooltip__card"><span class="css-tooltip__card-h">Packaging</span><span class="css-tooltip__card-p css-tooltip__card-text">Studio photography shot to a consistent system.</span></span><span class="css-tootlip__tip"><svg viewBox="0 0 124 30" fill="none" width="100%"><path d="M103.284 3H121c1.657 0 3-1.343 3-3H0c0 1.657 1.343 3 3 3h17.716c5.304 0 10.391 2.107 14.142 5.858l16.535 16.535c5.858 5.858 15.356 5.858 21.214 0l16.535-16.535C92.893 5.107 97.98 3 103.284 3Z" fill="currentColor"/></svg></span></span></span></div>
+    </div>
+  </section>
+
+  <!-- RECOGNITION — directional list -->
+  <section class="cs-section mod-container--wide">
+    <p class="cs-eyebrow">Recognition</p>
+    <div data-directional-hover data-type="y" class="directional-list">
+      <div class="directional-list__info"><div class="directional-list__col-award"><p class="direcitonal-list__eyebrow">Award</p></div><div class="directional-list__col-client"><p class="direcitonal-list__eyebrow">Body</p></div><div class="directional-list__col-year"><p class="direcitonal-list__eyebrow">Year</p></div></div>
+      <a data-directional-hover-item href="#" class="directional-list__item"><div data-directional-hover-tile class="directional-list__hover-tile"></div><div class="directional-list__border is--item"></div><div class="directional-list__col-award"><p class="direcitonal-list__p">Plus Partner of the Year</p></div><div class="directional-list__col-client"><p class="direcitonal-list__p">Shopify</p></div><div class="directional-list__col-year"><p class="direcitonal-list__p">2024</p></div></a>
+      <a data-directional-hover-item href="#" class="directional-list__item"><div data-directional-hover-tile class="directional-list__hover-tile"></div><div class="directional-list__border is--item"></div><div class="directional-list__col-award"><p class="direcitonal-list__p">Best Subscription Experience</p></div><div class="directional-list__col-client"><p class="direcitonal-list__p">Commerce Awards</p></div><div class="directional-list__col-year"><p class="direcitonal-list__p">2024</p></div></a>
+      <div class="directional-list__border"></div>
+    </div>
+  </section>
+
+  <!-- UP NEXT -->
+  <section class="cs-section mod-container--wide">
+    <h2 class="up-next__title">Up next</h2>
+    <div class="up-next__grid">
+      <a class="related-card" href="#"><div class="media-frame media-frame--16x9"><img src="../assets/images/pdp-playground/01-fullbody.jpg" alt=""></div><div class="related-card__kicker"><span>Case Study</span><span>2023</span></div><div class="related-card__title">Rebuilding subscription for retention</div></a>
+      <a class="related-card" href="#"><div class="media-frame media-frame--16x9"><img src="../assets/images/pdp-playground/03-back.jpg" alt=""></div><div class="related-card__kicker"><span>Article</span><span>Strategy</span></div><div class="related-card__title">When native interactions break down</div></a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cs-section mod-container--wide">
+    <div class="cta-block"><h2 class="cta-block__title">Let's talk.</h2><p class="cta-block__sub">If this resonates with where your brand is headed, we'd like to hear about it.</p><a href="#" class="button button--primary">Talk to our team</a></div>
+  </section>
+
+  <footer style="max-width: var(--col-wide); margin-inline: auto; padding: var(--s-8) var(--s-6); border-top: 1px solid var(--color-rule);">
+    <p class="t-eyebrow">Verbal+Visual · Assembled case-study page (composite). Built from the V+V module library.</p>
+  </footer>
+
+  <!-- Vimeo lightbox overlay (one per page) -->
+  <div class="vimeo-lightbox" data-vimeo-lightbox-init data-vimeo-activated="false" data-vimeo-playing="false" data-vimeo-fullscreen="false" data-vimeo-hover="false" data-vimeo-loaded="false" data-vimeo-update-size="true" data-vimeo-muted="false">
+    <div data-vimeo-lightbox-control="close" class="vimeo-lightbox__bg"><svg class="vimeo-lightbox__loading-svg" viewBox="0 0 100 100" width="100%"><path fill="currentColor" d="M73 50c0-12.7-10.3-23-23-23S27 37.3 27 50 M30.9 50c0-10.5 8.5-19.1 19.1-19.1S69.1 39.5 69.1 50"></path><animateTransform attributeName="transform" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform></svg></div>
+    <div class="vimeo-lightbox__calc"><div class="vimeo-lightbox__calc-wrap"><div data-vimeo-lightbox-player class="vimeo-lightbox__player">
+      <div class="vimeo-lightbox__before"></div>
+      <iframe src="" width="640" height="360" frameborder="0" allowfullscreen allow="autoplay; encrypted-media" class="vimeo-lightbox__iframe"></iframe>
+      <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="vimeo-lightbox__placeholder">
+      <div class="vimeo-lightbox__dark"></div>
+      <div data-vimeo-control="play" class="vimeo-lightbox__play"><div class="vimeo-lightbox__btn"><svg viewBox="0 0 24 24" fill="none" width="100%" class="vimeo-lightbox__btn-play-svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.38 6.14a1.4 1.4 0 0 1 2-1.03c1.02.4 3.32 1.35 6.23 2.88 2.91 1.53 4.96 2.87 5.85 3.48.76.52.76 1.55 0 2.05-.88.6-2.9 1.92-5.85 3.48-2.95 1.55-5.22 2.49-6.23 2.88a1.4 1.4 0 0 1-1.97-1.04C6.25 17.86 6 15.58 6 12.5s.25-5.36.38-6.36Z" fill="currentColor"></path></svg></div></div>
+      <div data-vimeo-control="pause" class="vimeo-lightbox__pause"><div class="vimeo-lightbox__btn"><svg viewBox="0 0 24 24" fill="none" width="100%" class="vimeo-lightbox__btn-pause-svg"><path d="M8 6.5C8 6.22 8.22 6 8.5 6h2c.28 0 .5.22.5.5v11c0 .28-.22.5-.5.5h-2a.5.5 0 0 1-.5-.5v-11Z" fill="currentColor"></path><path d="M14 6.5c0-.28.22-.5.5-.5h2c.28 0 .5.22.5.5v11c0 .28-.22.5-.5.5h-2a.5.5 0 0 1-.5-.5v-11Z" fill="currentColor"></path></svg></div></div>
+      <div class="vimeo-lightbox__interface"><div class="vimeo-lightbox__interface-bottom">
+        <div class="vimeo-lightbox__duration"><span data-vimeo-duration class="vimeo-lightbox__duration-span">0:00</span></div>
+        <div class="vimeo-lightbox__timeline"><progress class="vimeo-lightbox__timeline-progress" min="0" max="100" value="0"></progress><input type="range" min="0" max="100" step="0.01" data-vimeo-control="timeline" class="vimeo-lightbox__timeline-input" value="0"></div>
+        <div data-vimeo-control="mute" class="vimeo-lightbox__mute"><svg viewBox="0 0 24 24" fill="none" width="100%" class="vimeo-lightbox__volume-up-svg"><path d="M3 9v6h4l5 5V4L7 9H3Zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03ZM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77Z" fill="currentColor"></path></svg><svg viewBox="0 0 24 24" fill="none" width="100%" class="vimeo-lightbox__volume-mute-svg"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63ZM19 12c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.8 8.8 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71ZM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.7 8.7 0 0 0 3.69-1.81L19.73 21 21 19.73 12 10.73 4.27 3ZM12 4 9.91 6.09 12 8.18V4Z" fill="currentColor"></path></svg></div>
+        <div class="vimeo-lightbox__fullscreen" data-vimeo-control="fullscreen"><svg viewBox="0 0 24 24" fill="none" width="100%" class="vimeo-lightbox__fullscreen-scale-svg"><rect x="3" y="14" width="2" height="7" fill="currentColor"/><rect x="3" y="3" width="2" height="7" fill="currentColor"/><rect x="19" y="3" width="2" height="7" fill="currentColor"/><rect x="19" y="14" width="2" height="7" fill="currentColor"/><rect x="3" y="19" width="7" height="2" fill="currentColor"/><rect x="14" y="19" width="7" height="2" fill="currentColor"/><rect x="3" y="3" width="7" height="2" fill="currentColor"/><rect x="14" y="3" width="7" height="2" fill="currentColor"/></svg><svg viewBox="0 0 24 24" fill="none" width="100%" class="vimeo-lightbox__fullscreen-shrink-svg"><rect x="7" y="2" width="2" height="7" fill="currentColor"/><rect x="15" y="2" width="2" height="7" fill="currentColor"/><rect x="15" y="15" width="2" height="7" fill="currentColor"/><rect x="8" y="15" width="2" height="7" fill="currentColor"/><rect x="2" y="7" width="7" height="2" fill="currentColor"/><rect x="3" y="15" width="7" height="2" fill="currentColor"/><rect x="15" y="7" width="7" height="2" fill="currentColor"/><rect x="15" y="15" width="7" height="2" fill="currentColor"/></svg></div>
+      </div></div>
+      <div class="vimeo-lightbox__loading"><svg class="vimeo-lightbox__loading-svg" viewBox="0 0 100 100" width="100%"><path fill="currentColor" d="M73 50c0-12.7-10.3-23-23-23S27 37.3 27 50 M30.9 50c0-10.5 8.5-19.1 19.1-19.1S69.1 39.5 69.1 50"></path><animateTransform attributeName="transform" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform></svg></div>
+    </div></div></div>
+    <button data-vimeo-lightbox-control="close" class="vimeo-lightbox__close"><div class="vimeo-lightbox__close-bar"></div><div class="vimeo-lightbox__close-bar is--duplicate"></div></button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"></script>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <!-- Drawer (one per page) -->
+  <div data-drawer data-drawer-status="closed" class="drawer">
+    <div data-drawer-close class="drawer__scrim"></div>
+    <aside class="drawer__panel">
+      <button data-drawer-close class="drawer__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+      <div data-drawer-name="detail" class="drawer__item">
+        <div class="media-frame media-frame--16x9 drawer__media"><img src="../assets/images/pdp-playground/04-detail.jpg" alt=""></div>
+        <p class="drawer__eyebrow">Design Detail</p>
+        <h3 class="drawer__title">A pill system, built into the type</h3>
+        <p class="drawer__body">Inspired by the form of the hero product, the pill becomes a defining feature within the typography's stylistic set — appearing in the logotype, the numerals, and the alternate glyphs.</p>
+        <p class="drawer__body">It's a small move with an outsized effect: the storefront and the product start to feel like one continuous idea, which is exactly what a brand system is for.</p>
+      </div>
+      <div data-drawer-name="story" class="drawer__item">
+        <div class="media-frame media-frame--16x9 drawer__media"><img src="../assets/images/pdp-playground/05-product.jpg" alt=""></div>
+        <p class="drawer__eyebrow">Project Overview</p>
+        <h3 class="drawer__title">The full story</h3>
+        <p class="drawer__body">A four-month timeline, a rapid theme-design solution, and a launch that captured the brand's minimalist style without losing momentum.</p>
+      </div>
+    </aside>
+  </div>
+
+  <script src="islands.js"></script>
+  <script src="islands2.js"></script>
+  <script src="islands3.js"></script>
+  <script src="layout.js"></script>
+</body>
+</html>

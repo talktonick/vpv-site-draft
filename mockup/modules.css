@@ -1,0 +1,424 @@
+/* ============================================================
+   V+V Module Library — mockup stylesheet
+   Built on the real V+V tokens (styles/tokens.css). This is a
+   reference/spec for the Webflow dev: structure + measurements to
+   translate into MAST classes. Reuses .button / .tag-pill from
+   styles/components.css; everything else is module CSS on the tokens.
+   ============================================================ */
+
+/* ---- Reset (normal scrolling page; NOT the SPA scroll-lock) ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: var(--type-body);
+  letter-spacing: var(--tr-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--purple); color: var(--cream); }
+
+/* ============================================================
+   GALLERY CHROME (the reference page wrapper — not a module)
+   ============================================================ */
+.gallery__intro {
+  max-width: var(--col-wide);
+  margin-inline: auto;
+  padding: var(--s-10) var(--s-6) var(--s-8);
+}
+.gallery__kicker {
+  font: var(--type-eyebrow); text-transform: uppercase;
+  letter-spacing: var(--tr-eyebrow); color: var(--color-accent);
+  margin-bottom: var(--s-4);
+}
+.gallery__title { font: var(--type-h1); letter-spacing: var(--tr-display); max-width: 18ch; }
+.gallery__lede {
+  font: var(--type-lead); color: var(--color-text-muted);
+  max-width: 60ch; margin-top: var(--s-5);
+}
+.gallery__meta {
+  margin-top: var(--s-6); padding-top: var(--s-5);
+  border-top: 1px solid var(--color-rule);
+  font: var(--type-ui); color: var(--color-text-subtle);
+  display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5);
+}
+
+/* Each module specimen */
+.specimen { padding: var(--s-9) 0; border-top: 1px dashed var(--color-rule); }
+.specimen__head {
+  max-width: var(--col-wide); margin-inline: auto;
+  padding-inline: var(--s-6); margin-bottom: var(--s-7);
+  display: flex; align-items: baseline; gap: var(--s-4); flex-wrap: wrap;
+}
+.specimen__num {
+  font: var(--type-eyebrow); color: var(--color-text-inverse);
+  background: var(--color-bg-inverse); border-radius: var(--radius-s);
+  padding: 2px var(--s-2); letter-spacing: var(--tr-eyebrow);
+}
+.specimen__name { font: var(--type-h4); }
+.specimen__note { font: var(--type-ui); color: var(--color-text-subtle); margin-left: auto; max-width: 44ch; text-align: right; }
+
+/* ============================================================
+   LAYOUT HELPERS (mirror MAST container widths)
+   ============================================================ */
+.mod-container { max-width: var(--col-medium); margin-inline: auto; padding-inline: var(--s-6); }
+.mod-container--wide { max-width: var(--col-wide); margin-inline: auto; padding-inline: var(--s-6); }
+.mod-container--narrow { max-width: var(--col-narrow); margin-inline: auto; padding-inline: var(--s-6); }
+.mod-fullbleed { width: 100%; }
+
+/* ============================================================
+   MEDIA FRAME — the shared primitive (rounded, ratio, clips)
+   ============================================================ */
+.media-frame {
+  position: relative; width: 100%; overflow: hidden;
+  border-radius: var(--radius-l); background: var(--color-bg-muted);
+}
+.media-frame > img, .media-frame > video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.media-frame--square  { aspect-ratio: 1 / 1; }
+.media-frame--16x9    { aspect-ratio: 16 / 9; }
+.media-frame--3x2     { aspect-ratio: 3 / 2; }
+.media-frame--4x5     { aspect-ratio: 4 / 5; }
+.media-frame--3x4     { aspect-ratio: 3 / 4; }
+.media-frame--2x3     { aspect-ratio: 2 / 3; }
+.media-frame--fullbleed { border-radius: 0; }
+
+/* a faint play affordance for video specimens */
+.media-frame__badge {
+  position: absolute; left: var(--s-4); bottom: var(--s-4); z-index: 1;
+  font: var(--type-eyebrow); text-transform: uppercase; letter-spacing: var(--tr-eyebrow);
+  color: var(--cream); background: color-mix(in oklab, var(--midnight) 55%, transparent);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  padding: var(--s-1) var(--s-3); border-radius: var(--radius-pill);
+}
+
+/* ============================================================
+   01 — ARTICLE HEADER
+   ============================================================ */
+.article-header { padding-block: var(--s-8) var(--s-6); }
+.article-header__eyebrow {
+  font: var(--type-eyebrow); text-transform: uppercase;
+  letter-spacing: var(--tr-eyebrow); color: var(--color-text-muted); margin-bottom: var(--s-4);
+}
+.article-header__title {
+  /* Neue Haas Display Light at display size + Victor Serif italic emphasis word
+     (the same pairing as .t-h1 em). Reads far stronger than full hairline serif. */
+  font-family: var(--sans); font-weight: var(--fw-light);
+  font-size: var(--t-display); line-height: 1.02; letter-spacing: var(--tr-display);
+  max-width: 16ch;
+}
+.article-header__title em { font-family: var(--serif); font-style: italic; font-weight: var(--fw-light); }
+.article-header__deck {
+  font-family: var(--sans); font-weight: var(--fw-regular);
+  font-size: var(--t-lead); line-height: 1.5; color: var(--color-text-muted);
+  max-width: 46ch; margin-top: var(--s-5);
+}
+.article-header__byline {
+  margin-top: var(--s-6); display: flex; align-items: center; gap: var(--s-3);
+}
+.article-header__avatar {
+  width: 2.5rem; height: 2.5rem; border-radius: 50%;
+  background: var(--color-bg-inverse); color: var(--color-text-inverse);
+  display: grid; place-items: center; font: var(--type-eyebrow);
+}
+.article-header__by { font: var(--serif); font-style: italic; font-weight: var(--fw-light); font-size: var(--t-lead); }
+.article-header__role { font-size: var(--t-small); color: var(--color-text-muted); }
+.article-header__tags { display: flex; gap: var(--s-2); margin-top: var(--s-6); flex-wrap: wrap; }
+
+/* ============================================================
+   02 — CASE STUDY HEADER (client/year/scope + metrics + scope cols)
+   ============================================================ */
+.case-header__top {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--s-7);
+  align-items: end;
+}
+.case-header__eyebrow {
+  font: var(--type-eyebrow); text-transform: uppercase;
+  letter-spacing: var(--tr-eyebrow); color: var(--color-accent); margin-bottom: var(--s-4);
+}
+.case-header__title { font: var(--type-h1); letter-spacing: var(--tr-display); max-width: 14ch; }
+.case-header__lede { font: var(--type-lead); color: var(--color-text-muted); }
+.case-header__meta {
+  display: flex; flex-wrap: wrap; gap: var(--s-6);
+  margin-top: var(--s-7); padding-top: var(--s-5); border-top: 1px solid var(--color-rule);
+}
+.case-meta__label {
+  font: var(--type-eyebrow); text-transform: uppercase;
+  letter-spacing: var(--tr-eyebrow); color: var(--color-text-subtle); display: block; margin-bottom: var(--s-1);
+}
+.case-meta__value { font: var(--type-ui); }
+.case-header__hero { margin-top: var(--s-7); }
+
+/* metrics strip */
+.metrics-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-6);
+  margin-top: var(--s-8); padding-top: var(--s-6); border-top: 1px solid var(--color-rule);
+}
+.metric__value { font: var(--type-h1); letter-spacing: var(--tr-display); color: var(--color-accent); }
+.metric__label { font: var(--type-ui); color: var(--color-text-muted); margin-top: var(--s-2); max-width: 22ch; }
+
+/* scope columns (Brand / Experience / Technology) */
+.scope-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-6); }
+.scope-col__head {
+  font: var(--type-eyebrow); text-transform: uppercase; letter-spacing: var(--tr-eyebrow);
+  color: var(--color-text-muted); padding-bottom: var(--s-3); margin-bottom: var(--s-3);
+  border-bottom: 1px solid var(--color-rule);
+}
+.scope-col__list { list-style: none; display: flex; flex-direction: column; gap: var(--s-2); }
+.scope-col__list li { font: var(--type-ui); color: var(--color-text); }
+
+/* ============================================================
+   03 — PROSE (info paragraph / article body)
+   ============================================================ */
+.prose { display: flex; flex-direction: column; gap: var(--s-5); }
+.prose h2 { font: var(--type-h2); letter-spacing: var(--tr-h); max-width: 22ch; margin-top: var(--s-5); }
+.prose h3 { font: var(--type-h3); letter-spacing: var(--tr-h); margin-top: var(--s-4); }
+.prose p { font: var(--type-body); color: var(--color-text); max-width: 64ch; }
+.prose p em { font-family: var(--serif); font-style: italic; }
+.prose a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ============================================================
+   04 — PULL QUOTE
+   ============================================================ */
+.pull-quote {
+  border-left: 2px solid var(--color-accent); padding-left: var(--s-5);
+  margin-block: var(--s-4);
+}
+.pull-quote__text {
+  font-family: var(--serif); font-style: italic; font-weight: var(--fw-light);
+  font-size: var(--t-h3); line-height: var(--lh-snug); color: var(--color-text); max-width: 30ch;
+}
+.pull-quote__cite { display: block; margin-top: var(--s-4); font: var(--type-ui); color: var(--color-text-muted); font-style: normal; }
+
+/* ============================================================
+   05 — DIVIDER
+   ============================================================ */
+.mod-divider { height: 1px; background: var(--color-rule); border: 0; }
+
+/* ============================================================
+   06 — MEDIA SINGLE  /  07 — PAIR  /  08 — GALLERY
+   ============================================================ */
+.media-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
+.media-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); }
+.media-gallery--2 { grid-template-columns: repeat(2, 1fr); }
+
+/* ============================================================
+   09 — MEDIA + TEXT SPLIT  (the "Media + Content" family)
+   content bubble = CTA palette (Midnight / Cream), purple-on-hover "+"
+   ============================================================ */
+.media-text {
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6); align-items: stretch;
+}
+.media-text--media-right .media-text__media { order: 2; }
+.media-text__media { display: flex; }
+.media-text__media .media-frame { align-self: stretch; }
+
+.content-card {
+  display: flex; flex-direction: column; gap: var(--s-5);
+  height: 100%; padding: var(--s-6);
+  background: var(--color-bg-inverse); color: var(--color-text-inverse);
+  border-radius: var(--radius-l);
+}
+.content-card__eyebrow {
+  font: var(--type-eyebrow); text-transform: uppercase; letter-spacing: var(--tr-eyebrow);
+  color: color-mix(in oklab, var(--cream) 55%, transparent);
+}
+.content-card__heading { font: var(--type-h4); }
+.content-card__desc {
+  font: var(--type-body); color: color-mix(in oklab, var(--cream) 72%, transparent); max-width: 42ch;
+}
+.content-card__footer {
+  margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
+}
+.content-card__label {
+  font: var(--type-eyebrow); text-transform: uppercase; letter-spacing: var(--tr-eyebrow);
+  color: color-mix(in oklab, var(--cream) 50%, transparent);
+}
+.content-card__cta {
+  flex: 0 0 auto; width: 2.75rem; height: 2.75rem; border-radius: var(--radius-pill);
+  display: grid; place-items: center; cursor: pointer;
+  background: color-mix(in oklab, var(--cream) 12%, transparent);
+  color: var(--cream); border: 0;
+  transition: background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.content-card__cta svg { width: 1.1rem; height: 1.1rem; }
+.content-card__cta:hover { background: var(--color-accent); transform: rotate(90deg); }
+
+/* ============================================================
+   10 — CAPTION (separate drop-in, sits under any media)
+   ============================================================ */
+.media-caption {
+  font-size: var(--t-small); line-height: var(--lh-body);
+  color: var(--color-text-muted); margin-top: var(--s-3); max-width: 60ch;
+}
+.media-caption b { font-weight: var(--fw-medium); color: var(--color-text); }
+
+/* ============================================================
+   11 — VISIT LINK (inline external w/ arrow)
+   ============================================================ */
+.visit-link {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  font: var(--type-ui); color: var(--color-text);
+  border-bottom: 1px solid var(--color-rule-strong); padding-bottom: 2px;
+  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.visit-link:hover { color: var(--color-accent); border-color: var(--color-accent); }
+
+/* ============================================================
+   12 — UP NEXT / RELATED CARDS
+   ============================================================ */
+.up-next__title { font: var(--type-h2); letter-spacing: var(--tr-h); margin-bottom: var(--s-6); }
+.up-next__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6); }
+.related-card { display: block; }
+.related-card .media-frame { margin-bottom: var(--s-4); }
+.related-card__kicker {
+  font: var(--type-eyebrow); text-transform: uppercase; letter-spacing: var(--tr-eyebrow);
+  color: var(--color-text-muted); display: flex; gap: var(--s-3);
+}
+.related-card__title { font: var(--type-h4); margin-top: var(--s-2); max-width: 22ch;
+  transition: color var(--dur-fast) var(--ease); }
+.related-card:hover .related-card__title { color: var(--color-accent); }
+
+/* ============================================================
+   13 — CTA BLOCK (page closer)
+   ============================================================ */
+.cta-block {
+  text-align: center; padding: var(--s-10) var(--s-6);
+  background: var(--color-bg-muted); border-radius: var(--radius-xl);
+}
+.cta-block__title { font: var(--type-h1); letter-spacing: var(--tr-display); }
+.cta-block__sub { font: var(--type-lead); color: var(--color-text-muted); max-width: 44ch; margin: var(--s-5) auto var(--s-7); }
+
+/* ============================================================
+   05 — NUMBERED SEQUENCE  (engagement phases / deliverables / methodology)
+   Light-grey cards for listed or series info. Accent numeral in a gutter,
+   a titled list of label + body items. (Ref: the "Engagement" stack.)
+   ============================================================ */
+.num-seq { display: flex; flex-direction: column; gap: var(--s-4); }
+.num-seq__eyebrow {
+  font: var(--type-eyebrow); text-transform: uppercase; letter-spacing: var(--tr-eyebrow);
+  color: var(--color-text-subtle); margin-bottom: var(--s-2);
+}
+.num-card {
+  display: grid; grid-template-columns: minmax(3rem, 5.5rem) 1fr; gap: var(--s-3) var(--s-6);
+  align-items: start; background: var(--color-bg-muted); border-radius: var(--radius-l);
+  padding: clamp(var(--s-5), 3vw, var(--s-8));
+}
+.num-card__num {
+  font-family: var(--sans); font-weight: var(--fw-light); font-size: var(--t-h1);
+  line-height: 1; letter-spacing: var(--tr-display); color: var(--color-accent);
+}
+.num-card__title { font: var(--type-h3); font-weight: var(--fw-medium); letter-spacing: var(--tr-h); align-self: center; }
+.num-card__items { grid-column: 2; display: flex; flex-direction: column; gap: var(--s-5); margin-top: var(--s-3); }
+.num-item__label { font: var(--type-ui); font-weight: var(--fw-bold); margin-bottom: var(--s-1); }
+.num-item__body { font: var(--type-body); color: var(--color-text-muted); max-width: 66ch; }
+
+/* ============================================================
+   TOP SECTION SYSTEM (adaptable hero) — ONE component, composable slots,
+   a few layout modifiers. Powers: case-study overview · thought leadership ·
+   micro case study · custom tool. Grid the info with spacing, type sizes,
+   pills, icon chips and color blocks. (Supersedes the standalone 01 / 02 headers.)
+   ============================================================ */
+.hero-band { width: 100%; }
+.hero-band--invert { background: var(--color-bg-inverse); color: var(--color-text-inverse); }
+
+.hero { max-width: var(--frame-max); margin-inline: auto; padding: clamp(var(--s-7), 7vw, var(--s-9)) var(--margin); }
+.hero__grid { display: grid; gap: var(--s-6) var(--gap); }
+.hero__col { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-5); min-width: 0; }
+
+/* eyebrow (optionally with an accent icon chip) */
+.hero__eyebrow {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  font: var(--type-eyebrow); text-transform: uppercase; letter-spacing: var(--tr-eyebrow);
+  color: var(--color-text-muted);
+}
+.hero__eyebrow--accent { color: var(--color-accent); }
+.hero__icon { display: grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: var(--radius-s); background: var(--color-accent); color: var(--cream); }
+.hero__icon svg { width: 60%; height: 60%; }
+
+/* title — sans display + serif-italic emphasis; size modifiers */
+.hero__title { font-family: var(--sans); font-weight: var(--fw-light); line-height: 1.03; letter-spacing: var(--tr-display); max-width: 18ch; }
+.hero__title em { font-family: var(--serif); font-style: italic; font-weight: var(--fw-light); }
+.hero__title--display { font-size: var(--t-display); max-width: 15ch; }
+.hero__title--lg { font-size: var(--t-h1); }
+.hero__title--md { font-size: var(--t-h2); letter-spacing: var(--tr-h); max-width: 24ch; }
+.hero__title--serif { font-family: var(--serif); }
+
+.hero__dek { font: var(--type-lead); line-height: 1.5; color: var(--color-text-muted); max-width: 48ch; }
+
+/* meta: label / value pairs */
+.hero__meta { display: flex; flex-wrap: wrap; gap: var(--s-4) var(--s-7); }
+.hero__metaitem { display: flex; flex-direction: column; gap: 3px; }
+.hero__metalabel { font: var(--type-eyebrow); text-transform: uppercase; letter-spacing: var(--tr-eyebrow); color: var(--color-text-subtle); }
+.hero__metavalue { font: var(--type-ui); }
+
+/* vertical capability / scope list (Tempo-style) */
+.hero__list { list-style: none; display: flex; flex-direction: column; gap: var(--s-1); }
+.hero__list li { font: var(--type-ui); text-transform: uppercase; letter-spacing: var(--tr-ui); color: var(--color-text-muted); }
+
+.hero__pills { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); }
+
+/* byline */
+.hero__byline { display: flex; align-items: center; gap: var(--s-3); }
+.hero__avatar { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--color-bg-inverse); color: var(--color-text-inverse); display: grid; place-items: center; font: var(--type-eyebrow); flex: none; }
+.hero__byname { font-family: var(--serif); font-style: italic; font-weight: var(--fw-light); font-size: var(--t-lead); }
+.hero__byrole { font-size: var(--t-small); color: var(--color-text-muted); }
+
+/* aside rails */
+.hero__aside { display: flex; flex-direction: column; gap: var(--s-5); width: 100%; }
+.hero__metrics { display: grid; gap: var(--s-5); width: 100%; }
+.hero__metric { display: flex; flex-direction: column; gap: 2px; padding-left: var(--s-4); border-left: 2px solid var(--color-rule-strong); }
+.hero__metric-value { font-family: var(--sans); font-weight: var(--fw-light); font-size: var(--t-h2); line-height: 1.05; letter-spacing: var(--tr-h); }
+.hero__metric-label { font: var(--type-ui); color: var(--color-text-muted); }
+
+/* color-blocked panel (tool teaser / highlight) */
+.hero__panel { background: var(--color-bg-inverse); color: var(--color-text-inverse); border-radius: var(--radius-l); padding: clamp(var(--s-5), 3vw, var(--s-7)); display: flex; flex-direction: column; gap: var(--s-4); width: 100%; }
+.hero__panel--accent { background: var(--color-accent); }
+.hero__panel-eyebrow { font: var(--type-eyebrow); text-transform: uppercase; letter-spacing: var(--tr-eyebrow); color: color-mix(in oklab, var(--cream) 62%, transparent); }
+.hero__panel-stat { font-family: var(--sans); font-weight: var(--fw-light); font-size: var(--t-display); line-height: 1; letter-spacing: var(--tr-display); }
+.hero__panel-rows { display: flex; flex-direction: column; }
+.hero__panel-row { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); padding: var(--s-3) 0; font: var(--type-ui); border-top: 1px solid color-mix(in oklab, var(--cream) 18%, transparent); }
+.hero__panel-row span:last-child { color: color-mix(in oklab, var(--cream) 65%, transparent); }
+
+/* layout modifiers */
+.hero--stacked .hero__grid { grid-template-columns: minmax(0, 64ch); }
+.hero--split .hero__grid { grid-template-columns: 1.05fr 0.95fr; align-items: end; }
+.hero--tool .hero__grid { grid-template-columns: 1.15fr 0.85fr; align-items: center; }
+.hero--micro { padding-block: clamp(var(--s-6), 5vw, var(--s-8)); }
+.hero--micro .hero__grid { grid-template-columns: 1fr auto; align-items: center; gap: var(--s-5) var(--s-8); }
+
+/* inverted band mutings */
+.hero-band--invert .hero__eyebrow, .hero-band--invert .hero__dek, .hero-band--invert .hero__metalabel,
+.hero-band--invert .hero__list li, .hero-band--invert .hero__byrole, .hero-band--invert .hero__metric-label { color: color-mix(in oklab, var(--cream) 66%, transparent); }
+.hero-band--invert .hero__eyebrow--accent { color: color-mix(in oklab, var(--purple) 55%, var(--cream)); }
+.hero-band--invert .hero__metric { border-color: color-mix(in oklab, var(--cream) 30%, transparent); }
+.hero-band--invert .hero__avatar { background: var(--cream); color: var(--midnight); }
+.hero-band--invert .tag-pill { color: color-mix(in oklab, var(--cream) 72%, transparent); border-color: color-mix(in oklab, var(--cream) 28%, transparent); }
+
+/* ============================================================
+   RESPONSIVE — snap to the same breakpoints we'll use in Webflow
+   ============================================================ */
+@media (max-width: 991px) {
+  .hero--split .hero__grid, .hero--tool .hero__grid, .hero--micro .hero__grid { grid-template-columns: 1fr; align-items: start; }
+  .num-card { grid-template-columns: 1fr; gap: var(--s-3); }
+  .num-card__num { font-size: var(--t-h2); }
+  .num-card__items { grid-column: 1; }
+  .case-header__top { grid-template-columns: 1fr; gap: var(--s-5); align-items: start; }
+  .metrics-strip { grid-template-columns: 1fr; gap: var(--s-5); }
+  .scope-cols { grid-template-columns: 1fr; gap: var(--s-5); }
+  .media-text { grid-template-columns: 1fr; }
+  .media-text--media-right .media-text__media { order: 0; }
+  .up-next__grid { grid-template-columns: 1fr; }
+  .gallery__title { font: var(--type-h2); }
+  .specimen__note { margin-left: 0; text-align: left; }
+}
+@media (max-width: 767px) {
+  .media-pair { grid-template-columns: 1fr; }
+  .media-gallery, .media-gallery--2 { grid-template-columns: 1fr 1fr; }
+}
