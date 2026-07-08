@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>V+V — Parity Page (prototyping surface)</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+
+  <!-- His exported foundation (the parity layer) -->
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/vpvstaging.webflow.css" rel="stylesheet" type="text/css">
+
+  <!-- His fluid-root font-size -->
+  <style>
+    html { font-size: calc(0.3333333333333335rem + 0.7407407407407407vw); }
+    @media screen and (max-width:1440px) { html { font-size: calc(-0.004464285714285587rem + 1.1160714285714284vw); } }
+    @media screen and (max-width:992px)  { html { font-size: 1rem; } }
+  </style>
+
+  <!-- The new module classes we've locked in (each = a Webflow class/combo). Built in his tokens. -->
+  <style>
+    body { padding-bottom: 6rem; }
+    /* generic media fill for placeholder grids */
+    .pmedia { width: 100%; aspect-ratio: 4 / 3; border-radius: 1.25rem; overflow: hidden; }
+    .pmedia img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ===== Numbered Sequence (#05) — numeral FIXED at 5.5rem ===== */
+    .num-seq__eyebrow { text-transform: uppercase; letter-spacing: 1.5px; opacity: 1; color: var(--color--navy-40-to-white-40); }
+    .num-card { display: flex; flex-flow: row; align-items: flex-start; width: 100%; grid-column-gap: 2.5rem; grid-row-gap: 2.5rem; padding: 3rem; background-color: var(--color--silver-to-navy); border-radius: 1.25rem; }
+    .num-card__num { flex: 0 0 auto; width: 5.5rem; font-size: 4rem; font-weight: 200; line-height: 1; color: var(--color--purple-to-white); }  /* rem, not em! */
+    .num-card__body { flex: 1; display: flex; flex-flow: column; grid-row-gap: 2rem; grid-column-gap: 2rem; }
+    .num-card__title { font-weight: 600; max-width: none; }
+    .num-card__items { display: flex; flex-flow: column; grid-row-gap: 1.5rem; grid-column-gap: 1.5rem; }
+    .num-item { display: flex; flex-flow: column; grid-row-gap: .25rem; }
+    .num-item__label { opacity: 1; font-weight: 600; color: var(--color--navy-to-white); }
+    .num-item__body { max-width: 620px; }
+    @media (max-width:767px){ .num-card{ flex-flow:column; grid-row-gap:1rem; padding:2rem; } .num-card__num{ width:auto; font-size:3rem; } }
+    @media (max-width:479px){ .num-card{ padding:1.5rem; } .num-card__num{ font-size:2.5rem; } }
+
+    /* ===== Button (.btn) + CTA (#14) — cta-panel width FIXED to 100% ===== */
+    .btn { display: inline-flex; align-items: center; justify-content: center; grid-column-gap: .5rem; padding: .875rem 1.75rem; font-size: 16px; font-weight: 500; line-height: 1.2; border-radius: 100px; background-color: var(--color--navy-to-white); color: var(--color--white-to-navy); text-decoration: none; cursor: pointer; transition: border-radius .3s; }
+    .btn:hover { border-radius: 12px; }
+    .btn.white  { background-color: var(--swatch--white);  color: var(--swatch--midnight); }
+    .btn.accent { background-color: var(--swatch--purple); color: var(--swatch--white); }
+    .cta-panel { background-color: var(--color--silver-to-navy); border-radius: 1.25rem; text-align: center; padding: 6rem 2rem; display: flex; flex-flow: column; align-items: center; grid-row-gap: 1.5rem; width: 100%; }
+    .cta-title { font-weight: 600; max-width: none; }
+    .cta-sub { max-width: 32rem; }
+  </style>
+</head>
+<body class="body bg-white">
+  <div class="w-layout-vflex page-wrap">
+
+    <!-- 16 — Top Section (Thought Leadership hero) -->
+    <section class="section-new is-top">
+      <div class="flex _3">
+        <div class="p1 main-tag">thought leadership</div>
+        <h1 class="h1-sans-new">The replatform is the <span class="h1-serif-new">easy</span> part</h1>
+        <div class="p2">Bring a brand’s ethos to life so customers are inspired to share their experiences and drive movements.</div>
+        <div class="flex horizontal">
+          <div class="nametag-img-wrap"><div class="p1 _600">N</div></div>
+          <div class="flex">
+            <div class="h3-sub"><span class="span-serif">by</span> Nick Cook</div>
+            <div class="p1">Founder, Verbal + Visual</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16 — Headline statement -->
+    <section class="section-new is-top">
+      <div class="flex _3">
+        <div class="flex _1-5">
+          <div class="p1 main-tag">thought leadership</div>
+          <h1 class="h2-sans-new">We combine language and design to turn transactions into connections. We deliver commerce that <span class="h2-serif-new">converts.</span></h1>
+          <div class="p2">Bring a brand’s ethos to life so customers are inspired to share their experiences and drive movements.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — Prose / article rich text -->
+    <section class="section-new">
+      <div class="flex article-content-outer">
+        <div class="flex article-content-inner">
+          <div class="article-rich-txt w-richtext">
+            <h2>A migration is a forcing function for editing</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <blockquote><em>The teams that treat it that way ship faster and cleaner.</em></blockquote>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 — Media grid (2-col) -->
+    <section class="section-new">
+      <h1 class="h2-sans-new">Selected work</h1>
+      <div class="media-grid _2-col">
+        <div class="pmedia"><img src="https://picsum.photos/seed/pv1/900/700" alt=""></div>
+        <div class="pmedia"><img src="https://picsum.photos/seed/pv2/900/700" alt=""></div>
+      </div>
+    </section>
+
+    <!-- 05 — Numbered Sequence (FIXED numeral) -->
+    <section class="section-new">
+      <div class="p1 num-seq__eyebrow">Engagement</div>
+      <div class="flex _1-5">
+        <div class="num-card">
+          <div class="num-card__num">01</div>
+          <div class="num-card__body">
+            <h3 class="h3-sans-new num-card__title">Brand + Digital Assessment</h3>
+            <div class="num-card__items">
+              <div class="num-item"><div class="p1 num-item__label">Stakeholder Interview Analysis</div><div class="p2 num-item__body">Synthesize leadership and cross-functional perspectives into a clear set of shared priorities, risks, and decision drivers.</div></div>
+              <div class="num-item"><div class="p1 num-item__label">Digital Experience Audit</div><div class="p2 num-item__body">Evaluation of visual identity, messaging, and customer touch points to identify experience risks and opportunities that impact conversion, clarity, and brand expression.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="num-card">
+          <div class="num-card__num">02</div>
+          <div class="num-card__body">
+            <h3 class="h3-sans-new num-card__title">Strategy Blueprint</h3>
+            <div class="num-card__items">
+              <div class="num-item"><div class="p1 num-item__label">Experience Principles Framework</div><div class="p2 num-item__body">Define a clear set of digital experience principles that power customer-centric brand strategy decisions and govern ongoing site initiatives across teams.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 — CTA (FIXED width:100%) -->
+    <section class="section-new is-base">
+      <div class="cta-panel">
+        <h2 class="h2-sans-new cta-title">Let's talk.</h2>
+        <div class="p2 cta-sub">If this resonates with where your brand is headed, we'd like to hear about it.</div>
+        <a href="#" class="btn">Talk to our team</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- NOTE: JS-island modules (video #07, content drawer #22, horizontal scroll #18) live in their own
+       sandboxes (sandbox-horizontal.html etc.) since they need GSAP/Lenis/CMS. Layer them in as needed. -->
+</body>
+</html>

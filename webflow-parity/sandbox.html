@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Parity Sandbox — Numbered Sequence (#05)</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+
+  <!-- 1) His exported foundation, linked in his exact order -->
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/vpvstaging.webflow.css" rel="stylesheet" type="text/css">
+
+  <!-- 2) His fluid-root font-size system (lives inline in his page <head>, not the CSS files) -->
+  <style>
+    html { font-size: calc(0.3333333333333335rem + 0.7407407407407407vw); }
+    @media screen and (max-width:3600px) { html { font-size: calc(0.33333333333333337rem + 0.7407407407407407vw); } }
+    @media screen and (max-width:1440px) { html { font-size: calc(-0.004464285714285587rem + 1.1160714285714284vw); } }
+    @media screen and (max-width:992px)  { html { font-size: 1rem; } }
+  </style>
+
+  <!-- 3) The ONLY new code: the Numbered Sequence module classes, written in his conventions.
+          Each of these maps 1:1 to a new class / combo in the Webflow Designer handoff.
+          Everything else (.section-new, .flex._1-5, .p1, .p2, .h3-sans-new, the color
+          variables, the fonts) comes from his CSS above. -->
+  <style>
+    /* sandbox framing only — not part of the module */
+    body { padding-top: 4rem; padding-bottom: 4rem; }
+
+    /* eyebrow — combo on his .p1 */
+    .num-seq__eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: 1;
+      color: var(--color--navy-40-to-white-40);
+    }
+    /* card — new component (his grey surface token + his card radius) */
+    .num-card {
+      display: flex;
+      flex-flow: row;
+      align-items: flex-start;
+      width: 100%;   /* full-width inside his 1-5 parent (which left-aligns children). Unit MUST be % — a REM here = fixed giant width that overflows */
+      grid-column-gap: 2.5rem;
+      grid-row-gap: 2.5rem;
+      padding: 3rem;
+      background-color: var(--color--silver-to-navy);
+      border-radius: 1.25rem;
+    }
+    /* accent numeral in the gutter */
+    .num-card__num {
+      flex: 0 0 auto;
+      width: 5.5rem;
+      font-size: 4rem;
+      font-weight: 200;
+      line-height: 1;
+      color: var(--color--purple-to-white);
+    }
+    /* content column */
+    .num-card__body {
+      flex: 1;
+      display: flex;
+      flex-flow: column;
+      grid-row-gap: 2rem;
+      grid-column-gap: 2rem;
+    }
+    /* title — combo on his .h3-sans-new (2rem): just a heavier weight */
+    .num-card__title { font-weight: 600; max-width: none; }
+    /* items stack */
+    .num-card__items {
+      display: flex;
+      flex-flow: column;
+      grid-row-gap: 1.5rem;
+      grid-column-gap: 1.5rem;
+    }
+    .num-item {
+      display: flex;
+      flex-flow: column;
+      grid-row-gap: .25rem;
+      grid-column-gap: .25rem;
+    }
+    /* label — combo on his .p1: de-muted + bold */
+    .num-item__label { opacity: 1; font-weight: 600; color: var(--color--navy-to-white); }
+    /* body — combo on his .p2: wider measure */
+    .num-item__body { max-width: 620px; }
+
+    /* responsive — his breakpoints only */
+    @media screen and (max-width: 767px) {
+      .num-card { flex-flow: column; grid-row-gap: 1rem; grid-column-gap: 1rem; padding: 2rem; }
+      .num-card__num { width: auto; font-size: 3rem; }
+    }
+    @media screen and (max-width: 479px) {
+      .num-card { padding: 1.5rem; }
+      .num-card__num { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body class="body bg-white">
+  <div class="page-wrap">
+    <section class="section-new">
+
+      <div class="p1 num-seq__eyebrow">Engagement</div>
+
+      <div class="flex _1-5">
+
+        <div class="num-card">
+          <div class="num-card__num">01</div>
+          <div class="num-card__body">
+            <h3 class="h3-sans-new num-card__title">Brand + Digital Assessment</h3>
+            <div class="num-card__items">
+              <div class="num-item">
+                <div class="p1 num-item__label">Stakeholder Interview Analysis</div>
+                <div class="p2 num-item__body">Synthesize leadership and cross-functional perspectives into a clear set of shared priorities, risks, and decision drivers.</div>
+              </div>
+              <div class="num-item">
+                <div class="p1 num-item__label">Digital Experience Audit</div>
+                <div class="p2 num-item__body">Evaluation of visual identity, messaging, and customer touch points to identify experience risks and opportunities that impact conversion, clarity, and brand expression.</div>
+              </div>
+              <div class="num-item">
+                <div class="p1 num-item__label">Industry Benchmarking Analysis</div>
+                <div class="p2 num-item__body">Compare the current experience against relevant industry and category standards to identify competitive gaps, strengths, and priority opportunities.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="num-card">
+          <div class="num-card__num">02</div>
+          <div class="num-card__body">
+            <h3 class="h3-sans-new num-card__title">Strategy Blueprint</h3>
+            <div class="num-card__items">
+              <div class="num-item">
+                <div class="p1 num-item__label">Experience Principles Framework</div>
+                <div class="p2 num-item__body">Define a clear set of digital experience principles that power customer-centric brand strategy decisions and govern ongoing site initiatives across teams.</div>
+              </div>
+              <div class="num-item">
+                <div class="p1 num-item__label">Digital Strategy Execution Guide</div>
+                <div class="p2 num-item__body">Translate brand pillars into digital concepts, priorities, and execution guidance that drive engagement, conversion, and consistent brand expression.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!-- =====================================================================
+  PRODUCT DATA VISUALIZER  —  Webflow HTML Embed
+  ---------------------------------------------------------------------
+  Self-contained port of the React <ProductVisualizer /> from the
+  product-data audit tool. Drop this ENTIRE block into a Webflow
+  "Embed" (HTML Embed) element. No build step, no dependencies.
+
+  THREE THINGS TO KNOW:
+  1. IMAGE — replace REPLACE_WITH_WEBFLOW_ASSET_URL below with the URL of
+     the shoe image after uploading it to Webflow Assets.
+     (To preview before uploading, you can TEMPORARILY use the live URL:
+      https://productdata.vpv.co/images/horizon-trail-runner.webp )
+  2. FONTS — Instrument Serif / DM Sans / DM Mono load via the Google
+     Fonts <link> below. If these fonts are already added to the Webflow
+     project, you can delete the <link> to avoid loading them twice.
+  3. SIZING — type sizes are in rem and assume a 16px root font-size
+     (Webflow's default). If this project overrides the root size, the
+     widget will scale with it.
+
+  Everything is namespaced under ".vpv-pdv" so it won't touch the rest
+  of the page. Safe to place more than one on a page.
+===================================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+  .vpv-pdv {
+    /* ── design tokens (scoped to the widget) ── */
+    --card: #fff;
+    --border: #e2dfd9;
+    --accent: #3012E4;
+    --text: #1a1a1a;
+    --mid: #4a4a4a;
+    --muted: #8a8580;
+    --red: #c53030;
+    --green: #059669;
+    --amber: #a67c00;
+    --indigo: #6366f1;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', ui-monospace, monospace;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    font-family: var(--sans);
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .vpv-pdv *, .vpv-pdv *::before, .vpv-pdv *::after { box-sizing: border-box; }
+
+  /* ── layout grid ── */
+  .vpv-pdv__grid { display: grid; grid-template-columns: 280px 1fr; min-height: 520px; }
+
+  /* ── product card (left) ── */
+  .vpv-pdv__card { padding: 28px; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+  .vpv-pdv__imgbox { width: 100%; aspect-ratio: 1; background: #e8e5e0; border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+  .vpv-pdv__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vpv-pdv__brand { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 4px; }
+  .vpv-pdv__title { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; margin-bottom: 4px; }
+  .vpv-pdv__price { font-size: 1rem; font-weight: 500; margin-bottom: 10px; }
+  .vpv-pdv__rating { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--muted); margin-bottom: 14px; }
+  .vpv-pdv__stars { color: #d97706; letter-spacing: 1px; }
+  .vpv-pdv__desc { font-size: 0.8rem; line-height: 1.55; margin-bottom: 14px; transition: all 0.4s; color: var(--red); font-style: italic; }
+  .vpv-pdv__pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; }
+  .vpv-pdv__pill { font-size: 0.68rem; padding: 3px 9px; border-radius: 100px; border: 1px solid var(--border); color: var(--muted); transition: all 0.3s; }
+
+  /* ── data layer (right) ── */
+  .vpv-pdv__data { padding: 24px 28px; display: flex; flex-direction: column; overflow-y: auto; max-height: 560px; }
+  .vpv-pdv__group { margin-bottom: 18px; }
+  .vpv-pdv__grouphead { font-size: 0.63rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; color: var(--muted); }
+  .vpv-pdv__dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── field rows ── */
+  .vpv-pdv__row { display: flex; align-items: center; gap: 7px; padding: 5px 9px; border-radius: 6px; font-size: 0.75rem; transition: all 0.4s; margin-bottom: 1px; }
+  .vpv-pdv__rowname { font-family: var(--mono); font-size: 0.69rem; color: var(--mid); flex: 1; min-width: 0; }
+  .vpv-pdv__rowval { font-size: 0.69rem; color: var(--muted); text-align: right; flex-shrink: 0; max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ── badges ── */
+  .vpv-pdv .fb { font-size: 0.58rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; padding: 2px 5px; border-radius: 3px; flex-shrink: 0; white-space: nowrap; }
+  .vpv-pdv .fb-issue { background: rgba(197, 48, 48, 0.08); color: var(--red); }
+  .vpv-pdv .fb-ok { background: rgba(5, 150, 105, 0.08); color: var(--green); }
+  .vpv-pdv .fb-dead { background: rgba(176, 173, 168, 0.1); color: #b0ada8; }
+  .vpv-pdv .fb-dup { background: rgba(197, 48, 48, 0.08); color: var(--red); }
+  .vpv-pdv .fb-tag { background: rgba(100, 116, 139, 0.08); color: #64748b; }
+  .vpv-pdv .fb-type { background: rgba(99, 102, 241, 0.08); color: var(--indigo); }
+
+  /* ── AI readiness bar ── */
+  .vpv-pdv__ai { padding: 11px 28px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: var(--muted); }
+  .vpv-pdv__aidot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; transition: background 0.4s; }
+  .vpv-pdv__aitext { transition: color 0.4s; }
+
+  /* ── score bar ── */
+  .vpv-pdv__score { padding: 14px 28px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 14px; }
+  .vpv-pdv__scorelabel { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); white-space: nowrap; }
+  .vpv-pdv__track { flex: 1; height: 5px; background: #e8e5e0; border-radius: 3px; overflow: hidden; }
+  .vpv-pdv__fill { height: 100%; border-radius: 3px; transition: width 0.6s ease, background 0.4s; }
+  .vpv-pdv__scorenum { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; line-height: 1; min-width: 44px; text-align: right; transition: color 0.4s; }
+
+  /* ── controls (toggles) ── */
+  .vpv-pdv__controls { padding: 18px 28px; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .vpv-pdv__toggle { display: flex; align-items: center; gap: 9px; padding: 9px 13px; border: 1px solid var(--border); background: transparent; border-radius: 100px; cursor: pointer; transition: all 0.2s; user-select: none; }
+  .vpv-pdv__toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .vpv-pdv__toggle.is-on { border-color: var(--accent); background: rgba(48, 18, 228, 0.04); }
+  .vpv-pdv__switch { width: 30px; height: 17px; border-radius: 9px; background: #ddd; position: relative; transition: background 0.2s; flex-shrink: 0; }
+  .vpv-pdv__toggle.is-on .vpv-pdv__switch { background: var(--accent); }
+  .vpv-pdv__knob { position: absolute; top: 2px; left: 2px; width: 13px; height: 13px; border-radius: 50%; background: #fff; transition: transform 0.2s; }
+  .vpv-pdv__toggle.is-on .vpv-pdv__knob { transform: translateX(13px); }
+  .vpv-pdv__tlabel { font-size: 0.75rem; color: var(--mid); }
+  .vpv-pdv__toggle.is-on .vpv-pdv__tlabel { color: var(--accent); }
+  .vpv-pdv__tfx { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin-left: auto; }
+  .vpv-pdv__toggle.is-on .vpv-pdv__tfx { color: var(--accent); }
+
+  /* ── responsive ── */
+  @media (max-width: 768px) {
+    .vpv-pdv__grid { grid-template-columns: 1fr; min-height: 0; }
+    .vpv-pdv__card { border-right: none; border-bottom: 1px solid var(--border); }
+    .vpv-pdv__controls { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="vpv-pdv"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  var ORIG = {
+    "f-gender": "custom.gender", "f-activity": "custom.activity", "f-terrain": "custom.terrain", "f-fit": "custom.fit",
+    "f-desc": "custom.description", "f-features": "custom.features", "f-materials": "custom.materials", "f-care": "custom.care",
+    "f-plc": "custom.plc_main", "f-plcsale": "custom.plc_sale", "f-coming": "custom.coming_soon",
+    "f-wp": "custom.waterproof_rating", "f-cushion": "custom.cushion_level", "f-weight": "custom.weight", "f-drop": "custom.drop",
+    "f-img": "custom.lifestyle_img", "f-seo-t": "custom.title_tag", "f-seo-d": "custom.description_tag"
+  };
+  var RENAMES = {
+    "f-gender": "taxonomy.gender", "f-activity": "taxonomy.activity", "f-terrain": "taxonomy.terrain", "f-fit": "taxonomy.fit",
+    "f-desc": "content.description", "f-features": "content.features", "f-materials": "content.materials", "f-care": "content.care",
+    "f-plc": "lifecycle.channel_status", "f-plcsale": "lifecycle.channel_status", "f-coming": "lifecycle.coming_soon",
+    "f-wp": "specs.waterproof", "f-cushion": "specs.cushion", "f-weight": "specs.weight", "f-drop": "specs.drop",
+    "f-img": "media.lifestyle_img", "f-seo-t": "seo.title", "f-seo-d": "seo.description"
+  };
+
+  // custom.* fields — value/badge computed from state (s)
+  var CUSTOM = [
+    { id: "f-gender",   val: function (s) { return { t: "Mens" }; },             badge: function (s) { return { t: s.tags ? "single source" : "duplicated in tags", c: s.tags ? "fb-ok" : "fb-dup" }; } },
+    { id: "f-activity", val: function (s) { return { t: "Trail Running" }; },     badge: function (s) { return { t: s.tags ? "single source" : "duplicated in tags", c: s.tags ? "fb-ok" : "fb-dup" }; } },
+    { id: "f-terrain",  val: function (s) { return { t: "Mixed" }; } },
+    { id: "f-fit",      val: function (s) { return { t: "Standard" }; } },
+    { id: "f-desc",     val: function (s) { var r = s.ns || s.type; return { t: r ? "234 chars" : "28 chars", col: r ? "var(--green)" : "var(--red)" }; }, badge: function (s) { var r = s.ns || s.type; return { t: r ? "rich content" : "thin content", c: r ? "fb-ok" : "fb-issue" }; } },
+    { id: "f-features", val: function (s) { return { t: "Gore-Tex, Vibram" }; } },
+    { id: "f-materials",val: function (s) { return { t: "Recycled mesh" }; } },
+    { id: "f-care",     val: function (s) { return { t: "Spot clean" }; } },
+    { id: "f-plc",      val: function (s) { return { t: "true" }; } },
+    { id: "f-plcsale",  val: function (s) { return { t: "false" }; } },
+    { id: "f-coming",   val: function (s) { return { t: "false" }; } },
+    { id: "f-wp",       val: function (s) { return { t: s.type ? "4 / 5" : '"Very waterproof"', col: s.type ? "var(--green)" : null }; }, badge: function (s) { return { t: s.type ? "integer" : "stored as text", c: s.type ? "fb-type" : "fb-issue" }; } },
+    { id: "f-cushion",  val: function (s) { return { t: s.type ? "3 / 5" : '"Medium"', col: s.type ? "var(--green)" : null }; },          badge: function (s) { return { t: s.type ? "integer" : "stored as text", c: s.type ? "fb-type" : "fb-issue" }; } },
+    { id: "f-weight",   val: function (s) { return { t: s.type ? "9.2" : '"9.2 oz"', col: s.type ? "var(--green)" : null }; },            badge: function (s) { return { t: s.type ? "number (oz)" : "stored as text", c: s.type ? "fb-type" : "fb-issue" }; } },
+    { id: "f-drop",     val: function (s) { return { t: s.type ? "8" : '"8mm"', col: s.type ? "var(--green)" : null }; },                 badge: function (s) { return { t: s.type ? "number (mm)" : "stored as text", c: s.type ? "fb-type" : "fb-issue" }; } },
+    { id: "f-img",      val: function (s) { return { t: "trail_hero.jpg" }; } },
+    { id: "f-seo-t",    val: function (s) { return { t: s.ns ? "Horizon Trail Runner | Stride" : "empty", col: s.ns ? "var(--green)" : "var(--red)" }; } },
+    { id: "f-seo-d",    val: function (s) { return { t: s.ns ? "Lightweight Gore-Tex trail..." : "empty", col: s.ns ? "var(--green)" : "var(--red)" }; } }
+  ];
+
+  var TAGS = [
+    { n: "fil|gender:mens", b: "filter tag", c: "fb-tag" },
+    { n: "fil|activity:trail-running", b: "filter tag", c: "fb-tag" },
+    { n: "sc-running-shoes", b: "size chart", c: "fb-tag" },
+    { n: "S25", b: "season", c: "fb-tag" },
+    { n: "pill-new", b: "UI badge", c: "fb-tag" },
+    { n: "149", b: "price as tag", c: "fb-tag" },
+    { n: "Fullprice", b: "cap collision", c: "fb-issue" },
+    { n: "fullprice", b: "cap collision", c: "fb-issue" }
+  ];
+
+  var DEAD = [
+    { n: "mm-google-shopping.title", b: "app removed" },
+    { n: "mm-google-shopping.description", b: "app removed" },
+    { n: "plc.full_price", b: "legacy system" },
+    { n: "plc.sale", b: "legacy system" },
+    { n: "plc.tactical", b: "legacy system" },
+    { n: "custom.inv_us_ats", b: "migration artifact" },
+    { n: "checkoutblocks.upsell", b: "inactive" }
+  ];
+
+  var TOGGLES = [
+    { key: "ns",   label: "Consolidate namespaces", fx: "-22" },
+    { key: "tags", label: "Migrate tags to metafields", fx: "-15" },
+    { key: "type", label: "Type your fields correctly", fx: "-8" },
+    { key: "dead", label: "Remove dead fields", fx: "-18" }
+  ];
+
+  var DESC_RICH = "Lightweight Gore-Tex trail runner with Vibram Megagrip outsole. 9.2 oz, 8mm drop, medium cushion. Recycled mesh upper with reinforced toe cap. Built for mixed-terrain runs in wet conditions.";
+  var DESC_THIN = "Lightweight trail running shoe.";
+  var MD = String.fromCharCode(8212);  // em dash, kept out of source so charset can't mangle it
+  var CK = String.fromCharCode(10003); // check mark
+
+  function scoreColor(v) { return v >= 60 ? "var(--red)" : v >= 35 ? "var(--amber)" : "var(--green)"; }
+  function aiColor(n) { return n === 0 ? "var(--red)" : n <= 2 ? "var(--amber)" : "var(--green)"; }
+  function aiText(n) {
+    if (n === 0) return "AI agents see: title, price, 1 image. Missing structured specs, thin description, no JSON-LD.";
+    if (n <= 2) return "AI agents see: title, price, some structured attributes. Description improving, specs partially typed.";
+    return "AI agents see: complete structured data, typed specs, rich description, clean taxonomy. Ready for Shopify Catalog.";
+  }
+
+  function makeRow() {
+    var row = document.createElement("div"); row.className = "vpv-pdv__row";
+    var name = document.createElement("span"); name.className = "vpv-pdv__rowname";
+    var val = document.createElement("span"); val.className = "vpv-pdv__rowval";
+    var badge = document.createElement("span");
+    row.appendChild(name); row.appendChild(val); row.appendChild(badge);
+    return { row: row, name: name, val: val, badge: badge };
+  }
+  function setVal(r, v) {
+    if (!v) { r.val.style.display = "none"; return; }
+    r.val.style.display = ""; r.val.textContent = v.t; r.val.style.color = v.col || "var(--muted)";
+  }
+  function setBadge(r, b) {
+    if (!b) { r.badge.style.display = "none"; r.badge.className = ""; return; }
+    r.badge.style.display = ""; r.badge.textContent = b.t; r.badge.className = "fb " + b.c;
+  }
+  function applyRowState(r, active, kind) {
+    r.row.style.opacity = active ? "0.12" : "1";
+    r.row.style.transform = active ? (kind === "mig" ? "translateX(8px)" : "scale(0.97)") : "none";
+    r.row.style.pointerEvents = active ? "none" : "auto";
+  }
+
+  function initWidget(root) {
+    var state = { ns: false, tags: false, type: false, dead: false };
+
+    root.innerHTML =
+      '<div class="vpv-pdv__grid">' +
+        '<div class="vpv-pdv__card">' +
+          '<div class="vpv-pdv__imgbox"><img class="vpv-pdv__img" alt="Horizon Trail Runner" src="REPLACE_WITH_WEBFLOW_ASSET_URL" onerror="this.style.display=\'none\'"></div>' +
+          '<div class="vpv-pdv__brand">Stride Athletics</div>' +
+          '<div class="vpv-pdv__title">Horizon Trail Runner</div>' +
+          '<div class="vpv-pdv__price">$149.00</div>' +
+          '<div class="vpv-pdv__rating"><span class="vpv-pdv__stars">&#9733;&#9733;&#9733;&#9733;&#189;</span><span data-ref="rating"></span></div>' +
+          '<div class="vpv-pdv__desc" data-ref="desc"></div>' +
+          '<div class="vpv-pdv__pills">' +
+            '<span class="vpv-pdv__pill">Men\'s</span>' +
+            '<span class="vpv-pdv__pill">Trail</span>' +
+            '<span class="vpv-pdv__pill" data-ref="wp"></span>' +
+            '<span class="vpv-pdv__pill" data-ref="filpill" style="background:rgba(197,48,48,.05)">fil|gender:mens</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="vpv-pdv__data">' +
+          '<div class="vpv-pdv__group"><div class="vpv-pdv__grouphead"><span class="vpv-pdv__dot" data-ref="dot-custom"></span><span data-ref="head-custom"></span></div><div data-ref="body-custom"></div></div>' +
+          '<div class="vpv-pdv__group"><div class="vpv-pdv__grouphead"><span class="vpv-pdv__dot" data-ref="dot-tags"></span><span data-ref="head-tags"></span></div><div data-ref="body-tags"></div></div>' +
+          '<div class="vpv-pdv__group" style="margin-bottom:0"><div class="vpv-pdv__grouphead"><span class="vpv-pdv__dot" data-ref="dot-dead"></span><span data-ref="head-dead"></span></div><div data-ref="body-dead"></div></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="vpv-pdv__ai"><span class="vpv-pdv__aidot" data-ref="aidot"></span><span class="vpv-pdv__aitext" data-ref="aitext"></span></div>' +
+      '<div class="vpv-pdv__score"><span class="vpv-pdv__scorelabel">Data complexity</span><div class="vpv-pdv__track"><div class="vpv-pdv__fill" data-ref="fill"></div></div><span class="vpv-pdv__scorenum" data-ref="scorenum"></span></div>' +
+      '<div class="vpv-pdv__controls" data-ref="controls"></div>';
+
+    var q = function (ref) { return root.querySelector('[data-ref="' + ref + '"]'); };
+
+    // build custom rows
+    var customRefs = CUSTOM.map(function (f) {
+      var r = makeRow(); q("body-custom").appendChild(r.row); return { f: f, r: r };
+    });
+    // build tag rows (static name/badge; only fade/transform changes)
+    var tagRefs = TAGS.map(function (t) {
+      var r = makeRow(); r.name.textContent = t.n; setVal(r, null); setBadge(r, { t: t.b, c: t.c });
+      q("body-tags").appendChild(r.row); return r;
+    });
+    // build dead rows
+    var deadRefs = DEAD.map(function (d) {
+      var r = makeRow(); r.name.textContent = d.n; setVal(r, null); setBadge(r, { t: d.b, c: "fb-dead" });
+      q("body-dead").appendChild(r.row); return r;
+    });
+    // build toggles
+    var controls = q("controls");
+    var toggleRefs = TOGGLES.map(function (t) {
+      var el = document.createElement("div");
+      el.className = "vpv-pdv__toggle"; el.setAttribute("role", "button"); el.setAttribute("tabindex", "0");
+      el.innerHTML = '<div class="vpv-pdv__switch"><div class="vpv-pdv__knob"></div></div>' +
+        '<span class="vpv-pdv__tlabel"></span><span class="vpv-pdv__tfx"></span>';
+      el.querySelector(".vpv-pdv__tlabel").textContent = t.label;
+      var fx = el.querySelector(".vpv-pdv__tfx");
+      function flip() { state[t.key] = !state[t.key]; render(); }
+      el.addEventListener("click", flip);
+      el.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(); } });
+      controls.appendChild(el);
+      return { t: t, el: el, fx: fx };
+    });
+
+    function render() {
+      var s = state;
+      var descRich = s.ns || s.type;
+
+      // ── product card ──
+      var rating = q("rating");
+      rating.textContent = s.type ? "4.5" : '"4.5 out of 5"';
+      rating.style.color = s.type ? "var(--green)" : "";
+
+      var desc = q("desc");
+      desc.textContent = descRich ? DESC_RICH : DESC_THIN;
+      desc.style.color = descRich ? "var(--mid)" : "var(--red)";
+      desc.style.fontStyle = descRich ? "normal" : "italic";
+
+      var wp = q("wp");
+      wp.textContent = s.type ? "Waterproof " + CK : "Waterproof";
+      wp.style.border = "1px " + (s.type ? "solid" : "dashed") + " " + (s.type ? "var(--green)" : "var(--red)");
+      wp.style.color = s.type ? "var(--green)" : "var(--red)";
+
+      q("filpill").style.display = s.tags ? "none" : "";
+
+      // ── custom.* section ──
+      q("dot-custom").style.background = s.ns ? "var(--green)" : "var(--red)";
+      q("head-custom").textContent = s.ns ? "Organized by purpose" : "custom.* " + MD + " the junk drawer";
+      customRefs.forEach(function (item) {
+        var f = item.f, r = item.r;
+        r.name.textContent = (s.ns ? RENAMES : ORIG)[f.id];
+        r.name.style.color = s.ns ? "var(--green)" : "var(--mid)";
+        setVal(r, f.val ? f.val(s) : null);
+        setBadge(r, f.badge ? f.badge(s) : null);
+      });
+
+      // ── tags section ──
+      q("dot-tags").style.background = s.tags ? "var(--green)" : "#64748b";
+      q("head-tags").textContent = s.tags ? "Tags " + MD + " migrated to metafields" : "Tags " + MD + " structured data hiding here";
+      tagRefs.forEach(function (r) { applyRowState(r, s.tags, "mig"); });
+
+      // ── dead fields section ──
+      q("dot-dead").style.background = s.dead ? "var(--green)" : "#b0ada8";
+      q("head-dead").textContent = s.dead ? "Dead fields " + MD + " removed" : "Dead fields " + MD + " no longer in use";
+      deadRefs.forEach(function (r) { applyRowState(r, s.dead, "fade"); });
+
+      // ── AI readiness ──
+      var aiCount = [s.ns, s.tags, s.type, s.dead].filter(Boolean).length;
+      q("aidot").style.background = aiColor(aiCount);
+      var aitext = q("aitext");
+      aitext.textContent = aiText(aiCount);
+      aitext.style.color = aiColor(aiCount);
+
+      // ── score ──
+      var score = Math.max(78 - (s.ns ? 22 : 0) - (s.tags ? 15 : 0) - (s.type ? 8 : 0) - (s.dead ? 18 : 0), 15);
+      var col = scoreColor(score);
+      q("fill").style.width = score + "%";
+      q("fill").style.background = col;
+      var num = q("scorenum"); num.textContent = score; num.style.color = col;
+
+      // ── toggles ──
+      toggleRefs.forEach(function (tr) {
+        var on = state[tr.t.key];
+        tr.el.classList.toggle("is-on", on);
+        tr.el.setAttribute("aria-pressed", on ? "true" : "false");
+        tr.fx.textContent = on ? tr.t.fx : "";
+      });
+    }
+
+    render();
+  }
+
+  function boot() {
+    var nodes = document.querySelectorAll(".vpv-pdv");
+    for (var i = 0; i < nodes.length; i++) {
+      if (nodes[i].getAttribute("data-init")) continue;
+      nodes[i].setAttribute("data-init", "1");
+      initWidget(nodes[i]);
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+</script>

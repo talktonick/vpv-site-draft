@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Parity Sandbox — Horizontal Scroll (#18)</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+
+  <!-- His foundation -->
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/vpvstaging.webflow.css" rel="stylesheet" type="text/css">
+
+  <!-- His fluid root -->
+  <style>
+    html { font-size: calc(0.3333333333333335rem + 0.7407407407407407vw); }
+    @media screen and (max-width:1440px) { html { font-size: calc(-0.004464285714285587rem + 1.1160714285714284vw); } }
+    @media screen and (max-width:992px)  { html { font-size: 1rem; } }
+  </style>
+
+  <!-- Same libs his site runs: GSAP + ScrollTrigger + Lenis -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script>
+
+  <!-- NEW: the horizontal-scroll RIG, in his tokens -->
+  <style>
+    body { margin: 0; background-color: var(--color--cream-to-midnight); }
+    .pw-test { display: flex; flex-flow: column; grid-row-gap: 9rem; width: 100%; }  /* TEST: mimic his .page-wrap flex container */
+    .h-scroll-block { width: 100%; }  /* FIX: plain block wrapper so the pin-spacer isn't a flex item */
+
+    .lead { min-height: 90vh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+    .lead .h3-sub { max-width: 32rem; text-align: center; }
+
+    /* RIG: the pinned, sideways-scrolling section */
+    .horizontal__wrap {
+      display: flex; flex-flow: row; align-items: center;
+      gap: 1.5rem;                                  /* inter-panel gutter (uniform) */
+      min-height: 100vh; overflow: hidden;
+      padding-left: 2.5rem; padding-right: 2.5rem;  /* leading + trailing edge gutters live HERE, not on the panels */
+    }
+    .horizontal__panel { flex: none; width: min(60vw, 40rem); }  /* every panel identical → every slide identical height */
+
+    /* SLOT: position-relative so media fills + a label can overlay later */
+    .h-slide {
+      position: relative; overflow: hidden;
+      width: 100%; aspect-ratio: 4 / 3;
+      border-radius: 1.25rem;
+      background-color: var(--color--silver-to-navy);
+    }
+    /* the drop-in media (image-cs-txt-grid / video-cs-article behave exactly like this) */
+    .h-slide > img, .h-slide > video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* responsive: ≤767 the script disables, so stack the panels vertically */
+    @media (max-width: 767px) {
+      .horizontal__wrap { flex-flow: column; min-height: 0; overflow: visible; padding: 1.25rem; }
+      .horizontal__panel { width: 100%; }
+    }
+  </style>
+</head>
+<body class="body">
+  <div class="pw-test">
+
+  <div class="lead"><div class="h3-sub">Scroll down ↓ — the section below pins and the panels move sideways. (Drop <code>image-cs-txt-grid</code> / <code>video-cs-article</code> into each <code>.h-slide</code>.)</div></div>
+
+  <div class="h-scroll-block">
+  <section class="horizontal__wrap" data-horizontal-scroll-wrap data-horizontal-scroll-disable="mobileLandscape">
+    <div class="horizontal__panel" data-horizontal-scroll-panel><div class="h-slide"><img src="https://picsum.photos/seed/vv1/1000/800" alt=""></div></div>
+    <div class="horizontal__panel" data-horizontal-scroll-panel><div class="h-slide"><img src="https://picsum.photos/seed/vv2/1000/800" alt=""></div></div>
+    <div class="horizontal__panel" data-horizontal-scroll-panel><div class="h-slide"><img src="https://picsum.photos/seed/vv3/1000/800" alt=""></div></div>
+    <div class="horizontal__panel" data-horizontal-scroll-panel><div class="h-slide"><img src="https://picsum.photos/seed/vv4/1000/800" alt=""></div></div>
+    <div class="horizontal__panel" data-horizontal-scroll-panel><div class="h-slide"><img src="https://picsum.photos/seed/vv5/1000/800" alt=""></div></div>
+  </section>
+  </div>
+
+  <div class="lead"><div class="h3-sub">↑ The pinned section released — normal vertical scroll resumes.</div></div>
+
+  </div>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* Lenis (his smooth scroll) ↔ GSAP ScrollTrigger sync — the glue that makes pin+scrub work */
+    const lenis = new Lenis({ lerp: 0.3, wheelMultiplier: 1.5, smoothTouch: false });
+    lenis.on('scroll', ScrollTrigger.update);
+    // MIMIC HIS PAGE: Lenis on its OWN requestAnimationFrame loop (not gsap.ticker)
+    function lraf(time){ lenis.raf(time); requestAnimationFrame(lraf); }
+    requestAnimationFrame(lraf);
+
+    /* The gallery's horizontal-scroll island, ported verbatim */
+    function initHorizontalScrolling() {
+      const mm = gsap.matchMedia();
+      mm.add({ isMobile: "(max-width:479px)", isMobileLandscape: "(max-width:767px)", isTablet: "(max-width:991px)", isDesktop: "(min-width:992px)" }, (context) => {
+        const { isMobile, isMobileLandscape, isTablet } = context.conditions;
+        const ctx = gsap.context(() => {
+          document.querySelectorAll("[data-horizontal-scroll-wrap]").forEach((wrap) => {
+            const disable = wrap.getAttribute("data-horizontal-scroll-disable");
+            if ((disable === "mobile" && isMobile) || (disable === "mobileLandscape" && isMobileLandscape) || (disable === "tablet" && isTablet)) return;
+            const panels = gsap.utils.toArray("[data-horizontal-scroll-panel]", wrap);
+            if (panels.length < 2) return;
+            gsap.to(panels, { x: () => -(wrap.scrollWidth - window.innerWidth), ease: "none", scrollTrigger: { trigger: wrap, start: "top top", end: () => "+=" + (wrap.scrollWidth - window.innerWidth), scrub: true, pin: true, invalidateOnRefresh: true } });
+          });
+        });
+        return () => ctx.revert();
+      });
+    }
+    initHorizontalScrolling();
+  </script>
+</body>
+</html>

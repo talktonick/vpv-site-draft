@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Parity Sandbox — Button (.btn) + CTA Block (#14)</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+
+  <!-- His exported foundation -->
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/vpvstaging.webflow.css" rel="stylesheet" type="text/css">
+
+  <!-- His fluid-root font-size -->
+  <style>
+    html { font-size: calc(0.3333333333333335rem + 0.7407407407407407vw); }
+    @media screen and (max-width:3600px) { html { font-size: calc(0.33333333333333337rem + 0.7407407407407407vw); } }
+    @media screen and (max-width:1440px) { html { font-size: calc(-0.004464285714285587rem + 1.1160714285714284vw); } }
+    @media screen and (max-width:992px)  { html { font-size: 1rem; } }
+  </style>
+
+  <!-- NEW components: the .btn button + the CTA block, written in his tokens.
+       Each maps 1:1 to a Webflow class/combo. His CSS + .icon-embed come from above. -->
+  <style>
+    body { padding-top: 4rem; padding-bottom: 4rem; }
+
+    /* ===== BUTTON (.btn) — gallery design, his tokens ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      grid-column-gap: .5rem;
+      grid-row-gap: .5rem;
+      padding: .875rem 1.75rem;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.2;
+      border-radius: 100px;                         /* pill */
+      background-color: var(--color--navy-to-white);/* dark in light mode */
+      color: var(--color--white-to-navy);           /* white text */
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-radius .3s;                /* the morph */
+    }
+    .btn:hover { border-radius: 12px; }             /* pill → squircle on hover */
+
+    .btn.white  { background-color: var(--swatch--white);  color: var(--swatch--midnight); }
+    .btn.accent { background-color: var(--swatch--purple); color: var(--swatch--white); }
+
+    /* icon slot — reuses his .icon-embed (16px); just size the SVG + inherit color */
+    .btn .icon-embed { width: 16px; height: 16px; flex: none; }
+    .btn .icon-embed svg { width: 100%; height: 100%; display: block; }
+
+    /* download's icon-in-circle treatment */
+    .btn__icon-circle {
+      width: 1.75rem; height: 1.75rem; flex: none;
+      border-radius: 999px;
+      background-color: var(--color--navy-10-to-white-20);
+      display: flex; align-items: center; justify-content: center;
+      margin-left: -.625rem;                        /* tuck toward the left edge */
+    }
+    .btn__icon-circle .icon-embed { width: 14px; height: 14px; }
+
+    .btn-showcase { display: flex; flex-flow: row wrap; grid-column-gap: 1rem; grid-row-gap: 1rem; align-items: center; }
+
+    /* ===== CTA BLOCK (#14) ===== */
+    .cta-panel {
+      background-color: var(--color--silver-to-navy);
+      border-radius: 1.25rem;
+      text-align: center;
+      padding: 6rem 2rem;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      grid-row-gap: 1.5rem;
+      width: 100%;  /* fills both a stretch parent (section-new) AND a centered one (article-content-inner) */
+    }
+    .cta-panel .h2-sans-new { max-width: none; }
+    .cta-sub { max-width: 32rem; }
+  </style>
+</head>
+<body class="body bg-white">
+  <div class="page-wrap">
+
+    <!-- Button showcase (variants) -->
+    <section class="section-new">
+      <div class="p1">Button variants — hover any to see the radius morph</div>
+      <div class="btn-showcase">
+        <a href="#" class="btn">Talk to our team</a>
+        <a href="#" class="btn">Read more
+          <span class="icon-embed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+        <a href="#" class="btn white">
+          <span class="btn__icon-circle"><span class="icon-embed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span></span>
+          Download case study
+        </a>
+        <a href="#" class="btn accent">Launch the tool
+          <span class="icon-embed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- CTA Block #14 -->
+    <section class="section-new">
+      <div class="cta-panel">
+        <h2 class="h2-sans-new">Let's talk.</h2>
+        <div class="p2 cta-sub">If this resonates with where your brand is headed, we'd like to hear about it.</div>
+        <a href="#" class="btn">Talk to our team</a>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

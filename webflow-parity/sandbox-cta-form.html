@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Parity Sandbox — CTA Panel + Form (options)</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/vpvstaging.webflow.css" rel="stylesheet" type="text/css">
+  <style>
+    html { font-size: calc(0.3333333333333335rem + 0.7407407407407407vw); }
+    @media screen and (max-width:1440px) { html { font-size: calc(-0.004464285714285587rem + 1.1160714285714284vw); } }
+    @media screen and (max-width:992px)  { html { font-size: 1rem; } }
+  </style>
+  <style>
+    body { padding: 3rem 0 6rem; }
+    .opt-label { letter-spacing: 1.5px; text-transform: uppercase; opacity: .65; color: var(--color--navy-40-to-white-40); margin-bottom: 1rem; }
+
+    /* button (locked) */
+    .btn { display: inline-flex; align-items: center; justify-content: center; grid-column-gap: .5rem; padding: .875rem 1.75rem; font-size: 16px; font-weight: 500; line-height: 1.2; border-radius: 100px; background-color: var(--color--navy-to-white); color: var(--color--white-to-navy); text-decoration: none; cursor: pointer; border: 0; transition: border-radius .3s; }
+    .btn:hover { border-radius: 12px; }
+    .btn.full { width: 100%; }
+
+    /* CTA panel base (locked) */
+    .cta-panel { background-color: var(--color--silver-to-navy); border-radius: 1.25rem; padding: 5rem 2.5rem; display: flex; flex-flow: column; align-items: center; text-align: center; grid-row-gap: 1.75rem; width: 100%; }
+    .cta-title { font-weight: 600; max-width: none; }
+    .cta-sub { max-width: 34rem; }
+
+    /* ---- form pieces (his tokens) ---- */
+    .cta-form { display: flex; flex-flow: column; grid-row-gap: .75rem; width: 100%; max-width: 30rem; }
+    .cta-input { width: 100%; box-sizing: border-box; margin: 0; padding: .9rem 1.25rem; font-family: NeueHaasDisplay, sans-serif; font-size: 16px; color: var(--color--navy-to-white); background-color: var(--color--white-to-midnight); border: 1px solid var(--color--navy-10-to-white-20); border-radius: .625rem; }
+    .cta-input::placeholder { color: var(--color--navy-40-to-white-40); }
+    .cta-input:focus { outline: 0; border-color: var(--color--navy-to-white); }
+    .cta-row { display: flex; grid-column-gap: .75rem; grid-row-gap: .75rem; width: 100%; }
+    .cta-row .cta-input { flex: 1; min-width: 0; }
+    .cta-consent { display: flex; align-items: flex-start; grid-column-gap: .6rem; text-align: left; width: 100%; }
+    .cta-consent input { margin: .2rem 0 0; flex: none; width: 1.1rem; height: 1.1rem; accent-color: var(--swatch--purple); }
+    .cta-consent-text { font-size: 14px; line-height: 1.45; opacity: .65; color: var(--color--navy-to-silver); }
+
+    /* option C split */
+    .cta-split { flex-flow: row; align-items: center; text-align: left; grid-column-gap: 4rem; }
+    .cta-split .cta-col { flex: 1; display: flex; flex-flow: column; align-items: flex-start; grid-row-gap: 1rem; }
+    .cta-split .cta-sub { text-align: left; margin: 0; }
+    .cta-split .cta-form { max-width: none; }
+    @media (max-width:767px){ .cta-split { flex-flow: column; align-items: stretch; text-align: center; } .cta-row { flex-flow: column; } }
+  </style>
+</head>
+<body class="body bg-white">
+  <div class="w-layout-vflex page-wrap">
+
+    <!-- OPTION A — Centered, stacked fields (most compact / focused) -->
+    <section class="section-new">
+      <div class="p1 opt-label">Option A — centered, stacked</div>
+      <div class="cta-panel">
+        <h2 class="h2-sans-new cta-title">Let's talk.</h2>
+        <div class="p2 cta-sub">If this resonates with where your brand is headed, we'd like to hear about it.</div>
+        <form class="cta-form">
+          <input class="cta-input" type="text" name="NAME" placeholder="Full name">
+          <input class="cta-input" type="email" name="EMAIL" placeholder="Email address">
+          <input class="cta-input" type="text" name="COMPANY" placeholder="Company">
+          <label class="cta-consent"><input type="checkbox"><span class="cta-consent-text">[Consent language goes here] — I agree to receive insights and updates from Verbal + Visual.</span></label>
+          <a href="#" class="btn full">Talk to our team</a>
+        </form>
+      </div>
+    </section>
+
+    <!-- OPTION B — Centered, fields in a row (wider, single line) -->
+    <section class="section-new">
+      <div class="p1 opt-label">Option B — centered, fields in a row</div>
+      <div class="cta-panel">
+        <h2 class="h2-sans-new cta-title">Let's talk.</h2>
+        <div class="p2 cta-sub">If this resonates with where your brand is headed, we'd like to hear about it.</div>
+        <form class="cta-form" style="max-width:52rem">
+          <div class="cta-row">
+            <input class="cta-input" type="text" name="NAME" placeholder="Full name">
+            <input class="cta-input" type="email" name="EMAIL" placeholder="Email address">
+            <input class="cta-input" type="text" name="COMPANY" placeholder="Company">
+          </div>
+          <label class="cta-consent"><input type="checkbox"><span class="cta-consent-text">[Consent language goes here] — I agree to receive insights and updates from Verbal + Visual.</span></label>
+          <a href="#" class="btn">Talk to our team</a>
+        </form>
+      </div>
+    </section>
+
+    <!-- OPTION C — Split: text left, form right -->
+    <section class="section-new">
+      <div class="p1 opt-label">Option C — split (text left, form right)</div>
+      <div class="cta-panel cta-split">
+        <div class="cta-col">
+          <h2 class="h2-sans-new cta-title">Let's talk.</h2>
+          <div class="p2 cta-sub">If this resonates with where your brand is headed, we'd like to hear about it.</div>
+        </div>
+        <div class="cta-col">
+          <form class="cta-form">
+            <input class="cta-input" type="text" name="NAME" placeholder="Full name">
+            <input class="cta-input" type="email" name="EMAIL" placeholder="Email address">
+            <input class="cta-input" type="text" name="COMPANY" placeholder="Company">
+            <label class="cta-consent"><input type="checkbox"><span class="cta-consent-text">[Consent language goes here] — I agree to receive insights and updates from Verbal + Visual.</span></label>
+            <a href="#" class="btn full">Talk to our team</a>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Local-only snapshot of the developer's Webflow export — refresh from the latest export.
+# Not committed: css/ is a large generated blob; fonts/ are licensed (Victor Serif = trial,
+# Neue Haas = commercial) and must not be published in this public repo. Kept local only.
+css/
+fonts/
